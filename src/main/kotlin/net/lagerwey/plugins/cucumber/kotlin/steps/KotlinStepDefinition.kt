@@ -13,7 +13,7 @@ class KotlinStepDefinition(method: PsiElement) : AbstractStepDefinition(method) 
             val argumentExpression = element.valueArguments[0]?.getArgumentExpression() ?: return null
 
             val text = argumentExpression.text
-            return text.removePrefix("\"").removeSuffix("\"")
+            return text.removePrefix("\"").removeSuffix("\"").replace("\\\\", "\\")
         }
         return null
     }
