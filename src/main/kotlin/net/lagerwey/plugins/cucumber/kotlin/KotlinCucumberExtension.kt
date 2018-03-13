@@ -16,12 +16,10 @@ import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.plugins.cucumber.AbstractStepDefinitionCreator
 import org.jetbrains.plugins.cucumber.BDDFrameworkType
 import org.jetbrains.plugins.cucumber.StepDefinitionCreator
-import org.jetbrains.plugins.cucumber.java.steps.Java8StepDefinitionCreator
 import org.jetbrains.plugins.cucumber.psi.GherkinFile
 import org.jetbrains.plugins.cucumber.psi.GherkinStep
 import org.jetbrains.plugins.cucumber.steps.AbstractCucumberExtension
 import org.jetbrains.plugins.cucumber.steps.AbstractStepDefinition
-import java.util.*
 
 class KotlinCucumberExtension : AbstractCucumberExtension() {
 
