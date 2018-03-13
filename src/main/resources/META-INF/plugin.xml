@@ -1,0 +1,39 @@
+<idea-plugin>
+    <id>net.lagerwey.cucumber-kotlin</id>
+    <name>Cucubmer Kotlin plugin</name>
+    <version>1.0.0</version>
+    <vendor url="http://www.github.com/jlagerweij">
+        Jos Lagerweij
+    </vendor>
+
+    <description><![CDATA[
+      <p>
+        This plugin enables [Cucumber](http://cukes.info/) support with step definitions written in Kotlin.
+      </p>
+      <p>
+        The following coding assistance features are available:
+      </p>
+      <ul>
+        <li>Navigation in the source code.
+      </ul>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      <ul>
+        <li><b>1.0.0</b> <em>(2018-03-13)</em> - Initial release</li>
+      </ul>
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="162"/>
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>gherkin</depends>
+    <depends>org.jetbrains.kotlin</depends>
+
+    <extensions defaultExtensionNs="org.jetbrains.plugins.cucumber.steps">
+        <cucumberJvmExtensionPoint implementation="net.lagerwey.plugins.cucumber.kotlin.KotlinCucumberExtension"/>
+    </extensions>
+
+</idea-plugin>
