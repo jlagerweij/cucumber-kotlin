@@ -36,8 +36,8 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
     override fun getStepDefinitionContainers(featureFile: GherkinFile): MutableCollection<out PsiFile> = mutableListOf()
 
     override fun loadStepsFor(featureFile: PsiFile?, module: Module): MutableList<AbstractStepDefinition> {
-        val result = ArrayList<AbstractStepDefinition>()
-        val dependenciesScope = GlobalSearchScope.projectScope(module.project)
+        val result = mutableListOf<AbstractStepDefinition>()
+        val dependenciesScope = module.moduleContentWithDependenciesScope
         val kotlinFiles = GlobalSearchScope.getScopeRestrictedByFileTypes(dependenciesScope, KotlinFileType.INSTANCE)
         for (method in arrayOf("Given", "And", "Then", "But", "When")) {
             val occurrencesProcessor: (PsiElement, Int) -> Boolean = { element, _ ->
