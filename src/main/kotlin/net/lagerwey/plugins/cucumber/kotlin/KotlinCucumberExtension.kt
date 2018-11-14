@@ -1,25 +1,22 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.openapi.module.Module
-import com.intellij.openapi.project.Project
-import com.intellij.psi.PsiDirectory
+import com.intellij.openapi.module.ModuleUtilCore
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.PsiSearchHelper
 import com.intellij.psi.search.UsageSearchContext
-import com.intellij.psi.util.CreateClassUtil
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinition
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.references.KtInvokeFunctionReference
 import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.plugins.cucumber.AbstractStepDefinitionCreator
 import org.jetbrains.plugins.cucumber.BDDFrameworkType
 import org.jetbrains.plugins.cucumber.StepDefinitionCreator
 import org.jetbrains.plugins.cucumber.psi.GherkinFile
-import org.jetbrains.plugins.cucumber.psi.GherkinStep
 import org.jetbrains.plugins.cucumber.steps.AbstractCucumberExtension
 import org.jetbrains.plugins.cucumber.steps.AbstractStepDefinition
+
 
 class KotlinCucumberExtension : AbstractCucumberExtension() {
 
@@ -31,9 +28,41 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
 
     override fun getStepFileType() = BDDFrameworkType(KotlinFileType.INSTANCE)
 
-    override fun getGlues(file: GherkinFile, jGluesFromOtherFiles: MutableSet<String>?) = emptyList<String>()
+    override fun getGlues(file: GherkinFile, jGluesFromOtherFiles: MutableSet<String>?): MutableCollection<String> {
+        val glues = mutableSetOf<String>()
+        jGluesFromOtherFiles?.let {
+            glues.addAll(it)
+        }
 
-    override fun getStepDefinitionContainers(featureFile: GherkinFile): MutableCollection<out PsiFile> = mutableListOf()
+        getStepDefinitionContainers(file).forEach {
+            if (it is KtFile) {
+                val packageName = it.packageFqName.asString()
+                if (packageName.isNotBlank()) {
+                    glues.add(packageName)
+                }
+            }
+        }
+
+        return glues
+    }
+
+    override fun getStepDefinitionContainers(featureFile: GherkinFile): MutableCollection<out PsiFile> {
+        val module = ModuleUtilCore.findModuleForPsiElement(featureFile) ?: return hashSetOf()
+        val stepDefs = loadStepsFor(featureFile, module)
+
+        val result = hashSetOf<PsiFile>()
+        for (stepDef in stepDefs) {
+            val stepDefElement = stepDef.element
+            if (stepDefElement != null) {
+                val psiFile = stepDefElement.containingFile
+                val psiDirectory = psiFile.parent
+                if (psiDirectory != null && isWritableStepLikeFile(psiFile, psiDirectory)) {
+                    result.add(psiFile)
+                }
+            }
+        }
+        return result
+    }
 
     override fun loadStepsFor(featureFile: PsiFile?, module: Module): MutableList<AbstractStepDefinition> {
         val result = mutableListOf<AbstractStepDefinition>()
