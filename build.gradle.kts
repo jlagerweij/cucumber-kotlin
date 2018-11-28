@@ -1,6 +1,7 @@
 import org.gradle.internal.impldep.org.apache.maven.wagon.PathUtils.password
 import org.jetbrains.intellij.tasks.PublishTask
 import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     extra["kotlinVersion"] = "1.3.10"
@@ -53,3 +54,8 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib")
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}

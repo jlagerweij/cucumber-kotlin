@@ -82,7 +82,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
                 }
                 true
             }
-            PsiSearchHelper.SERVICE.getInstance(module.project).processElementsWithWord(occurrencesProcessor, kotlinFiles, method, UsageSearchContext.IN_CODE, true)
+            PsiSearchHelper.getInstance(module.project).processElementsWithWord(occurrencesProcessor, kotlinFiles, method, UsageSearchContext.IN_CODE, true)
         }
         return result
     }
