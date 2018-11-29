@@ -20,8 +20,6 @@ plugins {
     id ("org.jetbrains.intellij") version "0.3.12"
 }
 val kotlinVersion = extra["kotlinVersion"] as String
-val jetbrainsPublishUsername by project
-val jetbrainsPublishPassword by project
 
 apply {
     plugin("org.jetbrains.intellij")
@@ -42,8 +40,8 @@ intellij {
 inline operator fun <T : Task> T.invoke(a: T.() -> Unit): T = apply(a)
 val publishPlugin: PublishTask by tasks
 publishPlugin {
-    setUsername(jetbrainsPublishUsername)
-    password (jetbrainsPublishPassword)
+    setUsername(project.properties["jetbrainsPublishUsername"])
+    password (project.properties["jetbrainsPublishPassword"])
 }
 
 repositories {
@@ -54,8 +52,6 @@ dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib")
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).all {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
+val compileKotlin: KotlinCompile by tasks
+
+compileKotlin.kotlinOptions.jvmTarget = "1.8"
