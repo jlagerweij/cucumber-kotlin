@@ -68,7 +68,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
         val result = mutableListOf<AbstractStepDefinition>()
         val dependenciesScope = module.moduleContentWithDependenciesScope
         val kotlinFiles = GlobalSearchScope.getScopeRestrictedByFileTypes(dependenciesScope, KotlinFileType.INSTANCE)
-        for (method in arrayOf("Given", "And", "Then", "But", "When")) {
+        for (method in (featureFile as GherkinFile).stepKeywords.filter { it != "*" }) {
             val occurrencesProcessor: (PsiElement, Int) -> Boolean = { element, _ ->
                 val parent = element.parent
                 if (parent != null) {
