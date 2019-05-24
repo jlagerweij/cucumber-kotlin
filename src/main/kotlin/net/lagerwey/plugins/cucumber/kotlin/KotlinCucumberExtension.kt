@@ -20,7 +20,9 @@ import org.jetbrains.plugins.cucumber.steps.AbstractStepDefinition
 
 class KotlinCucumberExtension : AbstractCucumberExtension() {
 
-    override fun getStepDefinitionCreator(): StepDefinitionCreator = throw NotImplementedError()
+    private val stepDefinitionCreator = KotlinStepDefinitionCreator()
+
+    override fun getStepDefinitionCreator(): StepDefinitionCreator = stepDefinitionCreator
 
     override fun isStepLikeFile(child: PsiElement, parent: PsiElement) = child is KtFile
 
