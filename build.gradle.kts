@@ -1,10 +1,8 @@
-import org.gradle.internal.impldep.org.apache.maven.wagon.PathUtils.password
 import org.jetbrains.intellij.tasks.PublishTask
-import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
-    extra["kotlinVersion"] = "1.3.10"
+    extra["kotlinVersion"] = "1.3.31"
 
     repositories {
         mavenCentral()
@@ -16,8 +14,8 @@ buildscript {
 }
 plugins {
     base
-    kotlin("jvm") version "1.3.10"
-    id ("org.jetbrains.intellij") version "0.3.12"
+    kotlin("jvm") version "1.3.31"
+    id ("org.jetbrains.intellij") version "0.4.8"
 }
 val kotlinVersion = extra["kotlinVersion"] as String
 
@@ -28,12 +26,15 @@ apply {
 intellij {
     pluginName = "cucumber-kotlin"
     version = "2018.3"
+//    version = "2019.1.3"
     downloadSources = true
     updateSinceUntilBuild = false //Disables updating since-build attribute in plugin.xml
 
     setPlugins(
         "gherkin:183.4284.148",
+//        "gherkin:191.6707.7",
         "org.jetbrains.kotlin:$kotlinVersion-release-IJ2018.3-1"
+//        "org.jetbrains.kotlin:$kotlinVersion-release-IJ2019.1-1"
     )
 }
 
