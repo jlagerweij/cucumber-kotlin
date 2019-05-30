@@ -12,7 +12,7 @@ class KotlinStepDefinition(method: PsiElement) : AbstractStepDefinition(method) 
 
     override fun getCucumberRegexFromElement(element: PsiElement?): String? {
         val text = stepDefinitionText ?: return null
-        return if (CucumberUtil.isCucumberExpression(text)) {
+        return if (isCucumberExpression(text)) {
             CucumberUtil.buildRegexpFromCucumberExpression(text, MapParameterTypeManager.DEFAULT)
         } else {
             text
