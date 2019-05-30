@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>net.lagerwey.cucumber-kotlin</id>
     <name>Cucumber for Kotlin</name>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <vendor url="http://www.github.com/jlagerweij">
         Jos Lagerweij
     </vendor>
@@ -20,6 +20,7 @@
 
     <change-notes><![CDATA[
       <ul>
+        <li><b>1.1.1</b> <em>(2019-05-30)</em> - Fix NoSuchMethodError on 2019.1</li>
         <li><b>1.1.0</b> <em>(2019-05-24)</em> - Create step definitions</li>
         <li><b>1.0.2</b> <em>(2018-03-14)</em> - Running features now populates the glue automatically</li>
         <li><b>1.0.1</b> <em>(2018-03-14)</em> - Support regex shorthand character classes</li>
