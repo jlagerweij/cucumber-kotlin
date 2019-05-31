@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>net.lagerwey.cucumber-kotlin</id>
     <name>Cucumber for Kotlin</name>
-    <version>1.1.1</version>
+
     <vendor url="http://www.github.com/jlagerweij">
         Jos Lagerweij
     </vendor>
@@ -34,6 +34,7 @@
 
     <depends>gherkin</depends>
     <depends>org.jetbrains.kotlin</depends>
+    <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="org.jetbrains.plugins.cucumber.steps">
         <cucumberJvmExtensionPoint implementation="net.lagerwey.plugins.cucumber.kotlin.KotlinCucumberExtension"/>
