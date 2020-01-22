@@ -1,5 +1,6 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
+import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.module.ModuleUtilCore
 import com.intellij.psi.PsiElement
@@ -30,24 +31,6 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
 
     override fun getStepFileType() = BDDFrameworkType(KotlinFileType.INSTANCE)
 
-    override fun getGlues(file: GherkinFile, jGluesFromOtherFiles: MutableSet<String>?): MutableCollection<String> {
-        val glues = mutableSetOf<String>()
-        jGluesFromOtherFiles?.let {
-            glues.addAll(it)
-        }
-
-        getStepDefinitionContainers(file).forEach {
-            if (it is KtFile) {
-                val packageName = it.packageFqName.asString()
-                if (packageName.isNotBlank()) {
-                    glues.add(packageName)
-                }
-            }
-        }
-
-        return glues
-    }
-
     override fun getStepDefinitionContainers(featureFile: GherkinFile): MutableCollection<out PsiFile> {
         val module = ModuleUtilCore.findModuleForPsiElement(featureFile) ?: return hashSetOf()
         val stepDefs = loadStepsFor(featureFile, module)
@@ -69,7 +52,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
     override fun loadStepsFor(featureFile: PsiFile?, module: Module): MutableList<AbstractStepDefinition> {
         val result = mutableListOf<AbstractStepDefinition>()
         val dependenciesScope = module.moduleContentWithDependenciesScope
-        val kotlinFiles = GlobalSearchScope.getScopeRestrictedByFileTypes(dependenciesScope, KotlinFileType.INSTANCE)
+        val kotlinFiles = GlobalSearchScope.getScopeRestrictedByFileTypes(dependenciesScope, KotlinFileType.INSTANCE as FileType)
         for (method in (featureFile as GherkinFile).stepKeywords.filter { it != "*" }) {
             val occurrencesProcessor: (PsiElement, Int) -> Boolean = { element, _ ->
                 val parent = element.parent
@@ -77,7 +60,11 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
                     val references = parent.references
                     for (ref in references) {
                         if (ref is KtInvokeFunctionReference) {
-                            result.add(KotlinStepDefinition(parent))
+                            try {
+                                result.add(KotlinStepDefinition(parent))
+                            } catch (e: ArrayIndexOutOfBoundsException) {
+                                // Should be ignored
+                            }
                             break
                         }
                     }

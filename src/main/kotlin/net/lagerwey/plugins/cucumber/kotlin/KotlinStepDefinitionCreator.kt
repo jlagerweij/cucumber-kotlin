@@ -6,7 +6,7 @@ import com.intellij.psi.PsiFile
 import org.jetbrains.kotlin.asJava.classes.KtLightClassForSourceDeclaration
 import org.jetbrains.kotlin.idea.core.appendElement
 import org.jetbrains.kotlin.idea.core.getPackage
-import org.jetbrains.kotlin.idea.refactoring.toPsiDirectory
+import org.jetbrains.kotlin.idea.core.util.toPsiDirectory
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
 import org.jetbrains.kotlin.idea.util.module
 import org.jetbrains.kotlin.idea.util.sourceRoots
@@ -54,14 +54,14 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
         return true
     }
 
-    override fun createStepDefinition(step: GherkinStep, file: PsiFile): Boolean {
+    override fun createStepDefinition(step: GherkinStep, file: PsiFile, withTemplate: Boolean): Boolean {
         val ktFile = (file as? KtFile) ?: return false
         val ktPsiFactory = KtPsiFactory(file.project, markGenerated = true)
         // TODO: Kotlin files can have multiple classes. Make sure to find correct one.
         val ktClass = (ktFile.classes.firstOrNull() as? KtLightClassForSourceDeclaration) ?: return false
         val initializer = ktClass.kotlinOrigin.getAnonymousInitializers()[0].body as? KtBlockExpression
         val expression = ktPsiFactory.createExpression("""
-            ${step.keyword.text}("${step.stepName.replace("\"", "\\\"")}") {
+            ${step.keyword.text}("${step.name.replace("\"", "\\\"")}") {
 
             }
             """.trimIndent())
