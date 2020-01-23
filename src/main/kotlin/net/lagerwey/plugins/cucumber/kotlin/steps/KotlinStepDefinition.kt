@@ -11,7 +11,7 @@ class KotlinStepDefinition(method: PsiElement) : AbstractStepDefinition(method) 
     override fun getVariableNames(): MutableList<String> = mutableListOf()
 
     override fun getCucumberRegexFromElement(element: PsiElement?): String? {
-        val text = stepDefinitionText ?: return null
+        val text = getStepDefinitionText() ?: return null
         return if (isCucumberExpression(text)) {
             CucumberUtil.buildRegexpFromCucumberExpression(text, MapParameterTypeManager.DEFAULT)
         } else {
@@ -19,7 +19,7 @@ class KotlinStepDefinition(method: PsiElement) : AbstractStepDefinition(method) 
         }
     }
 
-    override fun getStepDefinitionText(): String? {
+    fun getStepDefinitionText(): String? {
         val callExpression = element as? KtCallExpression
         val argument = callExpression?.valueArguments?.getOrNull(0)?.getArgumentExpression() ?: return null
         return argument.text.removePrefix("\"").removeSuffix("\"").replace("\\\\", "\\")

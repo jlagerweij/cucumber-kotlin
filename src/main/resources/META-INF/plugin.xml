@@ -6,32 +6,6 @@
         Jos Lagerweij
     </vendor>
 
-    <description><![CDATA[
-      <p>
-        This plugin enables <a href="http://cukes.info/">Cucumber</a> support with step definitions written in Kotlin.
-      </p>
-      <p>
-        The following coding assistance features are available:
-      </p>
-      <ul>
-        <li>Navigation in the source code.
-      </ul>
-    ]]></description>
-
-    <change-notes><![CDATA[
-      <ul>
-        <li><b>1.1.1</b> <em>(2019-05-30)</em> - Fix NoSuchMethodError on 2019.1</li>
-        <li><b>1.1.0</b> <em>(2019-05-24)</em> - Create step definitions</li>
-        <li><b>1.0.2</b> <em>(2018-03-14)</em> - Running features now populates the glue automatically</li>
-        <li><b>1.0.1</b> <em>(2018-03-14)</em> - Support regex shorthand character classes</li>
-        <li><b>1.0.0</b> <em>(2018-03-13)</em> - Initial release</li>
-      </ul>
-    ]]>
-    </change-notes>
-
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="182.711"/>
-
     <depends>gherkin</depends>
     <depends>org.jetbrains.kotlin</depends>
     <depends>com.intellij.modules.lang</depends>
