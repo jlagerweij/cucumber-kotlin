@@ -7,6 +7,7 @@ plugins {
     id("org.jetbrains.intellij") version "0.4.15"
 }
 val ideaVersion = extra.properties["ideaVersion"] as? String ?: "2019.3.2"
+val jetbrainsPublishToken: String by project
 
 apply {
     plugin("org.jetbrains.intellij")
@@ -40,12 +41,13 @@ intellij {
     }
 }
 
-inline operator fun <T : Task> T.invoke(a: T.() -> Unit): T = apply(a)
-val publishPlugin: PublishTask by tasks
-publishPlugin {
-    setUsername(extra.properties["jetbrainsPublishUsername"])
-    password(extra.properties["jetbrainsPublishPassword"])
-}
+//inline operator fun <T : Task> T.invoke(a: T.() -> Unit): T = apply(a)
+//val publishPlugin: PublishTask by tasks
+//publishPlugin {
+//    username(jetbrainsPublishUsername)
+//    password(jetbrainsPublishPassword)
+//    token(jetbrainsPublishToken)
+//}
 
 repositories {
     mavenCentral()
@@ -60,6 +62,9 @@ val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
 tasks {
+    named<PublishTask>("publishPlugin") {
+        token(jetbrainsPublishToken)
+    }
     named<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
         pluginDescription("""
               <p>
