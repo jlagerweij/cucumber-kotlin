@@ -4,9 +4,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     base
     kotlin("jvm") version "1.3.72"
-    id("org.jetbrains.intellij") version "0.4.18"
+    id("org.jetbrains.intellij") version "0.4.21"
 }
-val ideaVersion = extra.properties["ideaVersion"] as? String ?: "2020.1"
+val ideaVersion = extra.properties["ideaVersion"] as? String ?: "2020.2"
 val jetbrainsPublishToken: String by project
 
 apply {
@@ -23,10 +23,10 @@ intellij {
 
     when (ideaVersion) {
         // Gherkin plugin version: https://plugins.jetbrains.com/plugin/9164-gherkin/versions
-        "2020.1" ->
+        "2020.2" ->
             setPlugins(
                     "java",
-                    "gherkin:201.6668.60",
+                    "gherkin:202.6397.21",
                     "Kotlin"
             )
     }
@@ -62,6 +62,7 @@ tasks {
         """)
         changeNotes("""
       <ul>
+        <li><b>1.1.5</b> <em>(2020-04-16)</em> - Upgrade to 2020.2</li>
         <li><b>1.1.4</b> <em>(2020-04-16)</em> - Fix warnings from JetBrains plugin compatibility check</li>
         <li><b>1.1.3</b> <em>(2020-04-14)</em> - Compatible with Intellij IDEA 2020.1</li>
         <li><b>1.1.2</b> <em>(2020-01-17)</em> - ArrayOutOfBoundsException in Intellij IDEA 2019.3.2</li>

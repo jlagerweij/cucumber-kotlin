@@ -81,7 +81,10 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
         return "${basename}Steps.kt"
     }
 
-    override fun getDefaultStepDefinitionFolder(step: GherkinStep): PsiDirectory {
+    override fun getDefaultStepDefinitionFolderPath(step: GherkinStep): String {
+        return getDefaultKotlinStepDefinitionFolderPath(step).toString()
+    }
+    private fun getDefaultKotlinStepDefinitionFolderPath(step: GherkinStep): PsiDirectory {
         lastObservedLanguage = step.localeLanguage
 
         val stepDir = step.containingFile.containingDirectory
