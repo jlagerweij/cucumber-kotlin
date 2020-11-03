@@ -1,4 +1,4 @@
-package net.lagerwey.plugins.cucumber.kotlin
+package net.lagerwey.plugins.cucumber.kotlin.steps
 
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDirectory
@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.asJava.classes.KtLightClassForSourceDeclaration
 import org.jetbrains.kotlin.idea.core.appendElement
 import org.jetbrains.kotlin.idea.core.getPackage
 import org.jetbrains.kotlin.idea.core.util.toPsiDirectory
+import org.jetbrains.kotlin.idea.refactoring.KotlinNamesValidator
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
 import org.jetbrains.kotlin.idea.util.module
 import org.jetbrains.kotlin.idea.util.sourceRoots
@@ -50,8 +51,7 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
     }
 
     override fun validateNewStepDefinitionFileName(project: Project, name: String): Boolean {
-        // TODO: Actually validate (check for collision)
-        return true
+        return name.isNotEmpty() && KotlinNamesValidator().isIdentifier(name, project)
     }
 
     override fun createStepDefinition(step: GherkinStep, file: PsiFile, withTemplate: Boolean): Boolean {
