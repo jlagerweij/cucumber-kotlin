@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm") version "1.3.72"
     id("org.jetbrains.intellij") version "0.4.21"
 }
-val ideaVersion = extra.properties["ideaVersion"] as? String ?: "2020.2"
+val ideaVersion = extra.properties["ideaVersion"] as? String ?: "IC-203.5419.21-EAP-SNAPSHOT"
 val jetbrainsPublishToken: String by project
 
 apply {
@@ -29,11 +29,18 @@ intellij {
                     "gherkin:202.6397.21",
                     "Kotlin"
             )
+        "IC-203.5419.21-EAP-SNAPSHOT" ->
+            setPlugins(
+                    "java",
+                    "gherkin:203.5419.7",
+                    "Kotlin"
+            )
     }
 }
 
 repositories {
     mavenCentral()
+    maven("https://www.jetbrains.com/intellij-repository/snapshots")
 }
 
 dependencies {
@@ -62,6 +69,7 @@ tasks {
         """)
         changeNotes("""
       <ul>
+        <li><b>1.1.6</b> <em>(2020-11-03)</em> - Upgrade to 2020.3-EAP</li>
         <li><b>1.1.5</b> <em>(2020-04-16)</em> - Upgrade to 2020.2</li>
         <li><b>1.1.4</b> <em>(2020-04-16)</em> - Fix warnings from JetBrains plugin compatibility check</li>
         <li><b>1.1.3</b> <em>(2020-04-14)</em> - Compatible with Intellij IDEA 2020.1</li>
