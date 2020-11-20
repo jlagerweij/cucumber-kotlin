@@ -15,4 +15,18 @@
         <cucumberJvmExtensionPoint implementation="net.lagerwey.plugins.cucumber.kotlin.KotlinCucumberExtension"/>
     </extensions>
 
+    <extensions defaultExtensionNs="com.intellij">
+        <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.KotlinCucumberStepIndex"/>
+
+        <pom.declarationSearcher implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepDeclarationSearcher"/>
+
+        <referencesSearch implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepDefinitionUsageSearcher"/>
+        <findUsagesHandlerFactory implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepFindUsagesHandlerFactory"/>
+        <usageTypeProvider implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepUsageTypeProvider"/>
+
+        <codeInsight.lineMarkerProvider
+            implementationClass="net.lagerwey.plugins.cucumber.kotlin.search.CucumberLineMarkerProvider"
+            language="kotlin"/>
+    </extensions>
+
 </idea-plugin>

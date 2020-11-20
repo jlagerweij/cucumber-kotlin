@@ -25,16 +25,23 @@ intellij {
         // Gherkin plugin version: https://plugins.jetbrains.com/plugin/9164-gherkin/versions
         "2020.2" ->
             setPlugins(
-                    "java",
-                    "gherkin:202.6397.21",
-                    "Kotlin"
+                "java",
+                "gherkin:202.6397.21",
+                "Kotlin"
             )
         "IC-203.5419.21-EAP-SNAPSHOT" ->
             setPlugins(
-                    "java",
-                    "gherkin:203.5419.7",
-                    "Kotlin"
+                "java",
+                "gherkin:203.5419.7",
+                "Kotlin"
             )
+        "201.8743.12" -> {
+            setPlugins(
+                "java",
+                "gherkin:201.8538.45",
+                "Kotlin"
+            )
+        }
     }
 }
 
