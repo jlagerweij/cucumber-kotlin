@@ -6,8 +6,10 @@ plugins {
     kotlin("jvm") version "1.3.72"
     id("org.jetbrains.intellij") version "0.4.21"
 }
-val ideaVersion = extra.properties["ideaVersion"] as? String ?: "IC-203.5419.21-EAP-SNAPSHOT"
+val ideaVersion: String by project
 val jetbrainsPublishToken: String by project
+
+val pluginVersion: String by project
 
 apply {
     plugin("org.jetbrains.intellij")
@@ -17,6 +19,7 @@ apply {
 intellij {
     pluginName = "cucumber-kotlin"
     version = ideaVersion
+    type = "IC"
 
     downloadSources = true
     instrumentCode = true
@@ -29,7 +32,7 @@ intellij {
                 "gherkin:202.6397.21",
                 "Kotlin"
             )
-        "IC-203.5419.21-EAP-SNAPSHOT" ->
+        "203.5419.21-EAP-SNAPSHOT" ->
             setPlugins(
                 "java",
                 "gherkin:203.5419.7",
@@ -50,19 +53,24 @@ repositories {
     maven("https://www.jetbrains.com/intellij-repository/snapshots")
 }
 
-dependencies {
-    implementation(kotlin("stdlib"))
-}
-
 val compileKotlin: KotlinCompile by tasks
 
 compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
 tasks {
-    named<PublishTask>("publishPlugin") {
-        token(jetbrainsPublishToken)
+    register<Exec>("tag") {
+        commandLine = listOf("git", "tag", version.toString())
     }
-    named<org.jetbrains.intellij.tasks.PatchPluginXmlTask>("patchPluginXml") {
+    publishPlugin {
+        dependsOn("tag")
+        token(jetbrainsPublishToken)
+        channels(version.toString().split('-').getOrElse(1) { "default" }.split('.').first())
+    }
+    register<Exec>("publishTag") {
+        dependsOn(publishPlugin)
+        commandLine = listOf("git", "push", "origin", version.toString())
+    }
+    patchPluginXml {
         pluginDescription("""
               <p>
                 This plugin enables <a href="http://cukes.info/">Cucumber</a> support with step definitions written in Kotlin.
