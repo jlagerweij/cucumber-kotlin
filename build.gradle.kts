@@ -84,6 +84,7 @@ tasks {
         """)
         changeNotes("""
       <ul>
+        <li><b>2020.2.1</b> <em>(2020-12-02)</em> - Add support for JVM types by mrozanc. Thank you!</li>
         <li><b>2020.2.0</b> <em>(2020-11-21)</em> - Improvements from ErikVermunt-TomTom based on the Cucumber for Scala plugin. Thank you!</li>
         <li><b>1.1.6</b> <em>(2020-11-03)</em> - Upgrade to 2020.3-EAP</li>
         <li><b>1.1.5</b> <em>(2020-04-16)</em> - Upgrade to 2020.2</li>
