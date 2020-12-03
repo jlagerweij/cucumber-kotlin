@@ -32,10 +32,10 @@ intellij {
                 "gherkin:202.6397.21",
                 "Kotlin"
             )
-        "203.5419.21-EAP-SNAPSHOT" ->
+        "2020.3" ->
             setPlugins(
                 "java",
-                "gherkin:203.5419.7",
+                "gherkin:203.5981.155",
                 "Kotlin"
             )
         "201.8743.12" -> {
@@ -84,6 +84,7 @@ tasks {
         """)
         changeNotes("""
       <ul>
+        <li><b>2020.3.0</b> <em>(2020-12-03)</em> - Upgrade to 2020.3</li>
         <li><b>2020.2.1</b> <em>(2020-12-02)</em> - Add support for JVM types by mrozanc. Thank you!</li>
         <li><b>2020.2.0</b> <em>(2020-11-21)</em> - Improvements from ErikVermunt-TomTom based on the Cucumber for Scala plugin. Thank you!</li>
         <li><b>1.1.6</b> <em>(2020-11-03)</em> - Upgrade to 2020.3-EAP</li>
