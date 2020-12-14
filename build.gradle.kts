@@ -88,6 +88,7 @@ tasks {
         """)
         changeNotes("""
       <ul>
+        <li><b>2020.3.2</b> <em>(2020-12-14)</em> - Support multiline string literals again</li>
         <li><b>2020.3.1</b> <em>(2020-12-14)</em> - Detect keywords using all languages not just English</li>
         <li><b>2020.3.0</b> <em>(2020-12-03)</em> - Upgrade to 2020.3</li>
         <li><b>2020.2.1</b> <em>(2020-12-02)</em> - Add support for JVM types by mrozanc. Thank you!</li>
