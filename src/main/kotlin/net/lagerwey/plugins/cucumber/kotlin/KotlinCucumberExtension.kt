@@ -89,7 +89,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
         findParameterTypes(module, kotlinFiles)
 
         return elements.mapNotNull { stepElement ->
-            if (isStepDefinition(stepElement)) {
+            if (CucumberKotlinUtil.isStepDefinition(stepElement)) {
                 stepElement.references.firstOrNull { it is KtInvokeFunctionReference }?.let {
                     KotlinStepDefinition(stepElement)
                 }

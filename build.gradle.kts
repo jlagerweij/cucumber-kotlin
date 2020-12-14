@@ -57,6 +57,10 @@ val compileKotlin: KotlinCompile by tasks
 
 compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
+dependencies {
+    implementation("io.cucumber:cucumber-java:6.9.0")
+}
+
 tasks {
     register<Exec>("tag") {
         commandLine = listOf("git", "tag", version.toString())
@@ -84,6 +88,7 @@ tasks {
         """)
         changeNotes("""
       <ul>
+        <li><b>2020.3.1</b> <em>(2020-12-14)</em> - Detect keywords using all languages not just English</li>
         <li><b>2020.3.0</b> <em>(2020-12-03)</em> - Upgrade to 2020.3</li>
         <li><b>2020.2.1</b> <em>(2020-12-02)</em> - Add support for JVM types by mrozanc. Thank you!</li>
         <li><b>2020.2.0</b> <em>(2020-11-21)</em> - Improvements from ErikVermunt-TomTom based on the Cucumber for Scala plugin. Thank you!</li>

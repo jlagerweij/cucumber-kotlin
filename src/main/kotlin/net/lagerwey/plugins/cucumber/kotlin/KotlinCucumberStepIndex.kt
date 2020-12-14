@@ -22,7 +22,7 @@ class KotlinCucumberStepIndex : CucumberStepIndex() {
 
     override fun getInputFilter(): FileBasedIndex.InputFilter = inputFilter
 
-    override fun getPackagesToScan(): Array<String> = arrayOf(cucumberPackage)
+    override fun getPackagesToScan(): Array<String> = arrayOf(CucumberKotlinUtil.CUCUMBER_PACKAGE)
 
     override fun getIndexer(): DataIndexer<Boolean, MutableList<Int>, FileContent> {
         // Override to support steps defined in subclasses

@@ -9,9 +9,8 @@ import com.intellij.psi.util.CachedValueProvider
 import com.intellij.psi.util.CachedValuesManager
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.Consumer
-import net.lagerwey.plugins.cucumber.kotlin.getStepName
+import net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinUtil
 import net.lagerwey.plugins.cucumber.kotlin.inReadAction
-import net.lagerwey.plugins.cucumber.kotlin.isStepDefinition
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtValueArgumentList
@@ -19,7 +18,7 @@ import org.jetbrains.kotlin.psi.KtValueArgumentList
 class StepDeclarationSearcher : PomDeclarationSearcher() {
     override fun findDeclarationsAt(element: PsiElement, offsetInElement: Int, consumer: Consumer<PomTarget>) {
         val injectionHostOrElement = InjectedLanguageManager.getInstance(element.project)
-            .getInjectionHost(element) ?: element
+                .getInjectionHost(element) ?: element
 
         ProgressManager.checkCanceled()
         val stepDeclaration = inReadAction {
@@ -37,8 +36,8 @@ class StepDeclarationSearcher : PomDeclarationSearcher() {
     private fun findStepDeclaration(element: KtExpression): StepDeclaration? {
         PsiTreeUtil.getParentOfType(element, KtValueArgumentList::class.java)?.let { arguments ->
             val method = arguments.parent
-            if (isStepDefinition(method)) {
-                val stepName = getStepName(method as KtCallExpression)!!
+            if (CucumberKotlinUtil.isStepDefinition(method)) {
+                val stepName = CucumberKotlinUtil.getStepName(method as KtCallExpression)!!
                 return getStepDeclaration(method, stepName)
             }
         }
