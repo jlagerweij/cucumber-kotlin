@@ -62,7 +62,7 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
         val initializer = ktClass.kotlinOrigin.getAnonymousInitializers()[0].body as? KtBlockExpression
         val expression = ktPsiFactory.createExpression("""
             ${step.keyword.text}("${step.name.replace("\"", "\\\"")}") {
-
+                TODO("Not yet implemented")
             }
             """.trimIndent())
 
