@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     base
-    kotlin("jvm") version "1.3.72"
-    id("org.jetbrains.intellij") version "0.4.21"
+    kotlin("jvm") version "1.4.32"
+    id("org.jetbrains.intellij") version "0.7.2"
 }
 val ideaVersion: String by project
 val jetbrainsPublishToken: String by project
@@ -36,6 +36,12 @@ intellij {
             setPlugins(
                 "java",
                 "gherkin:203.5981.155",
+                "Kotlin"
+            )
+        "2021.1" ->
+            setPlugins(
+                "java",
+                "gherkin:211.6693.111",
                 "Kotlin"
             )
         "201.8743.12" -> {
@@ -88,6 +94,7 @@ tasks {
         """)
         changeNotes("""
       <ul>
+        <li><b>2021.1.0</b> <em>(2020-12-14)</em> - Add Not yet implemented TODO in a newly created step</li>
         <li><b>2020.3.2</b> <em>(2020-12-14)</em> - Support multiline string literals again</li>
         <li><b>2020.3.1</b> <em>(2020-12-14)</em> - Detect keywords using all languages not just English</li>
         <li><b>2020.3.0</b> <em>(2020-12-03)</em> - Upgrade to 2020.3</li>

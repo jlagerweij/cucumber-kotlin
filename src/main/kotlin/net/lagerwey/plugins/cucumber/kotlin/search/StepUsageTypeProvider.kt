@@ -6,7 +6,7 @@ import com.intellij.usages.impl.rules.UsageTypeProvider
 import org.jetbrains.plugins.cucumber.psi.impl.GherkinStepImpl
 
 class StepUsageTypeProvider : UsageTypeProvider {
-    override fun getUsageType(element: PsiElement?): UsageType? {
+    override fun getUsageType(element: PsiElement): UsageType? {
         return if (element is GherkinStepImpl) gherkinStepUsageType else null
     }
 
