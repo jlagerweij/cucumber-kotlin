@@ -45,7 +45,10 @@ class StepDeclarationSearcher : PomDeclarationSearcher() {
         return null
     }
 
-    private fun getStepDeclaration(element: PsiElement, stepName: String): StepDeclaration? {
+    private fun getStepDeclaration(element: PsiElement, stepName: String?): StepDeclaration? {
+        if (stepName == null) {
+            return null
+        }
         return CachedValuesManager.getCachedValue(element) {
             CachedValueProvider.Result.create(StepDeclaration(element, stepName), element)
         }
