@@ -1,13 +1,11 @@
 package net.lagerwey.plugins.cucumber.kotlin.search
 
-import com.intellij.codeHighlighting.Pass
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.LineMarkerProvider
 import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.util.PsiTreeUtil
-import com.intellij.util.Function
 import icons.CucumberIcons
 import net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinUtil
 import org.jetbrains.kotlin.psi.KtCallExpression

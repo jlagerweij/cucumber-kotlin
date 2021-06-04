@@ -1,10 +1,10 @@
-import org.jetbrains.intellij.tasks.PublishTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+// template: https://github.com/JetBrains/intellij-platform-plugin-template/blob/main/build.gradle.kts
 
 plugins {
     base
-    kotlin("jvm") version "1.4.32"
-    id("org.jetbrains.intellij") version "0.7.2"
+    kotlin("jvm") version "1.5.10"
+    id("org.jetbrains.intellij") version "1.0"
 }
 val ideaVersion: String by project
 val jetbrainsPublishToken: String by project
@@ -17,41 +17,27 @@ apply {
 
 // See: https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    pluginName = "cucumber-kotlin"
-    version = ideaVersion
-    type = "IC"
+    pluginName.set("cucumber-kotlin")
+    version.set(ideaVersion)
+    type.set("IC")
+    downloadSources.set(true)
+    instrumentCode.set(true)
 
-    downloadSources = true
-    instrumentCode = true
-
-    when (ideaVersion) {
-        // Gherkin plugin version: https://plugins.jetbrains.com/plugin/9164-gherkin/versions
-        "2020.2" ->
-            setPlugins(
-                "java",
-                "gherkin:202.6397.21",
-                "Kotlin"
-            )
-        "2020.3" ->
-            setPlugins(
-                "java",
-                "gherkin:203.5981.155",
-                "Kotlin"
-            )
-        "2021.1" ->
-            setPlugins(
-                "java",
-                "gherkin:211.6693.111",
-                "Kotlin"
-            )
-        "201.8743.12" -> {
-            setPlugins(
-                "java",
-                "gherkin:201.8538.45",
-                "Kotlin"
-            )
-        }
+    // Gherkin plugin version: https://plugins.jetbrains.com/plugin/9164-gherkin/versions
+    val gherkinPlugin = when (ideaVersion) {
+        "2020.2" -> "gherkin:202.6397.21"
+        "2020.3" -> "gherkin:203.5981.155"
+        "2021.1" -> "gherkin:211.6693.111"
+        "201.8743.12" -> "gherkin:201.8538.45"
+        else -> ""
     }
+    plugins.set(
+        listOf(
+            "java",
+            gherkinPlugin,
+            "Kotlin"
+        )
+    )
 }
 
 repositories {
@@ -73,15 +59,16 @@ tasks {
     }
     publishPlugin {
         dependsOn("tag")
-        token(jetbrainsPublishToken)
-        channels(version.toString().split('-').getOrElse(1) { "default" }.split('.').first())
+        token.set(jetbrainsPublishToken)
+        channels.set(listOf(version.toString().split('-').getOrElse(1) { "default" }.split('.').first()))
     }
     register<Exec>("publishTag") {
         dependsOn(publishPlugin)
         commandLine = listOf("git", "push", "origin", version.toString())
     }
     patchPluginXml {
-        pluginDescription("""
+        pluginDescription.set(
+            """
               <p>
                 This plugin enables <a href="http://cukes.info/">Cucumber</a> support with step definitions written in Kotlin.
               </p>
@@ -91,8 +78,10 @@ tasks {
               <ul>
                 <li>Navigation in the source code.
               </ul>
-        """)
-        changeNotes("""
+        """
+        )
+        changeNotes.set(
+            """
       <ul>
         <li><b>2021.1.0</b> <em>(2020-12-14)</em> - Add Not yet implemented TODO in a newly created step</li>
         <li><b>2020.3.2</b> <em>(2020-12-14)</em> - Support multiline string literals again</li>
@@ -111,6 +100,7 @@ tasks {
         <li><b>1.0.1</b> <em>(2018-03-14)</em> - Support regex shorthand character classes</li>
         <li><b>1.0.0</b> <em>(2018-03-13)</em> - Initial release</li>
       </ul>
-    """)
+    """
+        )
     }
 }
