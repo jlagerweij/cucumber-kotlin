@@ -2,8 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 // template: https://github.com/JetBrains/intellij-platform-plugin-template/blob/main/build.gradle.kts
 
 plugins {
-    base
-    kotlin("jvm") version "1.5.10"
+    java
+    kotlin("jvm") version "1.4.32"
     id("org.jetbrains.intellij") version "1.0"
 }
 val ideaVersion: String by project
@@ -11,11 +11,7 @@ val jetbrainsPublishToken: String by project
 
 val pluginVersion: String by project
 
-apply {
-    plugin("org.jetbrains.intellij")
-}
-
-// See: https://github.com/JetBrains/gradle-intellij-plugin/
+// See: https://github.com/JetBrains/gradle-intellij-plugin/ and https://github.com/JetBrains/intellij-platform-plugin-template
 intellij {
     pluginName.set("cucumber-kotlin")
     version.set(ideaVersion)
@@ -33,9 +29,9 @@ intellij {
     }
     plugins.set(
         listOf(
-            "java",
-            gherkinPlugin,
-            "Kotlin"
+            "com.intellij.java",
+            "Kotlin",
+            gherkinPlugin
         )
     )
 }
@@ -47,10 +43,10 @@ repositories {
 
 val compileKotlin: KotlinCompile by tasks
 
-compileKotlin.kotlinOptions.jvmTarget = "1.8"
+compileKotlin.kotlinOptions.jvmTarget = "11"
 
 dependencies {
-    implementation("io.cucumber:cucumber-java:6.9.0")
+    implementation("io.cucumber:cucumber-java:6.10.2")
 }
 
 tasks {

@@ -86,11 +86,7 @@ object CucumberKotlinUtil {
         return runCatching {
             val argumentExpression = stepDefinition.valueArguments[0].getArgumentExpression()
             if (argumentExpression is KtStringTemplateExpression) {
-//                val text = argumentExpression.entries.joinToString("") { it.text }
                 val text = argumentExpression.entries[0].text
-                if (text.contains("the product")) {
-                    println()
-                }
                 text
             } else {
                 null

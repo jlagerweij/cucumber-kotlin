@@ -12,25 +12,24 @@ class KotlinStepDefinition(private val method: KtCallExpression) : AbstractStepD
         const val STRING = "\""
         const val DOUBLE_SLASHES = "\\\\"
         const val SINGLE_SLASH = "\\"
+        const val REGEX_START = "^"
+        const val REGEX_END = "$"
     }
 
     override fun getVariableNames() = CucumberKotlinUtil.getStepArguments(method).mapNotNull { it.name }
 
     override fun getCucumberRegexFromElement(element: PsiElement?): String? {
         val text = getStepDefinitionText() ?: return null
-        return if (CucumberUtil.isCucumberExpression(text)) {
-            CucumberUtil.buildRegexpFromCucumberExpression(text, KotlinParameterTypeManager)
-        } else {
-            text
-        }
+        return CucumberUtil.buildRegexpFromCucumberExpression(text, KotlinParameterTypeManager)
     }
 
     private fun getStepDefinitionText(): String? {
         val callExpression = element as? KtCallExpression
         val argument = callExpression?.valueArguments?.getOrNull(0)?.getArgumentExpression() ?: return null
         return argument.text
-                .removePrefix(MULTILINE_STRING).removeSuffix(MULTILINE_STRING)
-                .removePrefix(STRING).removeSuffix(STRING)
-                .replace(DOUBLE_SLASHES, SINGLE_SLASH)
+            .removePrefix(MULTILINE_STRING).removeSuffix(MULTILINE_STRING)
+            .removePrefix(STRING).removeSuffix(STRING)
+            .removePrefix(REGEX_START).removeSuffix(REGEX_END)
+            .replace(DOUBLE_SLASHES, SINGLE_SLASH)
     }
 }
