@@ -66,7 +66,7 @@ tasks {
         pluginDescription.set(
             """
               <p>
-                This plugin enables <a href="http://cukes.info/">Cucumber</a> support with step definitions written in Kotlin.
+                This plugin enables <a href="https://cucumber.io/">Cucumber</a> support with step definitions written in Kotlin.
               </p>
               <p>
                 The following coding assistance features are available:
@@ -79,6 +79,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+        <li><b>2021.1.1</b> <em>(2021-06-10)</em> - Support optional and alternative texts</li>
         <li><b>2021.1.0</b> <em>(2020-12-14)</em> - Add Not yet implemented TODO in a newly created step</li>
         <li><b>2020.3.2</b> <em>(2020-12-14)</em> - Support multiline string literals again</li>
         <li><b>2020.3.1</b> <em>(2020-12-14)</em> - Detect keywords using all languages not just English</li>
