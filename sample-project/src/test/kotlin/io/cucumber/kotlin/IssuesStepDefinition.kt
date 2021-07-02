@@ -3,20 +3,13 @@ package io.cucumber.kotlin
 import io.cucumber.java.en.Then
 import io.cucumber.java8.En
 
-class IssuesStepDefinition: En {
+class IssuesStepDefinition : En {
     init {
-        Then("test") {
-
-        }
-        And("""^the product id is (\d+)$""") {
-
-        }
-        And("I have {int} cuke(s) in my stomach") { i: Int ->
-
-        }
-        And("I have {int} cucumber(s) in my belly/stomach") { i: Int ->
-
-        }
+        Then("test") {}
+        And("^the product id is (\\d+)$") {}
+        And("I have {int} cuke(s) in my stomach") { i: Int -> }
+        And("I have {int} cucumber(s) in my belly/stomach") { i: Int -> }
+        And("^Product(?: with id (\\d+))? is valid") { number: Int -> }
     }
 
     @Then("""^the product id is (\d+)$""")

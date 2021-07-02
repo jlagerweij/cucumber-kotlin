@@ -20,6 +20,9 @@ class KotlinStepDefinition(private val method: KtCallExpression) : AbstractStepD
 
     override fun getCucumberRegexFromElement(element: PsiElement?): String? {
         val text = getStepDefinitionText() ?: return null
+        if (text.startsWith(REGEX_START) || text.endsWith(REGEX_END)) {
+            return text
+        }
         return CucumberUtil.buildRegexpFromCucumberExpression(text, KotlinParameterTypeManager)
     }
 
@@ -29,7 +32,6 @@ class KotlinStepDefinition(private val method: KtCallExpression) : AbstractStepD
         return argument.text
             .removePrefix(MULTILINE_STRING).removeSuffix(MULTILINE_STRING)
             .removePrefix(STRING).removeSuffix(STRING)
-            .removePrefix(REGEX_START).removeSuffix(REGEX_END)
             .replace(DOUBLE_SLASHES, SINGLE_SLASH)
     }
 }

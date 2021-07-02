@@ -79,6 +79,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+        <li><b>2021.1.2</b> <em>(2021-06-10)</em> - Fix for regression on using regular expressions</li>
         <li><b>2021.1.1</b> <em>(2021-06-10)</em> - Support optional and alternative texts</li>
         <li><b>2021.1.0</b> <em>(2020-12-14)</em> - Add Not yet implemented TODO in a newly created step</li>
         <li><b>2020.3.2</b> <em>(2020-12-14)</em> - Support multiline string literals again</li>
