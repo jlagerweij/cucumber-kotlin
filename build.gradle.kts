@@ -24,6 +24,7 @@ intellij {
         "2020.2" -> "gherkin:202.6397.21"
         "2020.3" -> "gherkin:203.5981.155"
         "2021.1" -> "gherkin:211.6693.111"
+        "2021.2" -> "gherkin:212.4746.57"
         "201.8743.12" -> "gherkin:201.8538.45"
         else -> ""
     }
@@ -46,7 +47,7 @@ val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions.jvmTarget = "11"
 
 dependencies {
-    implementation("io.cucumber:cucumber-java:6.10.2")
+    implementation("io.cucumber:cucumber-java:6.10.4")
 }
 
 tasks {
@@ -79,6 +80,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+        <li><b>2021.2.0</b> <em>(2021-07-28)</em> - Upgrade to 2021.2</li>
         <li><b>2021.1.2</b> <em>(2021-06-10)</em> - Fix for regression on using regular expressions</li>
         <li><b>2021.1.1</b> <em>(2021-06-10)</em> - Support optional and alternative texts</li>
         <li><b>2021.1.0</b> <em>(2020-12-14)</em> - Add Not yet implemented TODO in a newly created step</li>
