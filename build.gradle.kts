@@ -80,6 +80,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+        <li><b>2021.2.1</b> <em>(2021-07-28)</em> - Fix NPE in plugin</li>
         <li><b>2021.2.0</b> <em>(2021-07-28)</em> - Upgrade to 2021.2</li>
         <li><b>2021.1.2</b> <em>(2021-06-10)</em> - Fix for regression on using regular expressions</li>
         <li><b>2021.1.1</b> <em>(2021-06-10)</em> - Support optional and alternative texts</li>
