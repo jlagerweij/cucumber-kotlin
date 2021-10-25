@@ -37,7 +37,7 @@ class StepDeclarationSearcher : PomDeclarationSearcher() {
         PsiTreeUtil.getParentOfType(element, KtValueArgumentList::class.java)?.let { arguments ->
             val method = arguments.parent
             if (CucumberKotlinUtil.isStepDefinition(method)) {
-                val stepName = CucumberKotlinUtil.getStepName(method as KtCallExpression)!!
+                val stepName = CucumberKotlinUtil.getStepName(method as KtCallExpression) ?: return null
                 return getStepDeclaration(method, stepName)
             }
         }
