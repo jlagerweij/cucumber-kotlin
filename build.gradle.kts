@@ -25,6 +25,7 @@ intellij {
         "2020.3" -> "gherkin:203.5981.155"
         "2021.1" -> "gherkin:211.6693.111"
         "2021.2" -> "gherkin:212.4746.57"
+        "2021.3" -> "gherkin:213.5744.223"
         "201.8743.12" -> "gherkin:201.8538.45"
         else -> ""
     }
@@ -80,6 +81,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+        <li><b>2021.3.0</b> <em>(2021-11-30)</em> - Upgrade to 2021.3</li>
         <li><b>2021.2.1</b> <em>(2021-07-28)</em> - Fix NPE in plugin</li>
         <li><b>2021.2.0</b> <em>(2021-07-28)</em> - Upgrade to 2021.2</li>
         <li><b>2021.1.2</b> <em>(2021-06-10)</em> - Fix for regression on using regular expressions</li>
