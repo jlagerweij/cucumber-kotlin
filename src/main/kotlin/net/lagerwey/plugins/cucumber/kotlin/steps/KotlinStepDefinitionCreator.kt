@@ -19,6 +19,7 @@ import org.jetbrains.kotlin.resolve.ImportPath
 import org.jetbrains.plugins.cucumber.AbstractStepDefinitionCreator
 import org.jetbrains.plugins.cucumber.psi.GherkinFile
 import org.jetbrains.plugins.cucumber.psi.GherkinStep
+import java.util.*
 
 class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
     private var lastObservedLanguage = "en"
@@ -27,7 +28,7 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
         val file = runWriteAction { directory.createFile(name) } as KtFile
         val ktPsiFactory = KtPsiFactory(file.project, markGenerated = true)
         val psiPackage = directory.getPackage()?.qualifiedName
-        val apiClassName = lastObservedLanguage.capitalize()
+        val apiClassName = lastObservedLanguage.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
         val importDirective = ktPsiFactory.createImportDirective(ImportPath.fromString("cucumber.api.java8.$apiClassName"))
         val newLines = ktPsiFactory.createNewLine(2)
         val ktClass = ktPsiFactory.createClass("""
