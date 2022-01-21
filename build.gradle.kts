@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
-    kotlin("jvm") version "1.4.32"
-    id("org.jetbrains.intellij") version "1.0"
+    kotlin("jvm") version "1.6.10"
+    id("org.jetbrains.intellij") version "1.3.1"
 }
 val ideaVersion: String by project
 val jetbrainsPublishToken: String by project
@@ -48,7 +48,7 @@ val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions.jvmTarget = "11"
 
 dependencies {
-    implementation("io.cucumber:cucumber-java:6.10.4")
+    implementation("io.cucumber:cucumber-java:7.2.3")
 }
 
 tasks {
