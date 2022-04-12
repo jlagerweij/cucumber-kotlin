@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     java
     kotlin("jvm") version "1.6.10"
-    id("org.jetbrains.intellij") version "1.3.1"
+    id("org.jetbrains.intellij") version "1.5.2"
 }
 val ideaVersion: String by project
 val jetbrainsPublishToken: String by project
@@ -26,6 +26,7 @@ intellij {
         "2021.1" -> "gherkin:211.6693.111"
         "2021.2" -> "gherkin:212.4746.57"
         "2021.3" -> "gherkin:213.5744.223"
+        "2022.1" -> "gherkin:221.5080.126"
         "201.8743.12" -> "gherkin:201.8538.45"
         else -> ""
     }
@@ -81,6 +82,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+        <li><b>2022.1.0</b> <em>(2022-04-12)</em> - Upgrade to 2022.1</li>
         <li><b>2021.3.0</b> <em>(2021-11-30)</em> - Upgrade to 2021.3</li>
         <li><b>2021.2.1</b> <em>(2021-07-28)</em> - Fix NPE in plugin</li>
         <li><b>2021.2.0</b> <em>(2021-07-28)</em> - Upgrade to 2021.2</li>

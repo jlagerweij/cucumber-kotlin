@@ -3,7 +3,7 @@ package net.lagerwey.plugins.cucumber.kotlin
 import com.intellij.psi.PsiElement
 import io.cucumber.gherkin.GherkinDialectProvider
 import org.jetbrains.kotlin.asJava.namedUnwrappedElement
-import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
+import org.jetbrains.kotlin.idea.base.utils.fqname.getKotlinFqName
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.nj2k.postProcessing.resolve
 import org.jetbrains.kotlin.psi.KtBlockExpression
