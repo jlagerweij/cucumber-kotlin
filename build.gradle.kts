@@ -82,6 +82,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+        <li><b>2022.1.1</b> <em>(2022-05-19)</em> - Fix for issue #30, Must be executed under progress indicator</li>
         <li><b>2022.1.0</b> <em>(2022-04-12)</em> - Upgrade to 2022.1</li>
         <li><b>2021.3.0</b> <em>(2021-11-30)</em> - Upgrade to 2021.3</li>
         <li><b>2021.2.1</b> <em>(2021-07-28)</em> - Fix NPE in plugin</li>

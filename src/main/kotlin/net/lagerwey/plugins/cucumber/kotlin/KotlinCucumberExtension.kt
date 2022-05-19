@@ -2,7 +2,9 @@ package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.module.ModuleUtilCore
+import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
+import com.intellij.openapi.progress.Task
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
@@ -108,13 +110,22 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
             }
             true
         }
-        PsiSearchHelper.getInstance(module.project).processElementsWithWord(
-            occurrencesProcessor,
-            kotlinFiles,
-            "ParameterType",
-            UsageSearchContext.IN_CODE,
-            true
-        )
+
+        ProgressManager.getInstance()
+            .run(
+                object : Task.Backgroundable(module.project, "Process elements with word", false) {
+                    override fun run(indicator: ProgressIndicator) {
+                        indicator.isIndeterminate = true
+                        indicator.text = "Process elements with word..."
+                        PsiSearchHelper.getInstance(module.project).processElementsWithWord(
+                            occurrencesProcessor,
+                            kotlinFiles,
+                            "ParameterType",
+                            UsageSearchContext.IN_CODE,
+                            true
+                        )
+                    }
+                })
     }
 
     private fun handleParameterType(element: PsiElement) {
