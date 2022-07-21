@@ -6,3 +6,4 @@ Funktionalität: wikipedia] Example Feature
   Szenario: German steps
     Angenommen ich habe 42 Gurken in meinem Bauch
     Dann ich habe wirklich 42 Gurken in meinem Bauch
+    Dann ich habe wirklich "foo" and "bar" Gurken in meinem Bauch
