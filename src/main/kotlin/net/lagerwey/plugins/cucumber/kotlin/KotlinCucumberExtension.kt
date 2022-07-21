@@ -137,7 +137,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
                 val name = (it.valueArguments[0].getArgumentExpression() as KtStringTemplateExpression).entries[0].text
                 val regex = (it.valueArguments[1].getArgumentExpression() as KtStringTemplateExpression).entries.joinToString("") { x -> x.text }
                 val unescapedRegex = org.apache.commons.lang.StringEscapeUtils.unescapeJava(regex)
-                KotlinParameterTypeManager.addParameterType(name, regex, pointer)
+                KotlinParameterTypeManager.addParameterType(name, unescapedRegex, pointer)
             }
         }
     }
