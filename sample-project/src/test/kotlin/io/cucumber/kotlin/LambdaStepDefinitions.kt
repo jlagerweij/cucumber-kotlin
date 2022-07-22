@@ -11,16 +11,11 @@ var lastInstance: LambdaStepDefinitions? = null
 class LambdaStepDefinitions : En {
 
     init {
-         ParameterType("stringList", "(\"([^\"]+)\"(\\s*(([,]?\\s*)|(and\\s?))\"[^\"]+\")*)") { strings: String ->
-            val compile: Pattern = Pattern.compile("\\s*(,|and)?\\s*\"([^\"]+)\"")
-            val matcher: Matcher = compile.matcher(strings)
-            val result: MutableList<String> = ArrayList()
-            while (matcher.find()) {
-                result.add(matcher.group(2))
-            }
-            result
+        ParameterType("stringList", "(\"([^\"]+)\"(\\s*(([,]?\\s*)|(and\\s?))\"[^\"]+\")*)") { strings: String ->
+            "\\s*(,|and)?\\s*\"(?<group>[^\"]+)\"".toRegex(RegexOption.MULTILINE)
+                .findAll(strings).map { it.groups[2]?.value }.toList()
         }
-         
+
         DataTableType { entry: Map<String, String> ->
             Person(entry["first"], entry["last"])
         }
