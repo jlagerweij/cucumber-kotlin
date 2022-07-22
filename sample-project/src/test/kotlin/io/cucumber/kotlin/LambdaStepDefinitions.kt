@@ -11,6 +11,11 @@ var lastInstance: LambdaStepDefinitions? = null
 class LambdaStepDefinitions : En {
 
     init {
+        ParameterType("stringList", "(\"([^\"]+)\"(\\s*(([,]?\\s*)|(and\\s?))\"[^\"]+\")*)") { strings: String ->
+            "\\s*(,|and)?\\s*\"(?<group>[^\"]+)\"".toRegex(RegexOption.MULTILINE)
+                .findAll(strings).map { it.groups[2]?.value }.toList()
+        }
+
         DataTableType { entry: Map<String, String> ->
             Person(entry["first"], entry["last"])
         }
