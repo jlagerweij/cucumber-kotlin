@@ -27,6 +27,7 @@ intellij {
         "2021.2" -> "gherkin:212.4746.57"
         "2021.3" -> "gherkin:213.5744.223"
         "2022.1" -> "gherkin:221.5080.126"
+        "2022.2" -> "gherkin:222.3345.118"
         "201.8743.12" -> "gherkin:201.8538.45"
         else -> ""
     }
@@ -82,6 +83,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+       <li><b>2022.2.0</b> <em>(2022-08-01)</em> - Fix for issue #43, Upgrade to 2022.2</li>
         <li><b>2022.1.2</b> <em>(2022-06-22)</em> - Fix for issue #41, Add support for complex regex</li>
         <li><b>2022.1.1</b> <em>(2022-05-19)</em> - Fix for issue #30, Must be executed under progress indicator</li>
         <li><b>2022.1.0</b> <em>(2022-04-12)</em> - Upgrade to 2022.1</li>
