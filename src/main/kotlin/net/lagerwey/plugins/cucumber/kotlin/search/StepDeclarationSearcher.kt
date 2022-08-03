@@ -16,9 +16,9 @@ import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtValueArgumentList
 
 class StepDeclarationSearcher : PomDeclarationSearcher() {
-    override fun findDeclarationsAt(element: PsiElement, offsetInElement: Int, consumer: Consumer<PomTarget>) {
+     override fun findDeclarationsAt(element: PsiElement, offsetInElement: Int, consumer: Consumer<in PomTarget>) {
         val injectionHostOrElement = InjectedLanguageManager.getInstance(element.project)
-                .getInjectionHost(element) ?: element
+            .getInjectionHost(element) ?: element
 
         ProgressManager.checkCanceled()
         val stepDeclaration = inReadAction {
