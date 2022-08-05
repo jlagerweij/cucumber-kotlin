@@ -47,6 +47,12 @@
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>net.jodah</groupId>
+            <artifactId>typetools</artifactId>
+            <version>0.6.3</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,6 +1,6 @@
-Feature:
+Feature: Issues tests
 
-  Scenario Outline: Some scenario
+  Scenario Outline: Some scenarios
     And the product id is 34
     And I have 42 cukes in my stomach
     And I have 1 cuke in my stomach
