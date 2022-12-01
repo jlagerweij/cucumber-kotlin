@@ -113,7 +113,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
 
         ProgressManager.getInstance()
             .run(
-                object : Task.Backgroundable(module.project, "Process elements with word", false) {
+                object : Task.Backgroundable(module.project, "Process elements with word", true) {
                     override fun run(indicator: ProgressIndicator) {
                         indicator.isIndeterminate = true
                         indicator.text = "Process elements with word..."
