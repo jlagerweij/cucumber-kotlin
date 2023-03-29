@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
-    kotlin("jvm") version "1.7.22"
-    id("org.jetbrains.intellij") version "1.10.0"
+    kotlin("jvm") version "1.8.10"
+    id("org.jetbrains.intellij") version "1.13.3"
 }
 val ideaVersion: String by project
 val jetbrainsPublishToken: String by project
@@ -29,6 +29,7 @@ intellij {
         "2022.1" -> "gherkin:221.5080.126"
         "2022.2" -> "gherkin:222.3345.118"
         "2022.3" -> "gherkin:223.7571.113"
+        "2023.1" -> "gherkin:231.8109.91"
         "201.8743.12" -> "gherkin:201.8538.45"
         else -> ""
     }
@@ -84,6 +85,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+       <li><b>2023.1.0</b> <em>(2023-03-29)</em> - Compatible with 2023.1</li>
        <li><b>2022.3.0</b> <em>(2022-08-01)</em> - Compatible with 2022.3</li>
        <li><b>2022.2.0</b> <em>(2022-08-01)</em> - Fix for issue #43, Upgrade to 2022.2</li>
         <li><b>2022.1.2</b> <em>(2022-06-22)</em> - Fix for issue #41, Add support for complex regex</li>
