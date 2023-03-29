@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 // template: https://github.com/JetBrains/intellij-platform-plugin-template/blob/main/build.gradle.kts
 
 plugins {
@@ -57,7 +56,7 @@ dependencies {
 
 tasks {
     register<Exec>("tag") {
-        commandLine = listOf("git", "tag", version.toString())
+        commandLine = listOf("git", "tag", version.toString(), "-m", "Release version $version")
     }
     publishPlugin {
         dependsOn("tag")
