@@ -1,6 +1,7 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.psi.PsiElement
+import com.intellij.util.containers.orNull
 import io.cucumber.gherkin.GherkinDialectProvider
 import org.jetbrains.kotlin.asJava.namedUnwrappedElement
 import org.jetbrains.kotlin.idea.base.utils.fqname.getKotlinFqName
@@ -62,10 +63,10 @@ object CucumberKotlinUtil {
 
     private fun isCucumberMethod(method: KtCallExpression): Boolean {
         return (method.children[0] as KtReferenceExpression).resolve()
-                ?.namedUnwrappedElement
-                ?.getKotlinFqName()
-                ?.startsWith(Name.identifier(CUCUMBER_PACKAGE))
-                ?: false
+            ?.namedUnwrappedElement
+            ?.getKotlinFqName()
+            ?.startsWith(Name.identifier(CUCUMBER_PACKAGE))
+            ?: false
     }
 
     fun getStepName(stepDefinition: KtCallExpression): String? {
@@ -99,12 +100,14 @@ object CucumberKotlinUtil {
     private fun getAllKeywords(): List<String> {
         val provider = GherkinDialectProvider()
         val languages = provider.languages
-        val dialects = languages.map { provider.getDialect(it, null) }
+        val dialects = languages.map { provider.getDialect(it) }
 
-        return dialects.flatMap { dialect ->
-            dialect.stepKeywords.map { keyword ->
-                keyword.trim()
-            }
+        return dialects.flatMap { optionalDialect ->
+            optionalDialect.orNull()?.let {
+                it.stepKeywords.map { keyword ->
+                    keyword.trim()
+                }
+            } ?: emptyList()
         }
     }
 }
