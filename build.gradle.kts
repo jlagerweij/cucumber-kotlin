@@ -1,58 +1,40 @@
 // template: https://github.com/JetBrains/intellij-platform-plugin-template/blob/main/build.gradle.kts
 
+fun properties(key: String) = providers.gradleProperty(key)
+
 plugins {
     java
-    kotlin("jvm") version "1.9.0"
-    id("org.jetbrains.intellij") version "1.15.0"
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.gradleIntelliJPlugin)
 }
-val ideaVersion: String by project
+
 val jetbrainsPublishToken: String by project
 
-val pluginVersion: String by project
-
-// See: https://github.com/JetBrains/gradle-intellij-plugin/ and https://github.com/JetBrains/intellij-platform-plugin-template
-intellij {
-    pluginName.set("cucumber-kotlin")
-    version.set(ideaVersion)
-    type.set("IC")
-    downloadSources.set(true)
-    instrumentCode.set(true)
-
-    // Gherkin plugin version: https://plugins.jetbrains.com/plugin/9164-gherkin/versions
-    val gherkinPlugin = when (ideaVersion) {
-        "2020.2" -> "gherkin:202.6397.21"
-        "2020.3" -> "gherkin:203.5981.155"
-        "2021.1" -> "gherkin:211.6693.111"
-        "2021.2" -> "gherkin:212.4746.57"
-        "2021.3" -> "gherkin:213.5744.223"
-        "2022.1" -> "gherkin:221.5080.126"
-        "2022.2" -> "gherkin:222.3345.118"
-        "2022.3" -> "gherkin:223.7571.113"
-        "2023.1" -> "gherkin:231.8109.91"
-        "2023.2" -> "gherkin:232.8660.88"
-        "201.8743.12" -> "gherkin:201.8538.45"
-        else -> ""
-    }
-    plugins.set(
-        listOf(
-            "com.intellij.java",
-            "Kotlin",
-            gherkinPlugin
-        )
-    )
-}
+group = properties("pluginGroup").get()
+version = properties("pluginVersion").get()
 
 repositories {
     mavenCentral()
     maven("https://www.jetbrains.com/intellij-repository/snapshots")
 }
 
+dependencies {
+    implementation(libs.cucumberJava)
+}
+
 kotlin {
     jvmToolchain(17)
 }
 
-dependencies {
-    implementation("io.cucumber:cucumber-java:7.13.0")
+// See: https://github.com/JetBrains/gradle-intellij-plugin/ and https://github.com/JetBrains/intellij-platform-plugin-template
+intellij {
+    pluginName = properties("pluginName")
+    version = properties("platformVersion")
+    type = properties("platformType")
+    downloadSources = true
+
+    // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
+    plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
 }
 
 tasks {
@@ -85,6 +67,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+       <li><b>2023.3.0</b> <em>(2023-12-07)</em> - Compatible with 2023.3</li>
        <li><b>2023.2.0</b> <em>(2023-08-01)</em> - Compatible with 2023.2</li>
        <li><b>2023.1.0</b> <em>(2023-03-29)</em> - Compatible with 2023.1</li>
        <li><b>2022.3.0</b> <em>(2022-08-01)</em> - Compatible with 2022.3</li>
