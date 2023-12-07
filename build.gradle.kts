@@ -2,8 +2,8 @@
 
 plugins {
     java
-    kotlin("jvm") version "1.9.0"
-    id("org.jetbrains.intellij") version "1.15.0"
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.gradleIntelliJPlugin)
 }
 val ideaVersion: String by project
 val jetbrainsPublishToken: String by project
@@ -30,6 +30,7 @@ intellij {
         "2022.3" -> "gherkin:223.7571.113"
         "2023.1" -> "gherkin:231.8109.91"
         "2023.2" -> "gherkin:232.8660.88"
+        "2023.3" -> "gherkin:233.11799.165"
         "201.8743.12" -> "gherkin:201.8538.45"
         else -> ""
     }
@@ -52,7 +53,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("io.cucumber:cucumber-java:7.13.0")
+    implementation(libs.cucumberJava)
 }
 
 tasks {
@@ -85,6 +86,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+       <li><b>2023.3.0</b> <em>(2023-12-07)</em> - Compatible with 2023.3</li>
        <li><b>2023.2.0</b> <em>(2023-08-01)</em> - Compatible with 2023.2</li>
        <li><b>2023.1.0</b> <em>(2023-03-29)</em> - Compatible with 2023.1</li>
        <li><b>2022.3.0</b> <em>(2022-08-01)</em> - Compatible with 2022.3</li>
