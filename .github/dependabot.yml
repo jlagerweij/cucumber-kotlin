@@ -7,9 +7,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    update-types:
-      - "minor"
-      - "patch"
 
   # Maintain dependencies for Gradle dependencies
   - package-ecosystem: "gradle"
@@ -20,4 +17,6 @@ updates:
       dependencies:
         patterns:
           - "*"
-
+      update-types:
+        - "minor"
+        - "patch"
