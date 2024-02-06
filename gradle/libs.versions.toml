@@ -1,9 +1,9 @@
 [versions]
-gradleIntelliJPlugin = "1.16.1"
-kotlin = "1.9.21"
+gradleIntelliJPlugin = "1.17.1"
+kotlin = "1.9.22"
 
 [libraries]
-cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.13.0"}
+cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.15.0"}
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
