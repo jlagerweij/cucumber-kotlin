@@ -67,6 +67,7 @@ tasks {
         changeNotes.set(
             """
       <ul>
+       <li><b>2024.1.0</b> <em>(2024-04-13)</em> - Compatible with 2024.1</li>
        <li><b>2023.3.0</b> <em>(2023-12-07)</em> - Compatible with 2023.3</li>
        <li><b>2023.2.0</b> <em>(2023-08-01)</em> - Compatible with 2023.2</li>
        <li><b>2023.1.0</b> <em>(2023-03-29)</em> - Compatible with 2023.1</li>
