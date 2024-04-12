@@ -62,7 +62,6 @@ class KotlinCucumberStepIndex : CucumberStepIndex() {
         return results
     }
 
-    companion object {
-        val INDEX_ID = ID.create<Boolean, MutableList<Int>>("kotlin.cucumber.step")
-    }
 }
+
+val INDEX_ID = ID.create<Boolean, MutableList<Int>>("kotlin.cucumber.step")

@@ -70,7 +70,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
 
         val elements = mutableListOf<KtCallExpression>()
         fileBasedIndex.processValues(
-            KotlinCucumberStepIndex.INDEX_ID,
+            INDEX_ID,
             true,
             null,
             { file, offsets ->
@@ -136,7 +136,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
             callExpression?.let {
                 val name = (it.valueArguments[0].getArgumentExpression() as KtStringTemplateExpression).entries[0].text
                 val regex = (it.valueArguments[1].getArgumentExpression() as KtStringTemplateExpression).entries.joinToString("") { x -> x.text }
-                val unescapedRegex = org.apache.commons.lang.StringEscapeUtils.unescapeJava(regex)
+                val unescapedRegex = org.apache.commons.text.StringEscapeUtils.unescapeJava(regex)
                 KotlinParameterTypeManager.addParameterType(name, unescapedRegex, pointer)
             }
         }
