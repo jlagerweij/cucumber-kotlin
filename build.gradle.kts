@@ -44,7 +44,10 @@ tasks {
     publishPlugin {
         dependsOn("tag")
         token.set(jetbrainsPublishToken)
-        channels.set(listOf(version.toString().split('-').getOrElse(1) { "default" }.split('.').first()))
+        channels = properties("pluginVersion").map {
+            listOf(
+                it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" })
+        }
     }
     register<Exec>("publishTag") {
         dependsOn(publishPlugin)
