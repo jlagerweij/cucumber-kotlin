@@ -3,12 +3,7 @@ package net.lagerwey.plugins.cucumber.kotlin
 import com.intellij.lang.LighterAST
 import com.intellij.lang.LighterASTNode
 import com.intellij.psi.impl.source.tree.RecursiveLighterASTNodeWalkingVisitor
-import com.intellij.util.indexing.DataIndexer
-import com.intellij.util.indexing.DefaultFileTypeSpecificInputFilter
-import com.intellij.util.indexing.FileBasedIndex
-import com.intellij.util.indexing.FileContent
-import com.intellij.util.indexing.ID
-import com.intellij.util.indexing.PsiDependentFileContent
+import com.intellij.util.indexing.*
 import org.jetbrains.kotlin.KtNodeTypes
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.plugins.cucumber.CucumberStepIndex
@@ -22,7 +17,7 @@ class KotlinCucumberStepIndex : CucumberStepIndex() {
 
     override fun getInputFilter(): FileBasedIndex.InputFilter = inputFilter
 
-    override fun getPackagesToScan(): Array<String> = arrayOf(CucumberKotlinUtil.CUCUMBER_PACKAGE)
+    override fun getPackagesToScan(): Array<String> = arrayOf(CucumberKotlinUtil.CUCUMBER_JAVA8_PACKAGE)
 
     override fun getIndexer(): DataIndexer<Boolean, MutableList<Int>, FileContent> {
         // Override to support steps defined in subclasses
@@ -59,7 +54,7 @@ class KotlinCucumberStepIndex : CucumberStepIndex() {
                         }
                     }
                 }
-                super.visitNode(element);
+                super.visitNode(element)
             }
         }
         visitor.visitNode(lighterAst.root)
