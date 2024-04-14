@@ -1,4 +1,6 @@
 // template: https://github.com/JetBrains/intellij-platform-plugin-template/blob/main/build.gradle.kts
+import org.jetbrains.changelog.Changelog
+import org.jetbrains.changelog.markdownToHTML
 
 fun properties(key: String) = providers.gradleProperty(key)
 
@@ -6,6 +8,7 @@ plugins {
     java
     alias(libs.plugins.kotlin)
     alias(libs.plugins.gradleIntelliJPlugin)
+    alias(libs.plugins.changelog)
 }
 
 val jetbrainsPublishToken: String by project
@@ -37,6 +40,12 @@ intellij {
     plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
 }
 
+changelog {
+    groups.empty()
+    repositoryUrl = properties("pluginRepositoryUrl")
+    versionPrefix = ""
+}
+
 tasks {
     register<Exec>("tag") {
         commandLine = listOf("git", "tag", version.toString(), "-m", "Release version $version")
@@ -44,60 +53,44 @@ tasks {
     publishPlugin {
         dependsOn("tag")
         token.set(jetbrainsPublishToken)
-        channels.set(listOf(version.toString().split('-').getOrElse(1) { "default" }.split('.').first()))
+        channels = properties("pluginVersion").map {
+            listOf(
+                it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" })
+        }
     }
     register<Exec>("publishTag") {
         dependsOn(publishPlugin)
         commandLine = listOf("git", "push", "origin", version.toString())
     }
     patchPluginXml {
-        pluginDescription.set(
-            """
-              <p>
-                This plugin enables <a href="https://cucumber.io/">Cucumber</a> support with step definitions written in Kotlin.
-              </p>
-              <p>
-                The following coding assistance features are available:
-              </p>
-              <ul>
-                <li>Navigation in the source code.
-              </ul>
-        """
-        )
-        changeNotes.set(
-            """
-      <ul>
-       <li><b>2023.3.0</b> <em>(2023-12-07)</em> - Compatible with 2023.3</li>
-       <li><b>2023.2.0</b> <em>(2023-08-01)</em> - Compatible with 2023.2</li>
-       <li><b>2023.1.0</b> <em>(2023-03-29)</em> - Compatible with 2023.1</li>
-       <li><b>2022.3.0</b> <em>(2022-08-01)</em> - Compatible with 2022.3</li>
-       <li><b>2022.2.0</b> <em>(2022-08-01)</em> - Fix for issue #43, Upgrade to 2022.2</li>
-        <li><b>2022.1.2</b> <em>(2022-06-22)</em> - Fix for issue #41, Add support for complex regex</li>
-        <li><b>2022.1.1</b> <em>(2022-05-19)</em> - Fix for issue #30, Must be executed under progress indicator</li>
-        <li><b>2022.1.0</b> <em>(2022-04-12)</em> - Upgrade to 2022.1</li>
-        <li><b>2021.3.0</b> <em>(2021-11-30)</em> - Upgrade to 2021.3</li>
-        <li><b>2021.2.1</b> <em>(2021-07-28)</em> - Fix NPE in plugin</li>
-        <li><b>2021.2.0</b> <em>(2021-07-28)</em> - Upgrade to 2021.2</li>
-        <li><b>2021.1.2</b> <em>(2021-06-10)</em> - Fix for regression on using regular expressions</li>
-        <li><b>2021.1.1</b> <em>(2021-06-10)</em> - Support optional and alternative texts</li>
-        <li><b>2021.1.0</b> <em>(2020-12-14)</em> - Add Not yet implemented TODO in a newly created step</li>
-        <li><b>2020.3.2</b> <em>(2020-12-14)</em> - Support multiline string literals again</li>
-        <li><b>2020.3.1</b> <em>(2020-12-14)</em> - Detect keywords using all languages not just English</li>
-        <li><b>2020.3.0</b> <em>(2020-12-03)</em> - Upgrade to 2020.3</li>
-        <li><b>2020.2.1</b> <em>(2020-12-02)</em> - Add support for JVM types by mrozanc. Thank you!</li>
-        <li><b>2020.2.0</b> <em>(2020-11-21)</em> - Improvements from ErikVermunt-TomTom based on the Cucumber for Scala plugin. Thank you!</li>
-        <li><b>1.1.6</b> <em>(2020-11-03)</em> - Upgrade to 2020.3-EAP</li>
-        <li><b>1.1.5</b> <em>(2020-04-16)</em> - Upgrade to 2020.2</li>
-        <li><b>1.1.4</b> <em>(2020-04-16)</em> - Fix warnings from JetBrains plugin compatibility check</li>
-        <li><b>1.1.3</b> <em>(2020-04-14)</em> - Compatible with Intellij IDEA 2020.1</li>
-        <li><b>1.1.2</b> <em>(2020-01-17)</em> - ArrayOutOfBoundsException in Intellij IDEA 2019.3.2</li>
-        <li><b>1.1.1</b> <em>(2019-05-30)</em> - Fix NoSuchMethodError on 2019.1</li>
-        <li><b>1.1.0</b> <em>(2019-05-24)</em> - Create step definitions</li>
-        <li><b>1.0.2</b> <em>(2018-03-14)</em> - Running features now populates the glue automatically</li>
-        <li><b>1.0.1</b> <em>(2018-03-14)</em> - Support regex shorthand character classes</li>
-        <li><b>1.0.0</b> <em>(2018-03-13)</em> - Initial release</li>
-      </ul>
-    """
-        )
+        version = properties("pluginVersion")
+        sinceBuild = properties("pluginSinceBuild")
+        untilBuild = properties("pluginUntilBuild")
+
+        // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
+        pluginDescription = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
+            val start = "<!-- Plugin description -->"
+            val end = "<!-- Plugin description end -->"
+
+            with(it.lines()) {
+                if (!containsAll(listOf(start, end))) {
+                    throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
+                }
+                subList(indexOf(start) + 1, indexOf(end)).joinToString("\n").let(::markdownToHTML)
+            }
+        }
+
+        val changelog = project.changelog // local variable for configuration cache compatibility
+        // Get the latest available change notes from the changelog file
+        changeNotes = properties("pluginVersion").map { pluginVersion ->
+            with(changelog) {
+                renderItem(
+                    (getOrNull(pluginVersion) ?: getUnreleased())
+                        .withHeader(false)
+                        .withEmptySections(false),
+                    Changelog.OutputType.HTML,
+                )
+            }
+        }
     }
 }

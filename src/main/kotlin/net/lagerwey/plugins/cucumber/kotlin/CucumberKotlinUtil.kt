@@ -4,19 +4,12 @@ import com.intellij.psi.PsiElement
 import com.intellij.util.containers.orNull
 import io.cucumber.gherkin.GherkinDialectProvider
 import org.jetbrains.kotlin.asJava.namedUnwrappedElement
-import org.jetbrains.kotlin.idea.base.utils.fqname.getKotlinFqName
-import org.jetbrains.kotlin.name.Name
-import org.jetbrains.kotlin.nj2k.postProcessing.resolve
-import org.jetbrains.kotlin.psi.KtBlockExpression
-import org.jetbrains.kotlin.psi.KtCallExpression
-import org.jetbrains.kotlin.psi.KtNameReferenceExpression
-import org.jetbrains.kotlin.psi.KtNamedFunction
-import org.jetbrains.kotlin.psi.KtParameter
-import org.jetbrains.kotlin.psi.KtReferenceExpression
-import org.jetbrains.kotlin.psi.KtStringTemplateExpression
+import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
+import org.jetbrains.kotlin.idea.references.mainReference
+import org.jetbrains.kotlin.psi.*
 
 object CucumberKotlinUtil {
-    const val CUCUMBER_PACKAGE = "io.cucumber.java8"
+    const val CUCUMBER_JAVA8_PACKAGE = "io.cucumber.java8"
     private val hookKeywords = listOf("Before", "BeforeStep", "After", "AfterStep")
     private val allKeywords = getAllKeywords()
 
@@ -62,10 +55,11 @@ object CucumberKotlinUtil {
     }
 
     private fun isCucumberMethod(method: KtCallExpression): Boolean {
-        return (method.children[0] as KtReferenceExpression).resolve()
+        return (method.children[0] as KtReferenceExpression).mainReference.resolve()
             ?.namedUnwrappedElement
-            ?.getKotlinFqName()
-            ?.startsWith(Name.identifier(CUCUMBER_PACKAGE))
+            ?.kotlinFqName
+            ?.asString()
+            ?.startsWith(CUCUMBER_JAVA8_PACKAGE)
             ?: false
     }
 
