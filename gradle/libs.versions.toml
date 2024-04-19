@@ -4,7 +4,7 @@ kotlin = "1.9.23"
 changelog = "2.2.0"
 
 [libraries]
-cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.16.1" }
+cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.17.0" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
