@@ -4,5 +4,6 @@
 
 /build
 .gradle
+.kotlin
 
 target

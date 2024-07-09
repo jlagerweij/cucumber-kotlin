@@ -1,6 +1,6 @@
 [versions]
 gradleIntelliJPlugin = "1.17.4"
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 changelog = "2.2.0"
 
 [libraries]
