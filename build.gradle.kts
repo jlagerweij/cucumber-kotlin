@@ -13,8 +13,6 @@ plugins {
     alias(libs.plugins.kover)
 }
 
-val jetbrainsPublishToken: String by project
-
 group = providers.gradleProperty("pluginGroup").get()
 version = providers.gradleProperty("pluginVersion").get()
 
@@ -128,19 +126,7 @@ kover {
 }
 
 tasks {
-    register<Exec>("tag") {
-        commandLine = listOf("git", "tag", version.toString(), "-m", "Release version $version")
-    }
     publishPlugin {
-        dependsOn("tag")
-        token.set(jetbrainsPublishToken)
-        channels = properties("pluginVersion").map {
-            listOf(
-                it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" })
-        }
-    }
-    register<Exec>("publishTag") {
-        dependsOn(publishPlugin)
-        commandLine = listOf("git", "push", "origin", version.toString())
+        dependsOn(patchChangelog)
     }
 }
