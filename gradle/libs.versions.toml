@@ -1,12 +1,16 @@
 [versions]
+intelliJPlatform = "2.0.0"
 gradleIntelliJPlugin = "1.17.4"
 kotlin = "2.0.0"
 changelog = "2.2.0"
+kover = "0.8.1"
 
 [libraries]
 cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.18.0" }
 
 [plugins]
+intelliJPlatform = { id = "org.jetbrains.intellij.platform", version.ref = "intelliJPlatform" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 gradleIntelliJPlugin = { id = "org.jetbrains.intellij", version.ref = "gradleIntelliJPlugin" }
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
