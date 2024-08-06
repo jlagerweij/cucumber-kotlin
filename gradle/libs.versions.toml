@@ -1,10 +1,10 @@
 [versions]
 gradleIntelliJPlugin = "1.17.4"
-kotlin = "2.0.0"
-changelog = "2.2.0"
+kotlin = "2.0.10"
+changelog = "2.2.1"
 
 [libraries]
-cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.18.0" }
+cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.18.1" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
