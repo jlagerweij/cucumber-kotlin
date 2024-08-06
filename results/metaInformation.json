@@ -1,19 +1,19 @@
 {
-  "total": 3,
+  "total": 0,
   "tools inspection": {
-    "Code Inspection": 3
+    "Code Inspection": 0
   },
   "linter": "QDJVMC",
   "attributes": {
     "vcs": {
       "sarifIdea": {
         "repositoryUri": "https://github.com/jlagerweij/cucumber-kotlin.git",
-        "revisionId": "563f61dcad751999e7e82bac597cab5694bc4e96",
+        "revisionId": "70d9e31830a0a5d30739d9be5bd66141e082d4b2",
         "branch": "feature/intellij-platform-gradle-plugin-2.0"
       }
     },
     "repoUrl": "https://github.com/jlagerweij/cucumber-kotlin.git",
     "deviceId": "200820300000000-3372-b139-40c5-00fb6882db4c",
-    "jobUrl": "https://github.com/jlagerweij/cucumber-kotlin/actions/runs/10261439870"
+    "jobUrl": "https://github.com/jlagerweij/cucumber-kotlin/actions/runs/10261709277"
   }
 }
