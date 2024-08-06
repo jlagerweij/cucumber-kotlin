@@ -1,0 +1,293 @@
+{
+  "gradleJvm": "#JAVA_HOME",
+  "libraries": [
+    {
+      "ideaName": "Gradle: io.cucumber:cucumber-java:7.18.0",
+      "gradleName": "io.cucumber:cucumber-java:7.18.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "cucumber-java",
+      "version": "7.18.0"
+    },
+    {
+      "ideaName": "Gradle: com.jetbrains.plugins:gherkin:241.14494.150",
+      "gradleName": "com.jetbrains.plugins:gherkin:241.14494.150",
+      "unresolved": false,
+      "groupId": "com.jetbrains.plugins",
+      "artifactId": "gherkin",
+      "version": "241.14494.150"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:cucumber-core:7.18.0",
+      "gradleName": "io.cucumber:cucumber-core:7.18.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "cucumber-core",
+      "version": "7.18.0"
+    },
+    {
+      "ideaName": "Gradle: org.apiguardian:apiguardian-api:1.1.2",
+      "gradleName": "org.apiguardian:apiguardian-api:1.1.2",
+      "unresolved": false,
+      "groupId": "org.apiguardian",
+      "artifactId": "apiguardian-api",
+      "version": "1.1.2"
+    },
+    {
+      "ideaName": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:241.14494.240+88",
+      "gradleName": "bundledPlugin:com.jetbrains.performancePlugin:241.14494.240+88",
+      "unresolved": false,
+      "groupId": "bundledPlugin",
+      "artifactId": "com.jetbrains.performancePlugin",
+      "version": "241.14494.240+88"
+    },
+    {
+      "ideaName": "Gradle: bundledPlugin:com.intellij.copyright:241.14494.240+119",
+      "gradleName": "bundledPlugin:com.intellij.copyright:241.14494.240+119",
+      "unresolved": false,
+      "groupId": "bundledPlugin",
+      "artifactId": "com.intellij.copyright",
+      "version": "241.14494.240+119"
+    },
+    {
+      "ideaName": "Gradle: bundledPlugin:com.intellij.platform.images:241.14494.240+518",
+      "gradleName": "bundledPlugin:com.intellij.platform.images:241.14494.240+518",
+      "unresolved": false,
+      "groupId": "bundledPlugin",
+      "artifactId": "com.intellij.platform.images",
+      "version": "241.14494.240+518"
+    },
+    {
+      "ideaName": "Gradle: bundledPlugin:training:241.14494.240+456",
+      "gradleName": "bundledPlugin:training:241.14494.240+456",
+      "unresolved": false,
+      "groupId": "bundledPlugin",
+      "artifactId": "training",
+      "version": "241.14494.240+456"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:cucumber-expressions:17.1.0",
+      "gradleName": "io.cucumber:cucumber-expressions:17.1.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "cucumber-expressions",
+      "version": "17.1.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:datatable:7.18.0",
+      "gradleName": "io.cucumber:datatable:7.18.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "datatable",
+      "version": "7.18.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:cucumber-gherkin-messages:7.18.0",
+      "gradleName": "io.cucumber:cucumber-gherkin-messages:7.18.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "cucumber-gherkin-messages",
+      "version": "7.18.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:cucumber-gherkin:7.18.0",
+      "gradleName": "io.cucumber:cucumber-gherkin:7.18.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "cucumber-gherkin",
+      "version": "7.18.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:cucumber-plugin:7.18.0",
+      "gradleName": "io.cucumber:cucumber-plugin:7.18.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "cucumber-plugin",
+      "version": "7.18.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:docstring:7.18.0",
+      "gradleName": "io.cucumber:docstring:7.18.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "docstring",
+      "version": "7.18.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:testng-xml-formatter:0.1.0",
+      "gradleName": "io.cucumber:testng-xml-formatter:0.1.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "testng-xml-formatter",
+      "version": "0.1.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:html-formatter:21.3.1",
+      "gradleName": "io.cucumber:html-formatter:21.3.1",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "html-formatter",
+      "version": "21.3.1"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:junit-xml-formatter:0.4.0",
+      "gradleName": "io.cucumber:junit-xml-formatter:0.4.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "junit-xml-formatter",
+      "version": "0.4.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:messages:24.1.0",
+      "gradleName": "io.cucumber:messages:24.1.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "messages",
+      "version": "24.1.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:tag-expressions:6.1.0",
+      "gradleName": "io.cucumber:tag-expressions:6.1.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "tag-expressions",
+      "version": "6.1.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:ci-environment:10.0.1",
+      "gradleName": "io.cucumber:ci-environment:10.0.1",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "ci-environment",
+      "version": "10.0.1"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:gherkin:28.0.0",
+      "gradleName": "io.cucumber:gherkin:28.0.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "gherkin",
+      "version": "28.0.0"
+    },
+    {
+      "ideaName": "Gradle: io.cucumber:query:12.2.0",
+      "gradleName": "io.cucumber:query:12.2.0",
+      "unresolved": false,
+      "groupId": "io.cucumber",
+      "artifactId": "query",
+      "version": "12.2.0"
+    },
+    {
+      "ideaName": "Gradle: com.jetbrains.intellij.platform:test-framework:241.14494.240",
+      "gradleName": "com.jetbrains.intellij.platform:test-framework:241.14494.240",
+      "unresolved": false,
+      "groupId": "com.jetbrains.intellij.platform",
+      "artifactId": "test-framework",
+      "version": "241.14494.240"
+    },
+    {
+      "ideaName": "Gradle: com.jetbrains.intellij.platform:test-framework-core:241.14494.240",
+      "gradleName": "com.jetbrains.intellij.platform:test-framework-core:241.14494.240",
+      "unresolved": false,
+      "groupId": "com.jetbrains.intellij.platform",
+      "artifactId": "test-framework-core",
+      "version": "241.14494.240"
+    },
+    {
+      "ideaName": "Gradle: com.jetbrains.intellij.platform:test-framework-common:241.14494.240",
+      "gradleName": "com.jetbrains.intellij.platform:test-framework-common:241.14494.240",
+      "unresolved": false,
+      "groupId": "com.jetbrains.intellij.platform",
+      "artifactId": "test-framework-common",
+      "version": "241.14494.240"
+    },
+    {
+      "ideaName": "Gradle: com.jetbrains.intellij.tools:tests-bootstrap:241.14494.240",
+      "gradleName": "com.jetbrains.intellij.tools:tests-bootstrap:241.14494.240",
+      "unresolved": false,
+      "groupId": "com.jetbrains.intellij.tools",
+      "artifactId": "tests-bootstrap",
+      "version": "241.14494.240"
+    },
+    {
+      "ideaName": "Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.9.22",
+      "gradleName": "org.jetbrains.kotlin:kotlin-stdlib:1.9.22",
+      "unresolved": false,
+      "groupId": "org.jetbrains.kotlin",
+      "artifactId": "kotlin-stdlib",
+      "version": "1.9.22"
+    },
+    {
+      "ideaName": "Gradle: org.jetbrains:annotations:24.0.0",
+      "gradleName": "org.jetbrains:annotations:24.0.0",
+      "unresolved": false,
+      "groupId": "org.jetbrains",
+      "artifactId": "annotations",
+      "version": "24.0.0"
+    },
+    {
+      "ideaName": "Gradle: com.jetbrains:jbr-api:17.1.10.0",
+      "gradleName": "com.jetbrains:jbr-api:17.1.10.0",
+      "unresolved": false,
+      "groupId": "com.jetbrains",
+      "artifactId": "jbr-api",
+      "version": "17.1.10.0"
+    },
+    {
+      "ideaName": "Gradle: com.fasterxml.jackson.core:jackson-databind:2.16.0",
+      "gradleName": "com.fasterxml.jackson.core:jackson-databind:2.16.0",
+      "unresolved": false,
+      "groupId": "com.fasterxml.jackson.core",
+      "artifactId": "jackson-databind",
+      "version": "2.16.0"
+    },
+    {
+      "ideaName": "Gradle: com.fasterxml.jackson.core:jackson-core:2.16.0",
+      "gradleName": "com.fasterxml.jackson.core:jackson-core:2.16.0",
+      "unresolved": false,
+      "groupId": "com.fasterxml.jackson.core",
+      "artifactId": "jackson-core",
+      "version": "2.16.0"
+    },
+    {
+      "ideaName": "Gradle: com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0",
+      "gradleName": "com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0",
+      "unresolved": false,
+      "groupId": "com.fasterxml.jackson.module",
+      "artifactId": "jackson-module-kotlin",
+      "version": "2.16.0"
+    },
+    {
+      "ideaName": "Gradle: org.apache.httpcomponents:httpmime:4.5.14",
+      "gradleName": "org.apache.httpcomponents:httpmime:4.5.14",
+      "unresolved": false,
+      "groupId": "org.apache.httpcomponents",
+      "artifactId": "httpmime",
+      "version": "4.5.14"
+    },
+    {
+      "ideaName": "Gradle: com.fasterxml.jackson.core:jackson-annotations:2.16.0",
+      "gradleName": "com.fasterxml.jackson.core:jackson-annotations:2.16.0",
+      "unresolved": false,
+      "groupId": "com.fasterxml.jackson.core",
+      "artifactId": "jackson-annotations",
+      "version": "2.16.0"
+    },
+    {
+      "ideaName": "Gradle: org.apache.httpcomponents:httpclient:4.5.14",
+      "gradleName": "org.apache.httpcomponents:httpclient:4.5.14",
+      "unresolved": false,
+      "groupId": "org.apache.httpcomponents",
+      "artifactId": "httpclient",
+      "version": "4.5.14"
+    },
+    {
+      "ideaName": "Gradle: org.apache.httpcomponents:httpcore:4.4.16",
+      "gradleName": "org.apache.httpcomponents:httpcore:4.4.16",
+      "unresolved": false,
+      "groupId": "org.apache.httpcomponents",
+      "artifactId": "httpcore",
+      "version": "4.4.16"
+    }
+  ]
+}

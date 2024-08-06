@@ -1,0 +1,16 @@
+{
+  "modules": [
+    {
+      "name": "cucumber-kotlin",
+      "languageLevel": 17
+    },
+    {
+      "name": "cucumber-kotlin.main",
+      "languageLevel": 17
+    },
+    {
+      "name": "cucumber-kotlin.test",
+      "languageLevel": 17
+    }
+  ]
+}

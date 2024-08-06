@@ -1,0 +1,94 @@
+{"version":"3","listProblem":[{
+  "tool": "Code Inspection",
+  "category": "Naming conventions",
+  "type": "Const property naming convention",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "Moderate",
+  "comment": "Const property name `defaultIntegerPattern` should not contain lowercase letters",
+  "detailsInfo": "Reports `const` property names that do not follow the recommended naming conventions.\n\n\nConsistent naming allows for easier code reading and understanding.\nAccording to the [Kotlin official style guide](https://kotlinlang.org/docs/coding-conventions.html#property-names),\n`const` properties should use uppercase underscore-separated names.\n\n**Example:**\n\n\n      const val Planck: Double = 6.62607015E-34\n\nThe quick-fix renames the property:\n\n\n      const val PLANCK: Double = 6.62607015E-34\n",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src/main/kotlin/net/lagerwey/plugins/cucumber/kotlin/steps/KotlinParameterTypeManager.kt",
+      "language": "kotlin",
+      "line": 10,
+      "offset": 23,
+      "length": 21,
+      "code": {
+        "startLine": 8,
+        "length": 21,
+        "offset": 82,
+        "surroundingCode": "object KotlinParameterTypeManager : ParameterTypeManager {\n\n    private const val defaultIntegerPattern = \"-?\\\\d+\"\n    private const val defaultDecimalPattern = \"-?\\\\d*[.,]?\\\\d+\"\n    private val defaultJvmParameterTypes = mapOf("
+      }
+    }
+  ],
+  "attributes": {
+    "module": "cucumber-kotlin.main",
+    "inspectionName": "ConstPropertyName"
+  },
+  "hash": "8683e98d8db63c71f09220a30f6dd3d3d4af145d17d0ceafddb5473006437f69"
+},{
+  "tool": "Code Inspection",
+  "category": "Naming conventions",
+  "type": "Const property naming convention",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "Moderate",
+  "comment": "Const property name `defaultDecimalPattern` should not contain lowercase letters",
+  "detailsInfo": "Reports `const` property names that do not follow the recommended naming conventions.\n\n\nConsistent naming allows for easier code reading and understanding.\nAccording to the [Kotlin official style guide](https://kotlinlang.org/docs/coding-conventions.html#property-names),\n`const` properties should use uppercase underscore-separated names.\n\n**Example:**\n\n\n      const val Planck: Double = 6.62607015E-34\n\nThe quick-fix renames the property:\n\n\n      const val PLANCK: Double = 6.62607015E-34\n",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src/main/kotlin/net/lagerwey/plugins/cucumber/kotlin/steps/KotlinParameterTypeManager.kt",
+      "language": "kotlin",
+      "line": 11,
+      "offset": 23,
+      "length": 21,
+      "code": {
+        "startLine": 9,
+        "length": 21,
+        "offset": 78,
+        "surroundingCode": "\n    private const val defaultIntegerPattern = \"-?\\\\d+\"\n    private const val defaultDecimalPattern = \"-?\\\\d*[.,]?\\\\d+\"\n    private val defaultJvmParameterTypes = mapOf(\n            \"biginteger\" to defaultIntegerPattern,"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "cucumber-kotlin.main",
+    "inspectionName": "ConstPropertyName"
+  },
+  "hash": "d566f272d5c2c061b885517f3b45cd268ca749e15221df2c70194d40db233b22"
+},{
+  "tool": "Code Inspection",
+  "category": "Redundant constructs",
+  "type": "Redundant nullable return type",
+  "tags": [
+    "kotlin"
+  ],
+  "severity": "High",
+  "comment": "'createFindUsagesHandler' always returns non-null type",
+  "detailsInfo": "Reports functions and variables with nullable return type which never return or become `null`.\n\n**Example:**\n\n\n      fun greeting(user: String): String? = \"Hello, $user!\"\n\nAfter the quick-fix is applied:\n\n\n      fun greeting(user: String): String = \"Hello, $user!\"\n",
+  "sources": [
+    {
+      "type": "file",
+      "path": "src/main/kotlin/net/lagerwey/plugins/cucumber/kotlin/search/StepFindUsagesHandlerFactory.kt",
+      "language": "kotlin",
+      "line": 13,
+      "offset": 110,
+      "length": 1,
+      "code": {
+        "startLine": 11,
+        "length": 1,
+        "offset": 116,
+        "surroundingCode": "    }\n\n    override fun createFindUsagesHandler(element: PsiElement, forHighlightUsages: Boolean): FindUsagesHandler? {\n        return object : FindUsagesHandler(element) { }\n    }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "cucumber-kotlin.main",
+    "inspectionName": "RedundantNullableReturnType"
+  },
+  "hash": "b98df361405dcc2b0e08c8b097b752942a42923b65158eafe0acd219f14913aa"
+}]}

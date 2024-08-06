@@ -1,0 +1,362 @@
+{
+  "modules": [
+    {
+      "name": "cucumber-kotlin",
+      "contentEntries": [
+        {
+          "path": "file://$PROJECT_DIR$",
+          "excludePatterns": [],
+          "excludeFolders": [
+            {
+              "path": "file://$PROJECT_DIR$/.gradle",
+              "type": "Exclude",
+              "packagePrefix": ""
+            },
+            {
+              "path": "file://$PROJECT_DIR$/.intellijPlatform",
+              "type": "Exclude",
+              "packagePrefix": ""
+            },
+            {
+              "path": "file://$PROJECT_DIR$/build",
+              "type": "Exclude",
+              "packagePrefix": ""
+            }
+          ],
+          "sourceFolders": []
+        }
+      ],
+      "orderEntries": [
+        {
+          "name": "17",
+          "type": "SDK"
+        },
+        {
+          "name": "<Module source>",
+          "type": "Own sources"
+        }
+      ]
+    },
+    {
+      "name": "cucumber-kotlin.main",
+      "contentEntries": [
+        {
+          "path": "file://$PROJECT_DIR$/src/main",
+          "excludePatterns": [],
+          "excludeFolders": [],
+          "sourceFolders": [
+            {
+              "path": "file://$PROJECT_DIR$/src/main/kotlin",
+              "type": "Source",
+              "packagePrefix": ""
+            },
+            {
+              "path": "file://$PROJECT_DIR$/src/main/resources",
+              "type": "Resource",
+              "packagePrefix": ""
+            }
+          ]
+        }
+      ],
+      "orderEntries": [
+        {
+          "name": "17",
+          "type": "SDK"
+        },
+        {
+          "name": "<Module source>",
+          "type": "Own sources"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-java:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:org.jetbrains.kotlin:2024.1+607",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:com.intellij.java:2024.1+162",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: idea:ideaIC:2024.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.jetbrains.plugins:gherkin:241.14494.150",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-core:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.apiguardian:apiguardian-api:1.1.2",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:241.14494.240+88",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:com.intellij.copyright:241.14494.240+119",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:com.intellij.platform.images:241.14494.240+518",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:training:241.14494.240+456",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-expressions:17.1.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:datatable:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-gherkin-messages:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-gherkin:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-plugin:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:docstring:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:testng-xml-formatter:0.1.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:html-formatter:21.3.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:junit-xml-formatter:0.4.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:messages:24.1.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:tag-expressions:6.1.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:ci-environment:10.0.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:Git4Idea:241.14494.240+773",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:gherkin:28.0.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:query:12.2.0",
+          "type": "Library"
+        }
+      ]
+    },
+    {
+      "name": "cucumber-kotlin.test",
+      "contentEntries": [
+        {
+          "path": "file://$PROJECT_DIR$/src/test",
+          "excludePatterns": [],
+          "excludeFolders": [],
+          "sourceFolders": []
+        }
+      ],
+      "orderEntries": [
+        {
+          "name": "17",
+          "type": "SDK"
+        },
+        {
+          "name": "<Module source>",
+          "type": "Own sources"
+        },
+        {
+          "name": "cucumber-kotlin.main",
+          "type": "Module"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-java:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:org.jetbrains.kotlin:2024.1+607",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:com.intellij.java:2024.1+162",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: idea:ideaIC:2024.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.jetbrains.plugins:gherkin:241.14494.150",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.jetbrains.intellij.platform:test-framework:241.14494.240",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-core:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.apiguardian:apiguardian-api:1.1.2",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:241.14494.240+88",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:com.intellij.copyright:241.14494.240+119",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:com.intellij.platform.images:241.14494.240+518",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:training:241.14494.240+456",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.jetbrains.intellij.platform:test-framework-core:241.14494.240",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.jetbrains.intellij.platform:test-framework-common:241.14494.240",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-expressions:17.1.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:datatable:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-gherkin-messages:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-gherkin:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:cucumber-plugin:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:docstring:7.18.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:testng-xml-formatter:0.1.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:html-formatter:21.3.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:junit-xml-formatter:0.4.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:messages:24.1.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:tag-expressions:6.1.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:ci-environment:10.0.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: bundledPlugin:Git4Idea:241.14494.240+773",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:gherkin:28.0.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: io.cucumber:query:12.2.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.jetbrains.intellij.tools:tests-bootstrap:241.14494.240",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.9.22",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.jetbrains:annotations:24.0.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.jetbrains:jbr-api:17.1.10.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.fasterxml.jackson.core:jackson-databind:2.16.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.fasterxml.jackson.core:jackson-core:2.16.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.apache.httpcomponents:httpmime:4.5.14",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.fasterxml.jackson.core:jackson-annotations:2.16.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.apache.httpcomponents:httpclient:4.5.14",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.apache.httpcomponents:httpcore:4.4.16",
+          "type": "Library"
+        }
+      ]
+    }
+  ]
+}
