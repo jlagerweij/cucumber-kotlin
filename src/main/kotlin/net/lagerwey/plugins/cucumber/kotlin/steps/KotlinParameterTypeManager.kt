@@ -7,15 +7,15 @@ import org.jetbrains.plugins.cucumber.ParameterTypeManager
 
 object KotlinParameterTypeManager : ParameterTypeManager {
 
-    private const val defaultIntegerPattern = "-?\\d+"
-    private const val defaultDecimalPattern = "-?\\d*[.,]?\\d+"
+    private const val DEFAULT_INTEGER_PATTERN = "-?\\d+"
+    private const val DEFAULT_DECIMAL_PATTERN = "-?\\d*[.,]?\\d+"
     private val defaultJvmParameterTypes = mapOf(
-            "biginteger" to defaultIntegerPattern,
-            "bigdecimal" to defaultDecimalPattern,
-            "byte" to defaultIntegerPattern,
-            "short" to defaultIntegerPattern,
-            "long" to defaultIntegerPattern,
-            "double" to defaultDecimalPattern
+        "biginteger" to DEFAULT_INTEGER_PATTERN,
+        "bigdecimal" to DEFAULT_DECIMAL_PATTERN,
+        "byte" to DEFAULT_INTEGER_PATTERN,
+        "short" to DEFAULT_INTEGER_PATTERN,
+        "long" to DEFAULT_INTEGER_PATTERN,
+        "double" to DEFAULT_DECIMAL_PATTERN
     )
     private val nameToParameterTypeMap = mutableMapOf<String, String>()
     private val nameToDeclarationMap = mutableMapOf<String, SmartPsiElementPointer<PsiElement>>()
