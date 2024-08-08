@@ -72,19 +72,19 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:org.jetbrains.kotlin:2024.1+607",
+          "name": "Gradle: bundledPlugin:org.jetbrains.kotlin:2024.2+682",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.java:2024.1+162",
+          "name": "Gradle: bundledPlugin:com.intellij.java:2024.2+151",
           "type": "Library"
         },
         {
-          "name": "Gradle: idea:ideaIC:2024.1",
+          "name": "Gradle: idea:ideaIC:2024.2",
           "type": "Library"
         },
         {
-          "name": "Gradle: com.jetbrains.plugins:gherkin:241.14494.150",
+          "name": "Gradle: com.jetbrains.plugins:gherkin:242.20224.159",
           "type": "Library"
         },
         {
@@ -96,19 +96,15 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:241.14494.240+88",
+          "name": "Gradle: bundledPlugin:com.intellij.copyright:242.20224.300+786",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.copyright:241.14494.240+119",
+          "name": "Gradle: bundledPlugin:com.intellij.platform.images:242.20224.300+59",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.platform.images:241.14494.240+518",
-          "type": "Library"
-        },
-        {
-          "name": "Gradle: bundledPlugin:training:241.14494.240+456",
+          "name": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:242.20224.300+67",
           "type": "Library"
         },
         {
@@ -157,10 +153,6 @@
         },
         {
           "name": "Gradle: io.cucumber:ci-environment:10.0.1",
-          "type": "Library"
-        },
-        {
-          "name": "Gradle: bundledPlugin:Git4Idea:241.14494.240+773",
           "type": "Library"
         },
         {
@@ -201,23 +193,23 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:org.jetbrains.kotlin:2024.1+607",
+          "name": "Gradle: bundledPlugin:org.jetbrains.kotlin:2024.2+682",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.java:2024.1+162",
+          "name": "Gradle: bundledPlugin:com.intellij.java:2024.2+151",
           "type": "Library"
         },
         {
-          "name": "Gradle: idea:ideaIC:2024.1",
+          "name": "Gradle: idea:ideaIC:2024.2",
           "type": "Library"
         },
         {
-          "name": "Gradle: com.jetbrains.plugins:gherkin:241.14494.150",
+          "name": "Gradle: com.jetbrains.plugins:gherkin:242.20224.159",
           "type": "Library"
         },
         {
-          "name": "Gradle: com.jetbrains.intellij.platform:test-framework:241.14494.240",
+          "name": "Gradle: com.jetbrains.intellij.platform:test-framework:242.20224.300",
           "type": "Library"
         },
         {
@@ -229,27 +221,23 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:241.14494.240+88",
+          "name": "Gradle: bundledPlugin:com.intellij.copyright:242.20224.300+786",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.copyright:241.14494.240+119",
+          "name": "Gradle: bundledPlugin:com.intellij.platform.images:242.20224.300+59",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.platform.images:241.14494.240+518",
+          "name": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:242.20224.300+67",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:training:241.14494.240+456",
+          "name": "Gradle: com.jetbrains.intellij.platform:test-framework-core:242.20224.300",
           "type": "Library"
         },
         {
-          "name": "Gradle: com.jetbrains.intellij.platform:test-framework-core:241.14494.240",
-          "type": "Library"
-        },
-        {
-          "name": "Gradle: com.jetbrains.intellij.platform:test-framework-common:241.14494.240",
+          "name": "Gradle: com.jetbrains.intellij.platform:test-framework-common:242.20224.300",
           "type": "Library"
         },
         {
@@ -301,10 +289,6 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:Git4Idea:241.14494.240+773",
-          "type": "Library"
-        },
-        {
           "name": "Gradle: io.cucumber:gherkin:28.0.0",
           "type": "Library"
         },
@@ -313,11 +297,19 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: com.jetbrains.intellij.tools:tests-bootstrap:241.14494.240",
+          "name": "Gradle: com.jetbrains.intellij.tools:tests-bootstrap:242.20224.300",
           "type": "Library"
         },
         {
-          "name": "Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.9.22",
+          "name": "Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.9.24",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.intellij.platform:kotlinx-coroutines-core-jvm:1.8.0-intellij-9",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: com.jetbrains:jbr-api:1.0.0",
           "type": "Library"
         },
         {
@@ -325,19 +317,15 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: com.jetbrains:jbr-api:17.1.10.0",
+          "name": "Gradle: com.fasterxml.jackson.core:jackson-databind:2.17.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: com.fasterxml.jackson.core:jackson-databind:2.16.0",
+          "name": "Gradle: com.fasterxml.jackson.core:jackson-core:2.17.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: com.fasterxml.jackson.core:jackson-core:2.16.0",
-          "type": "Library"
-        },
-        {
-          "name": "Gradle: com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0",
+          "name": "Gradle: com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0",
           "type": "Library"
         },
         {
@@ -345,7 +333,7 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: com.fasterxml.jackson.core:jackson-annotations:2.16.0",
+          "name": "Gradle: com.fasterxml.jackson.core:jackson-annotations:2.17.0",
           "type": "Library"
         },
         {
