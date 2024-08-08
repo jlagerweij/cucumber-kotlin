@@ -1,9 +1,6 @@
-.idea
-/out
-*.iml
-
-/build
 .gradle
-.kotlin
-
+.idea
+.intellijPlatform
+.qodana
+build
 target

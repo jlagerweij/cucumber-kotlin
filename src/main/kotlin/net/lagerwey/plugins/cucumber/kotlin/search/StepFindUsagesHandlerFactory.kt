@@ -10,7 +10,7 @@ class StepFindUsagesHandlerFactory : FindUsagesHandlerFactory() {
         return element is PomTargetPsiElement && element.target is StepDeclaration
     }
 
-    override fun createFindUsagesHandler(element: PsiElement, forHighlightUsages: Boolean): FindUsagesHandler? {
+    override fun createFindUsagesHandler(element: PsiElement, forHighlightUsages: Boolean): FindUsagesHandler {
         return object : FindUsagesHandler(element) { }
     }
 }

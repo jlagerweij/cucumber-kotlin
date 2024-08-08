@@ -6,10 +6,10 @@ import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import org.jetbrains.kotlin.asJava.classes.KtLightClassForSourceDeclaration
 import org.jetbrains.kotlin.idea.base.util.module
-import org.jetbrains.kotlin.idea.core.appendElement
 import org.jetbrains.kotlin.idea.core.getPackage
 import org.jetbrains.kotlin.idea.core.util.toPsiDirectory
 import org.jetbrains.kotlin.idea.refactoring.KotlinNamesValidator
+import org.jetbrains.kotlin.idea.refactoring.addElement
 import org.jetbrains.kotlin.idea.util.sourceRoots
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtBlockExpression
@@ -74,7 +74,7 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
         )
 
         runWriteAction {
-            initializer?.appendElement(expression)
+            initializer?.addElement(expression)
         }
 
         file.navigate(true)

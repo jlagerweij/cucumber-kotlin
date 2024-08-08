@@ -15,6 +15,7 @@ import com.intellij.psi.search.PsiSearchHelper
 import com.intellij.psi.search.UsageSearchContext
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.indexing.FileBasedIndex
+import groovy.json.StringEscapeUtils
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinParameterTypeManager
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinition
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinitionCreator
@@ -136,7 +137,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
             callExpression?.let {
                 val name = (it.valueArguments[0].getArgumentExpression() as KtStringTemplateExpression).entries[0].text
                 val regex = (it.valueArguments[1].getArgumentExpression() as KtStringTemplateExpression).entries.joinToString("") { x -> x.text }
-                val unescapedRegex = org.apache.commons.text.StringEscapeUtils.unescapeJava(regex)
+                val unescapedRegex = StringEscapeUtils.unescapeJava(regex)
                 KotlinParameterTypeManager.addParameterType(name, unescapedRegex, pointer)
             }
         }
