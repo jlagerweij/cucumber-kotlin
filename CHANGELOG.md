@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+## [2024.2.0] - 2024-08-08
+
+### Changed
+
+- Compatible with 2024.2
+
 ## [2024.1.0] - 2024-04-13
 
 ### Changed
