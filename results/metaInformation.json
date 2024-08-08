@@ -8,12 +8,12 @@
     "vcs": {
       "sarifIdea": {
         "repositoryUri": "https://github.com/jlagerweij/cucumber-kotlin.git",
-        "revisionId": "a5f79d976c5fce99092a4cd63f0a3d51d39e61f8",
-        "branch": "main"
+        "revisionId": "c846ed2700cd25eede31e4ac442c5126c885c42a",
+        "branch": "dependabot/gradle/dependencies-b586557bd8"
       }
     },
     "repoUrl": "https://github.com/jlagerweij/cucumber-kotlin.git",
     "deviceId": "200820300000000-3372-b139-40c5-00fb6882db4c",
-    "jobUrl": "https://github.com/jlagerweij/cucumber-kotlin/actions/runs/10299617168"
+    "jobUrl": "https://github.com/jlagerweij/cucumber-kotlin/actions/runs/10306680187"
   }
 }
