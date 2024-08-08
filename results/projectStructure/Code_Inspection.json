@@ -68,15 +68,15 @@
           "type": "Own sources"
         },
         {
-          "name": "Gradle: io.cucumber:cucumber-java:7.18.1",
+          "name": "Gradle: io.cucumber:cucumber-java:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:org.jetbrains.kotlin:2024.2+313",
+          "name": "Gradle: bundledPlugin:org.jetbrains.kotlin:2024.2+682",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.java:2024.2+432",
+          "name": "Gradle: bundledPlugin:com.intellij.java:2024.2+151",
           "type": "Library"
         },
         {
@@ -88,7 +88,7 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:cucumber-core:7.18.1",
+          "name": "Gradle: io.cucumber:cucumber-core:7.18.0",
           "type": "Library"
         },
         {
@@ -96,15 +96,15 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.copyright:242.20224.300+399",
+          "name": "Gradle: bundledPlugin:com.intellij.copyright:242.20224.300+786",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.platform.images:242.20224.300+644",
+          "name": "Gradle: bundledPlugin:com.intellij.platform.images:242.20224.300+59",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:242.20224.300+870",
+          "name": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:242.20224.300+67",
           "type": "Library"
         },
         {
@@ -112,35 +112,35 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:datatable:7.18.1",
+          "name": "Gradle: io.cucumber:datatable:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:cucumber-gherkin-messages:7.18.1",
+          "name": "Gradle: io.cucumber:cucumber-gherkin-messages:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:cucumber-gherkin:7.18.1",
+          "name": "Gradle: io.cucumber:cucumber-gherkin:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:cucumber-plugin:7.18.1",
+          "name": "Gradle: io.cucumber:cucumber-plugin:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:docstring:7.18.1",
+          "name": "Gradle: io.cucumber:docstring:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:testng-xml-formatter:0.2.0",
+          "name": "Gradle: io.cucumber:testng-xml-formatter:0.1.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:html-formatter:21.4.1",
+          "name": "Gradle: io.cucumber:html-formatter:21.3.1",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:junit-xml-formatter:0.5.0",
+          "name": "Gradle: io.cucumber:junit-xml-formatter:0.4.0",
           "type": "Library"
         },
         {
@@ -189,15 +189,15 @@
           "type": "Module"
         },
         {
-          "name": "Gradle: io.cucumber:cucumber-java:7.18.1",
+          "name": "Gradle: io.cucumber:cucumber-java:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:org.jetbrains.kotlin:2024.2+313",
+          "name": "Gradle: bundledPlugin:org.jetbrains.kotlin:2024.2+682",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.java:2024.2+432",
+          "name": "Gradle: bundledPlugin:com.intellij.java:2024.2+151",
           "type": "Library"
         },
         {
@@ -213,7 +213,7 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:cucumber-core:7.18.1",
+          "name": "Gradle: io.cucumber:cucumber-core:7.18.0",
           "type": "Library"
         },
         {
@@ -221,15 +221,15 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.copyright:242.20224.300+399",
+          "name": "Gradle: bundledPlugin:com.intellij.copyright:242.20224.300+786",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.intellij.platform.images:242.20224.300+644",
+          "name": "Gradle: bundledPlugin:com.intellij.platform.images:242.20224.300+59",
           "type": "Library"
         },
         {
-          "name": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:242.20224.300+870",
+          "name": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:242.20224.300+67",
           "type": "Library"
         },
         {
@@ -245,35 +245,35 @@
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:datatable:7.18.1",
+          "name": "Gradle: io.cucumber:datatable:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:cucumber-gherkin-messages:7.18.1",
+          "name": "Gradle: io.cucumber:cucumber-gherkin-messages:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:cucumber-gherkin:7.18.1",
+          "name": "Gradle: io.cucumber:cucumber-gherkin:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:cucumber-plugin:7.18.1",
+          "name": "Gradle: io.cucumber:cucumber-plugin:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:docstring:7.18.1",
+          "name": "Gradle: io.cucumber:docstring:7.18.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:testng-xml-formatter:0.2.0",
+          "name": "Gradle: io.cucumber:testng-xml-formatter:0.1.0",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:html-formatter:21.4.1",
+          "name": "Gradle: io.cucumber:html-formatter:21.3.1",
           "type": "Library"
         },
         {
-          "name": "Gradle: io.cucumber:junit-xml-formatter:0.5.0",
+          "name": "Gradle: io.cucumber:junit-xml-formatter:0.4.0",
           "type": "Library"
         },
         {
