@@ -2,12 +2,12 @@
   "gradleJvm": "#JAVA_HOME",
   "libraries": [
     {
-      "ideaName": "Gradle: io.cucumber:cucumber-java:7.18.0",
-      "gradleName": "io.cucumber:cucumber-java:7.18.0",
+      "ideaName": "Gradle: io.cucumber:cucumber-java:7.18.1",
+      "gradleName": "io.cucumber:cucumber-java:7.18.1",
       "unresolved": false,
       "groupId": "io.cucumber",
       "artifactId": "cucumber-java",
-      "version": "7.18.0"
+      "version": "7.18.1"
     },
     {
       "ideaName": "Gradle: com.jetbrains.plugins:gherkin:242.20224.159",
@@ -18,12 +18,12 @@
       "version": "242.20224.159"
     },
     {
-      "ideaName": "Gradle: io.cucumber:cucumber-core:7.18.0",
-      "gradleName": "io.cucumber:cucumber-core:7.18.0",
+      "ideaName": "Gradle: io.cucumber:cucumber-core:7.18.1",
+      "gradleName": "io.cucumber:cucumber-core:7.18.1",
       "unresolved": false,
       "groupId": "io.cucumber",
       "artifactId": "cucumber-core",
-      "version": "7.18.0"
+      "version": "7.18.1"
     },
     {
       "ideaName": "Gradle: org.apiguardian:apiguardian-api:1.1.2",
@@ -34,28 +34,28 @@
       "version": "1.1.2"
     },
     {
-      "ideaName": "Gradle: bundledPlugin:com.intellij.copyright:242.20224.300+786",
-      "gradleName": "bundledPlugin:com.intellij.copyright:242.20224.300+786",
+      "ideaName": "Gradle: bundledPlugin:com.intellij.copyright:242.20224.300+399",
+      "gradleName": "bundledPlugin:com.intellij.copyright:242.20224.300+399",
       "unresolved": false,
       "groupId": "bundledPlugin",
       "artifactId": "com.intellij.copyright",
-      "version": "242.20224.300+786"
+      "version": "242.20224.300+399"
     },
     {
-      "ideaName": "Gradle: bundledPlugin:com.intellij.platform.images:242.20224.300+59",
-      "gradleName": "bundledPlugin:com.intellij.platform.images:242.20224.300+59",
+      "ideaName": "Gradle: bundledPlugin:com.intellij.platform.images:242.20224.300+644",
+      "gradleName": "bundledPlugin:com.intellij.platform.images:242.20224.300+644",
       "unresolved": false,
       "groupId": "bundledPlugin",
       "artifactId": "com.intellij.platform.images",
-      "version": "242.20224.300+59"
+      "version": "242.20224.300+644"
     },
     {
-      "ideaName": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:242.20224.300+67",
-      "gradleName": "bundledPlugin:com.jetbrains.performancePlugin:242.20224.300+67",
+      "ideaName": "Gradle: bundledPlugin:com.jetbrains.performancePlugin:242.20224.300+870",
+      "gradleName": "bundledPlugin:com.jetbrains.performancePlugin:242.20224.300+870",
       "unresolved": false,
       "groupId": "bundledPlugin",
       "artifactId": "com.jetbrains.performancePlugin",
-      "version": "242.20224.300+67"
+      "version": "242.20224.300+870"
     },
     {
       "ideaName": "Gradle: io.cucumber:cucumber-expressions:17.1.0",
@@ -66,68 +66,68 @@
       "version": "17.1.0"
     },
     {
-      "ideaName": "Gradle: io.cucumber:datatable:7.18.0",
-      "gradleName": "io.cucumber:datatable:7.18.0",
+      "ideaName": "Gradle: io.cucumber:datatable:7.18.1",
+      "gradleName": "io.cucumber:datatable:7.18.1",
       "unresolved": false,
       "groupId": "io.cucumber",
       "artifactId": "datatable",
-      "version": "7.18.0"
+      "version": "7.18.1"
     },
     {
-      "ideaName": "Gradle: io.cucumber:cucumber-gherkin-messages:7.18.0",
-      "gradleName": "io.cucumber:cucumber-gherkin-messages:7.18.0",
+      "ideaName": "Gradle: io.cucumber:cucumber-gherkin-messages:7.18.1",
+      "gradleName": "io.cucumber:cucumber-gherkin-messages:7.18.1",
       "unresolved": false,
       "groupId": "io.cucumber",
       "artifactId": "cucumber-gherkin-messages",
-      "version": "7.18.0"
+      "version": "7.18.1"
     },
     {
-      "ideaName": "Gradle: io.cucumber:cucumber-gherkin:7.18.0",
-      "gradleName": "io.cucumber:cucumber-gherkin:7.18.0",
+      "ideaName": "Gradle: io.cucumber:cucumber-gherkin:7.18.1",
+      "gradleName": "io.cucumber:cucumber-gherkin:7.18.1",
       "unresolved": false,
       "groupId": "io.cucumber",
       "artifactId": "cucumber-gherkin",
-      "version": "7.18.0"
+      "version": "7.18.1"
     },
     {
-      "ideaName": "Gradle: io.cucumber:cucumber-plugin:7.18.0",
-      "gradleName": "io.cucumber:cucumber-plugin:7.18.0",
+      "ideaName": "Gradle: io.cucumber:cucumber-plugin:7.18.1",
+      "gradleName": "io.cucumber:cucumber-plugin:7.18.1",
       "unresolved": false,
       "groupId": "io.cucumber",
       "artifactId": "cucumber-plugin",
-      "version": "7.18.0"
+      "version": "7.18.1"
     },
     {
-      "ideaName": "Gradle: io.cucumber:docstring:7.18.0",
-      "gradleName": "io.cucumber:docstring:7.18.0",
+      "ideaName": "Gradle: io.cucumber:docstring:7.18.1",
+      "gradleName": "io.cucumber:docstring:7.18.1",
       "unresolved": false,
       "groupId": "io.cucumber",
       "artifactId": "docstring",
-      "version": "7.18.0"
+      "version": "7.18.1"
     },
     {
-      "ideaName": "Gradle: io.cucumber:testng-xml-formatter:0.1.0",
-      "gradleName": "io.cucumber:testng-xml-formatter:0.1.0",
+      "ideaName": "Gradle: io.cucumber:testng-xml-formatter:0.2.0",
+      "gradleName": "io.cucumber:testng-xml-formatter:0.2.0",
       "unresolved": false,
       "groupId": "io.cucumber",
       "artifactId": "testng-xml-formatter",
-      "version": "0.1.0"
+      "version": "0.2.0"
     },
     {
-      "ideaName": "Gradle: io.cucumber:html-formatter:21.3.1",
-      "gradleName": "io.cucumber:html-formatter:21.3.1",
+      "ideaName": "Gradle: io.cucumber:html-formatter:21.4.1",
+      "gradleName": "io.cucumber:html-formatter:21.4.1",
       "unresolved": false,
       "groupId": "io.cucumber",
       "artifactId": "html-formatter",
-      "version": "21.3.1"
+      "version": "21.4.1"
     },
     {
-      "ideaName": "Gradle: io.cucumber:junit-xml-formatter:0.4.0",
-      "gradleName": "io.cucumber:junit-xml-formatter:0.4.0",
+      "ideaName": "Gradle: io.cucumber:junit-xml-formatter:0.5.0",
+      "gradleName": "io.cucumber:junit-xml-formatter:0.5.0",
       "unresolved": false,
       "groupId": "io.cucumber",
       "artifactId": "junit-xml-formatter",
-      "version": "0.4.0"
+      "version": "0.5.0"
     },
     {
       "ideaName": "Gradle: io.cucumber:messages:24.1.0",
