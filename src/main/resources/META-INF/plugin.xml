@@ -15,6 +15,10 @@
         <cucumberJvmExtensionPoint implementation="net.lagerwey.plugins.cucumber.kotlin.KotlinCucumberExtension"/>
     </extensions>
 
+    <extensions defaultExtensionNs="org.jetbrains.kotlin">
+        <supportsKotlinPluginMode supportsK2="true"/>
+    </extensions>
+
     <extensions defaultExtensionNs="com.intellij">
         <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.KotlinCucumberStepIndex"/>
 
