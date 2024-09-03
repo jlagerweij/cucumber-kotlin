@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+## [2024.2.1] - 2024-09-03
+
+### Changed
+
+- Support for K2 mode in IntelliJ IDEA 2024.2
+
 ## [2024.2.0] - 2024-08-08
 
 ### Changed
