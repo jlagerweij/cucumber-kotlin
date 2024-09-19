@@ -6,7 +6,7 @@ changelog = "2.2.1"
 kover = "0.8.3"
 
 [libraries]
-cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.18.1" }
+cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.19.0" }
 
 [plugins]
 intelliJPlatform = { id = "org.jetbrains.intellij.platform", version.ref = "intelliJPlatform" }
