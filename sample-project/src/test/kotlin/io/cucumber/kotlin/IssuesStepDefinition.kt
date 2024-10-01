@@ -1,6 +1,5 @@
 package io.cucumber.kotlin
 
-import io.cucumber.java.en.Then
 import io.cucumber.java8.En
 
 class IssuesStepDefinition : En {
