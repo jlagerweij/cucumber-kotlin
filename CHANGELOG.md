@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2024.2.2] - 2024-10-02
+
 ### Fixed
 
 - Change KtLightClassForSourceDeclaration to use KtClassOrObject and KtClassInitializer instead (fixes #82)
@@ -204,7 +206,8 @@
 
 - Initial release
 
-[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.1...HEAD
+[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.2...HEAD
+[2024.2.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.1...2024.2.2
 [2024.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.0...2024.2.1
 [2024.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.1.0...2024.2.0
 [2024.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2023.3.0...2024.1.0
