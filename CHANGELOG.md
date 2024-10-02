@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Change KtLightClassForSourceDeclaration to use KtClassOrObject and KtClassInitializer instead (fixes #82)
+
+### Changed
+
+- Provide a better classname when creating step definitions
+
 ## [2024.2.1] - 2024-09-03
 
 ### Changed
