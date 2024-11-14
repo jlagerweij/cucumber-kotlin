@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- Update to Gradle 8.11
+
 ## [2024.2.2] - 2024-10-02
 
 ### Fixed
