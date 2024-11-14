@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2024.3.0] - 2024-11-14
+
 - Upgrade to IntelliJ IDEA 2024.3
 
 ## [2024.2.2] - 2024-10-02
@@ -208,7 +210,8 @@
 
 - Initial release
 
-[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.2...HEAD
+[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.3.0...HEAD
+[2024.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.2...2024.3.0
 [2024.2.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.1...2024.2.2
 [2024.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.0...2024.2.1
 [2024.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.1.0...2024.2.0
