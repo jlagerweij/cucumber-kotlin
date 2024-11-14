@@ -4,7 +4,6 @@
 
 ## [Unreleased]
 
-- Update to Gradle 8.11
 - Upgrade to IntelliJ IDEA 2024.3
 
 ## [2024.2.2] - 2024-10-02
