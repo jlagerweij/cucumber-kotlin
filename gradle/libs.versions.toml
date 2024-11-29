@@ -1,7 +1,7 @@
 [versions]
 intelliJPlatform = "2.1.0"
 gradleIntelliJPlugin = "1.17.4"
-kotlin = "2.0.21"
+kotlin = "2.1.0"
 changelog = "2.2.1"
 kover = "0.8.3"
 
