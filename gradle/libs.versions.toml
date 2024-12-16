@@ -1,5 +1,5 @@
 [versions]
-intelliJPlatform = "2.2.0"
+intelliJPlatform = "2.2.1"
 gradleIntelliJPlugin = "1.17.4"
 kotlin = "2.1.0"
 changelog = "2.2.1"
