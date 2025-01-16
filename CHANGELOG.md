@@ -4,7 +4,6 @@
 
 ## [Unreleased]
 
-- Upgrade to Gradle 8.11
 - Compatible with 2025.1
 
 ## [2024.3.0] - 2024-11-14
