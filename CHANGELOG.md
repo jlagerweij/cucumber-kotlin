@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- Compatible with 2025.1.1.1
+
 ## [2025.1.0] - 2025-04-10
 
 - Compatible with 2025.1
