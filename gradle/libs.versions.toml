@@ -1,11 +1,11 @@
 [versions]
-intelliJPlatform = "2.6.0"
-kotlin = "2.1.21"
-changelog = "2.2.1"
+intelliJPlatform = "2.7.0"
+kotlin = "2.2.0"
+changelog = "2.3.0"
 kover = "0.9.1"
 
 [libraries]
-cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.22.2" }
+cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.27.0" }
 
 [plugins]
 intelliJPlatform = { id = "org.jetbrains.intellij.platform", version.ref = "intelliJPlatform" }
