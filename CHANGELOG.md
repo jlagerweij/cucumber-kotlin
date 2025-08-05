@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2025.2.0] - 2025-08-05
+
 - Compatible with 2025.2
 
 ## [2025.1.0] - 2025-04-10
@@ -216,7 +218,8 @@
 
 - Initial release
 
-[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.1.0...HEAD
+[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.2.0...HEAD
+[2025.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.1.0...2025.2.0
 [2025.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.3.0...2025.1.0
 [2024.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.2...2024.3.0
 [2024.2.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.1...2024.2.2
