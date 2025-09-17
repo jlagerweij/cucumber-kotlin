@@ -2,7 +2,7 @@
 intelliJPlatform = "2.9.0"
 kotlin = "2.2.20"
 changelog = "2.4.0"
-kover = "0.9.1"
+kover = "0.9.2"
 
 [libraries]
 cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.28.2" }
