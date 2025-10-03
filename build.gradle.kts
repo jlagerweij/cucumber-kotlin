@@ -21,8 +21,10 @@ kotlin {
     jvmToolchain(21)
 }
 
+// Configure project's dependencies
 repositories {
     mavenCentral()
+
     // IntelliJ Platform Gradle Plugin Repositories Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-repositories-extension.html
     intellijPlatform {
         defaultRepositories()
@@ -42,11 +44,15 @@ dependencies {
         // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file for plugin from JetBrains Marketplace.
         plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
 
+        // Module Dependencies. Uses `platformBundledModules` property from the gradle.properties file for bundled IntelliJ Platform modules.
+        bundledModules(providers.gradleProperty("platformBundledModules").map { it.split(',') })
+
         testFramework(TestFrameworkType.Platform)
     }
 }
 
 // See: https://github.com/JetBrains/gradle-intellij-plugin/ and https://github.com/JetBrains/intellij-platform-plugin-template
+// Configure IntelliJ Platform Gradle Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-extension.html
 intellijPlatform {
     pluginConfiguration {
         name = providers.gradleProperty("pluginName")
@@ -80,6 +86,7 @@ intellijPlatform {
 
         ideaVersion {
             sinceBuild = providers.gradleProperty("pluginSinceBuild")
+            untilBuild = provider { null }
         }
     }
 
@@ -94,8 +101,7 @@ intellijPlatform {
         // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels = providers.gradleProperty("pluginVersion")
-            .map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
+        channels = providers.gradleProperty("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
     }
 
     pluginVerification {
@@ -103,15 +109,15 @@ intellijPlatform {
             recommended()
         }
     }
-
 }
 
+// Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     groups.empty()
-    repositoryUrl = properties("pluginRepositoryUrl")
-    versionPrefix = ""
+    repositoryUrl = providers.gradleProperty("pluginRepositoryUrl")
 }
 
+// Configure Gradle Kover Plugin - read more: https://github.com/Kotlin/kotlinx-kover#configuration
 kover {
     reports {
         total {
@@ -125,5 +131,26 @@ kover {
 tasks {
     publishPlugin {
         dependsOn(patchChangelog)
+    }
+}
+
+intellijPlatformTesting {
+    runIde {
+        register("runIdeForUiTests") {
+            task {
+                jvmArgumentProviders += CommandLineArgumentProvider {
+                    listOf(
+                        "-Drobot-server.port=8082",
+                        "-Dide.mac.message.dialogs.as.sheets=false",
+                        "-Djb.privacy.policy.text=<!--999.999-->",
+                        "-Djb.consents.confirmation.enabled=false",
+                    )
+                }
+            }
+
+            plugins {
+                robotServerPlugin()
+            }
+        }
     }
 }
