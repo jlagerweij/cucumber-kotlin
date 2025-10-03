@@ -3,20 +3,20 @@
 
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
+  - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: daily
 
   # Maintain dependencies for Gradle dependencies
-  - package-ecosystem: "gradle"
+  - package-ecosystem: gradle
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: daily
     groups:
       dependencies:
         patterns:
           - "*"
         update-types:
-          - "minor"
-          - "patch"
+          - minor
+          - patch
