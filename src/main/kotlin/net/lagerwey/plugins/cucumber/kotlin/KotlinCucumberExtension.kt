@@ -5,10 +5,8 @@ import com.intellij.openapi.module.ModuleUtilCore
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiFile
-import com.intellij.psi.PsiManager
-import com.intellij.psi.SmartPointerManager
+import com.intellij.openapi.roots.ProjectRootManager
+import com.intellij.psi.*
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.ProjectScope
 import com.intellij.psi.search.PsiSearchHelper
@@ -41,6 +39,22 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
         return isStepLikeFile(child, parent) && (child as KtFile).virtualFile.isWritable
     }
 
+    fun isWritableStepLikeFile(child: PsiElement): Boolean {
+        if (child is PsiClassOwner) {
+            val file = child.containingFile
+            if (file != null) {
+                val vFile = file.virtualFile
+                if (vFile != null) {
+                    val rootForFile =
+                        ProjectRootManager.getInstance(child.project).fileIndex.getSourceRootForFile(vFile)
+                    return rootForFile != null
+                }
+            }
+        }
+        return false
+    }
+
+
     override fun getStepFileType() = BDDFrameworkType(KotlinFileType.INSTANCE)
 
     override fun getStepDefinitionContainers(featureFile: GherkinFile): MutableCollection<out PsiFile> {
@@ -51,8 +65,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
         stepDefinitions.forEach { stepDefinition ->
             stepDefinition.element?.let { element ->
                 val psiFile = element.containingFile
-                val psiDirectory = psiFile.parent
-                if (psiDirectory != null && isWritableStepLikeFile(psiFile, psiDirectory)) {
+                if (isWritableStepLikeFile(psiFile)) {
                     result.add(psiFile)
                 }
             }

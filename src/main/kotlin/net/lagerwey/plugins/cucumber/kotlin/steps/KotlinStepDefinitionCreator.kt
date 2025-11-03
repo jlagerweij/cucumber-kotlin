@@ -11,11 +11,7 @@ import org.jetbrains.kotlin.idea.refactoring.KotlinNamesValidator
 import org.jetbrains.kotlin.idea.refactoring.addElement
 import org.jetbrains.kotlin.idea.util.sourceRoots
 import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.psi.KtBlockExpression
-import org.jetbrains.kotlin.psi.KtClassInitializer
-import org.jetbrains.kotlin.psi.KtClassOrObject
-import org.jetbrains.kotlin.psi.KtFile
-import org.jetbrains.kotlin.psi.KtPsiFactory
+import org.jetbrains.kotlin.psi.*
 import org.jetbrains.kotlin.resolve.ImportPath
 import org.jetbrains.plugins.cucumber.AbstractStepDefinitionCreator
 import org.jetbrains.plugins.cucumber.psi.GherkinFile
@@ -56,6 +52,14 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
         return file
     }
 
+    override fun getStepDefinitionFilePath(psiFile: PsiFile): String {
+        val stepDefinitionFilePath = super.getStepDefinitionFilePath(psiFile)
+        if (stepDefinitionFilePath.startsWith("//")) {
+            return stepDefinitionFilePath.removePrefix("/")
+        }
+        return stepDefinitionFilePath
+    }
+
     override fun validateNewStepDefinitionFileName(project: Project, name: String): Boolean {
         return name.isNotEmpty() && KotlinNamesValidator().isIdentifier(name, project)
     }
@@ -65,7 +69,8 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
         val ktPsiFactory = KtPsiFactory(file.project, markGenerated = true)
         // TODO: Kotlin files can have multiple classes. Make sure to find correct one.
         val ktClass = ktFile.declarations.firstNotNullOfOrNull { it as? KtClassOrObject } ?: return false
-        val initializer = (ktClass.declarations[0] as? KtClassInitializer)?.body as? KtBlockExpression
+        val initializer =
+            (ktClass.declarations.firstOrNull { it is KtClassInitializer } as? KtClassInitializer)?.body as? KtBlockExpression
         val expression = ktPsiFactory.createExpression(
             """
             ${step.keyword.text}("${step.name.replace("\"", "\\\"")}") {
