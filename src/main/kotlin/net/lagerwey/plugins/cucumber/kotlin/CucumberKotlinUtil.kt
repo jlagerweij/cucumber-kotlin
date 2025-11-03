@@ -55,7 +55,11 @@ object CucumberKotlinUtil {
     }
 
     private fun isCucumberMethod(method: KtCallExpression): Boolean {
-        return (method.children[0] as KtReferenceExpression).mainReference.resolve()
+        return method.children
+            .filterIsInstance<KtReferenceExpression>()
+            .firstOrNull()
+            ?.mainReference
+            ?.resolve()
             ?.namedUnwrappedElement
             ?.kotlinFqName
             ?.asString()
