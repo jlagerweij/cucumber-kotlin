@@ -2,23 +2,19 @@ package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.psi.PsiElement
 import com.intellij.util.containers.orNull
-import io.cucumber.gherkin.GherkinDialectProvider
+import io.cucumber.gherkin.GherkinDialects
 import org.jetbrains.kotlin.asJava.namedUnwrappedElement
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import org.jetbrains.kotlin.idea.references.mainReference
-import org.jetbrains.kotlin.psi.*
+import org.jetbrains.kotlin.psi.KtCallExpression
+import org.jetbrains.kotlin.psi.KtNameReferenceExpression
+import org.jetbrains.kotlin.psi.KtReferenceExpression
+import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 
 object CucumberKotlinUtil {
     const val CUCUMBER_JAVA8_PACKAGE = "io.cucumber.java8"
     private val hookKeywords = listOf("Before", "BeforeStep", "After", "AfterStep")
     private val allKeywords = getAllKeywords()
-
-    fun getStepArguments(stepDefinition: KtCallExpression): List<KtParameter> {
-        val block = stepDefinition.valueArguments.first { it is KtBlockExpression }
-        val function = block.children.first { it is KtNamedFunction } as KtNamedFunction
-
-        return function.valueParameters
-    }
 
     fun isStepDefinition(candidate: PsiElement): Boolean {
         return when (candidate) {
@@ -55,7 +51,11 @@ object CucumberKotlinUtil {
     }
 
     private fun isCucumberMethod(method: KtCallExpression): Boolean {
-        return (method.children[0] as KtReferenceExpression).mainReference.resolve()
+        return method.children
+            .filterIsInstance<KtReferenceExpression>()
+            .firstOrNull()
+            ?.mainReference
+            ?.resolve()
             ?.namedUnwrappedElement
             ?.kotlinFqName
             ?.asString()
@@ -92,9 +92,8 @@ object CucumberKotlinUtil {
     private fun isKeywordValid(keyword: String) = allKeywords.contains(keyword)
 
     private fun getAllKeywords(): List<String> {
-        val provider = GherkinDialectProvider()
-        val languages = provider.languages
-        val dialects = languages.map { provider.getDialect(it) }
+        val languages = GherkinDialects.getLanguages()
+        val dialects = languages.map { GherkinDialects.getDialect(it) }
 
         return dialects.flatMap { optionalDialect ->
             optionalDialect.orNull()?.let {

@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- Fixes create step definitions in rare cases
+
 ## [2025.2.0] - 2025-08-05
 
 - Compatible with 2025.2
