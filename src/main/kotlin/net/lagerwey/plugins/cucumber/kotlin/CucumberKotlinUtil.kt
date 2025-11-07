@@ -2,7 +2,7 @@ package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.psi.PsiElement
 import com.intellij.util.containers.orNull
-import io.cucumber.gherkin.GherkinDialectProvider
+import io.cucumber.gherkin.GherkinDialects
 import org.jetbrains.kotlin.asJava.namedUnwrappedElement
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import org.jetbrains.kotlin.idea.references.mainReference
@@ -96,9 +96,8 @@ object CucumberKotlinUtil {
     private fun isKeywordValid(keyword: String) = allKeywords.contains(keyword)
 
     private fun getAllKeywords(): List<String> {
-        val provider = GherkinDialectProvider()
-        val languages = provider.languages
-        val dialects = languages.map { provider.getDialect(it) }
+        val languages = GherkinDialects.getLanguages()
+        val dialects = languages.map { GherkinDialects.getDialect(it) }
 
         return dialects.flatMap { optionalDialect ->
             optionalDialect.orNull()?.let {
