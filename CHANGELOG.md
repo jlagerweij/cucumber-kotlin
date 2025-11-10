@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2025.2.1] - 2025-11-10
+
 - Fixes create step definitions in rare cases
 
 ## [2025.2.0] - 2025-08-05
@@ -220,7 +222,8 @@
 
 - Initial release
 
-[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.2.0...HEAD
+[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.2.1...HEAD
+[2025.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.2.0...2025.2.1
 [2025.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.1.0...2025.2.0
 [2025.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.3.0...2025.1.0
 [2024.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.2...2024.3.0
