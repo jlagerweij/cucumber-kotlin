@@ -19,7 +19,7 @@ class CucumberLineMarkerProvider : LineMarkerProvider {
         val method = expression.parent
 
         return when {
-            CucumberKotlinUtil.isStepDefinition(method) -> createMarker(element, CucumberKotlinUtil.getStepName(method as KtCallExpression))
+            CucumberKotlinUtil.isStepDefinition(method) -> createMarker(element, CucumberKotlinUtil.getStepName(method))
             CucumberKotlinUtil.isParameterType(method) -> createMarker(element, CucumberKotlinUtil.getParameterName(method as KtCallExpression))
             CucumberKotlinUtil.isHook(method) -> createMarker(element, "Cucumber Hook")
             else -> null

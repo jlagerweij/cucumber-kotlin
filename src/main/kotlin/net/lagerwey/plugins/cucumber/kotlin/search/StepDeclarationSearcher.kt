@@ -11,12 +11,11 @@ import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.Consumer
 import net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinUtil
 import net.lagerwey.plugins.cucumber.kotlin.inReadAction
-import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtValueArgumentList
 
 class StepDeclarationSearcher : PomDeclarationSearcher() {
-     override fun findDeclarationsAt(element: PsiElement, offsetInElement: Int, consumer: Consumer<in PomTarget>) {
+    override fun findDeclarationsAt(element: PsiElement, offsetInElement: Int, consumer: Consumer<in PomTarget>) {
         val injectionHostOrElement = InjectedLanguageManager.getInstance(element.project)
             .getInjectionHost(element) ?: element
 
@@ -37,7 +36,7 @@ class StepDeclarationSearcher : PomDeclarationSearcher() {
         PsiTreeUtil.getParentOfType(element, KtValueArgumentList::class.java)?.let { arguments ->
             val method = arguments.parent
             if (CucumberKotlinUtil.isStepDefinition(method)) {
-                val stepName = CucumberKotlinUtil.getStepName(method as KtCallExpression) ?: return null
+                val stepName = CucumberKotlinUtil.getStepName(method) ?: return null
                 return getStepDeclaration(method, stepName)
             }
         }
