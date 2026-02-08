@@ -20,7 +20,7 @@
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.KotlinCucumberStepIndex"/>
+        <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinLambdaStepIndex"/>
 
         <pom.declarationSearcher implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepDeclarationSearcher"/>
 

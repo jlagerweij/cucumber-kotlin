@@ -15,8 +15,8 @@ import com.intellij.psi.search.UsageSearchContext
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.indexing.FileBasedIndex
 import groovy.json.StringEscapeUtils
+import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinLambdaStepDefinition
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinParameterTypeManager
-import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinition
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinitionCreator
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.references.KtInvokeFunctionReference
@@ -65,7 +65,7 @@ class CucumberKotlinLambdaExtension : AbstractCucumberKotlinExtension() {
         return elements.mapNotNull { stepElement ->
             if (CucumberKotlinUtil.isStepDefinition(stepElement)) {
                 stepElement.references.firstOrNull { it is KtInvokeFunctionReference }?.let {
-                    KotlinStepDefinition(stepElement)
+                    KotlinLambdaStepDefinition(stepElement)
                 }
             } else null
         }.toMutableList()
