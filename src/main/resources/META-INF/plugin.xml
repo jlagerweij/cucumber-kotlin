@@ -12,7 +12,7 @@
     <depends>gherkin</depends>
 
     <extensions defaultExtensionNs="org.jetbrains.plugins.cucumber.steps">
-        <cucumberJvmExtensionPoint implementation="net.lagerwey.plugins.cucumber.kotlin.KotlinCucumberExtension"/>
+        <cucumberJvmExtensionPoint implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinLambdaExtension"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
