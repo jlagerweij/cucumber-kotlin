@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- Compatible with IntelliJ IDEA 2026.1
+
 ## [2025.2.1] - 2025-11-10
 
 - Fixes create step definitions in rare cases
