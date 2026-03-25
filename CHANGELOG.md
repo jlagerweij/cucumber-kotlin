@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2026.1.0] - 2026-03-25
+
 - Compatible with IntelliJ IDEA 2026.1
 
 ## [2025.2.1] - 2025-11-10
@@ -224,7 +226,8 @@
 
 - Initial release
 
-[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.2.1...HEAD
+[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2026.1.0...HEAD
+[2026.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.2.1...2026.1.0
 [2025.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.2.0...2025.2.1
 [2025.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.1.0...2025.2.0
 [2025.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.3.0...2025.1.0
