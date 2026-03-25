@@ -5,19 +5,26 @@ import com.intellij.lang.LighterASTNode
 import com.intellij.psi.impl.source.tree.RecursiveLighterASTNodeWalkingVisitor
 import com.intellij.util.indexing.*
 import org.jetbrains.kotlin.KtNodeTypes
-import org.jetbrains.kotlin.idea.KotlinFileType
+import org.jetbrains.kotlin.idea.KotlinFileType.INSTANCE
 import org.jetbrains.plugins.cucumber.CucumberStepIndex
 
-class KotlinCucumberStepIndex : CucumberStepIndex() {
-    private val inputFilter = DefaultFileTypeSpecificInputFilter(KotlinFileType.INSTANCE)
+val INDEX_ID = ID.create<Boolean, MutableList<Int>>("kotlin.cucumber.step")
+private val PACKAGES_TO_SCAN = arrayOf("io.cucumber.java8.", "cucumber.api.java8.")
+
+class CucumberKotlinLambdaStepIndex : CucumberStepIndex() {
 
     override fun getName(): ID<Boolean, MutableList<Int>> = INDEX_ID
 
     override fun getVersion() = 1
 
-    override fun getInputFilter(): FileBasedIndex.InputFilter = inputFilter
+    override fun hasSnapshotMapping(): Boolean {
+        return true
+    }
 
-    override fun getPackagesToScan(): Array<String> = arrayOf(CucumberKotlinUtil.CUCUMBER_JAVA8_PACKAGE)
+    override fun getPackagesToScan(): Array<String> = PACKAGES_TO_SCAN
+
+    override fun getInputFilter(): FileBasedIndex.InputFilter =
+        DefaultFileTypeSpecificInputFilter(INSTANCE)
 
     override fun getIndexer(): DataIndexer<Boolean, MutableList<Int>, FileContent> {
         // Override to support steps defined in subclasses
@@ -45,12 +52,13 @@ class KotlinCucumberStepIndex : CucumberStepIndex() {
                     if (gherkinMethod != null && isStepDefinitionCall(gherkinMethod, text)) {
                         val expression = methodAndArguments[1]
                         if (expression.tokenType == KtNodeTypes.VALUE_ARGUMENT_LIST) {
-                            lighterAst.getChildren(expression).find { it.tokenType == KtNodeTypes.VALUE_ARGUMENT }?.let {
-                                val regex = text.subSequence(it.startOffset, it.endOffset)
-                                if (regex.isNotEmpty() && regex != "\"\"") {
-                                    results.add(element.startOffset)
+                            lighterAst.getChildren(expression).find { it.tokenType == KtNodeTypes.VALUE_ARGUMENT }
+                                ?.let {
+                                    val regex = text.subSequence(it.startOffset, it.endOffset)
+                                    if (regex.isNotEmpty() && regex != "\"\"") {
+                                        results.add(element.startOffset)
+                                    }
                                 }
-                            }
                         }
                     }
                 }
@@ -64,4 +72,3 @@ class KotlinCucumberStepIndex : CucumberStepIndex() {
 
 }
 
-val INDEX_ID = ID.create<Boolean, MutableList<Int>>("kotlin.cucumber.step")

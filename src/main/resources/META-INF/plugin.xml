@@ -12,7 +12,7 @@
     <depends>gherkin</depends>
 
     <extensions defaultExtensionNs="org.jetbrains.plugins.cucumber.steps">
-        <cucumberJvmExtensionPoint implementation="net.lagerwey.plugins.cucumber.kotlin.KotlinCucumberExtension"/>
+        <cucumberJvmExtensionPoint implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinLambdaExtension"/>
     </extensions>
 
     <extensions defaultExtensionNs="org.jetbrains.kotlin">
@@ -20,7 +20,7 @@
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.KotlinCucumberStepIndex"/>
+        <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinLambdaStepIndex"/>
 
         <pom.declarationSearcher implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepDeclarationSearcher"/>
 

@@ -1,12 +1,13 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.openapi.module.Module
-import com.intellij.openapi.module.ModuleUtilCore
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task
-import com.intellij.openapi.roots.ProjectRootManager
-import com.intellij.psi.*
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiFile
+import com.intellij.psi.PsiManager
+import com.intellij.psi.SmartPointerManager
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.ProjectScope
 import com.intellij.psi.search.PsiSearchHelper
@@ -14,65 +15,22 @@ import com.intellij.psi.search.UsageSearchContext
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.indexing.FileBasedIndex
 import groovy.json.StringEscapeUtils
+import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinLambdaStepDefinition
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinParameterTypeManager
-import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinition
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinitionCreator
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.references.KtInvokeFunctionReference
 import org.jetbrains.kotlin.psi.KtCallExpression
-import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 import org.jetbrains.plugins.cucumber.BDDFrameworkType
 import org.jetbrains.plugins.cucumber.StepDefinitionCreator
-import org.jetbrains.plugins.cucumber.psi.GherkinFile
-import org.jetbrains.plugins.cucumber.steps.AbstractCucumberExtension
 import org.jetbrains.plugins.cucumber.steps.AbstractStepDefinition
 
-class KotlinCucumberExtension : AbstractCucumberExtension() {
-    private val stepDefinitionCreator = KotlinStepDefinitionCreator()
-
-    override fun getStepDefinitionCreator(): StepDefinitionCreator = stepDefinitionCreator
-
-    override fun isStepLikeFile(child: PsiElement, parent: PsiElement) = child is KtFile
-
-    override fun isWritableStepLikeFile(child: PsiElement, parent: PsiElement): Boolean {
-        return isStepLikeFile(child, parent) && (child as KtFile).virtualFile.isWritable
-    }
-
-    fun isWritableStepLikeFile(child: PsiElement): Boolean {
-        if (child is PsiClassOwner) {
-            val file = child.containingFile
-            if (file != null) {
-                val vFile = file.virtualFile
-                if (vFile != null) {
-                    val rootForFile =
-                        ProjectRootManager.getInstance(child.project).fileIndex.getSourceRootForFile(vFile)
-                    return rootForFile != null
-                }
-            }
-        }
-        return false
-    }
-
+class CucumberKotlinLambdaExtension : AbstractCucumberKotlinExtension() {
 
     override fun getStepFileType() = BDDFrameworkType(KotlinFileType.INSTANCE)
 
-    override fun getStepDefinitionContainers(featureFile: GherkinFile): MutableCollection<out PsiFile> {
-        val module = ModuleUtilCore.findModuleForPsiElement(featureFile) ?: return hashSetOf()
-        val stepDefinitions = loadStepsFor(featureFile, module)
-
-        val result = hashSetOf<PsiFile>()
-        stepDefinitions.forEach { stepDefinition ->
-            stepDefinition.element?.let { element ->
-                val psiFile = element.containingFile
-                if (isWritableStepLikeFile(psiFile)) {
-                    result.add(psiFile)
-                }
-            }
-        }
-
-        return result
-    }
+    override fun getStepDefinitionCreator(): StepDefinitionCreator = KotlinStepDefinitionCreator()
 
     override fun loadStepsFor(featureFile: PsiFile?, module: Module): MutableList<AbstractStepDefinition> {
         val fileBasedIndex = FileBasedIndex.getInstance()
@@ -107,7 +65,7 @@ class KotlinCucumberExtension : AbstractCucumberExtension() {
         return elements.mapNotNull { stepElement ->
             if (CucumberKotlinUtil.isStepDefinition(stepElement)) {
                 stepElement.references.firstOrNull { it is KtInvokeFunctionReference }?.let {
-                    KotlinStepDefinition(stepElement)
+                    KotlinLambdaStepDefinition(stepElement)
                 }
             } else null
         }.toMutableList()

@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.plugins.cucumber.CucumberUtil
 import org.jetbrains.plugins.cucumber.steps.AbstractStepDefinition
 
-class KotlinStepDefinition(private val method: KtCallExpression) : AbstractStepDefinition(method) {
+class KotlinLambdaStepDefinition(private val method: KtCallExpression) : AbstractStepDefinition(method) {
     companion object {
         const val MULTILINE_STRING = "\"\"\""
         const val STRING = "\""
