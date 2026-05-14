@@ -1,17 +1,18 @@
 [versions]
 # libraries
+cucumber-java = "7.34.3"
 junit = "4.13.2"
 opentest4j = "1.3.0"
 
 # plugins
 changelog = "2.5.0"
-intelliJPlatform = "2.11.0"
+intelliJPlatform = "2.16.0"
 kotlin = "2.3.0"
 kover = "0.9.5"
 qodana = "2025.3.1"
 
 [libraries]
-cucumberJava = { module = "io.cucumber:cucumber-java", version = "7.31.0" }
+cucumberJava = { module = "io.cucumber:cucumber-java", version.ref = "cucumber-java" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 opentest4j = { group = "org.opentest4j", name = "opentest4j", version.ref = "opentest4j" }
 

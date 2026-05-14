@@ -5,7 +5,6 @@ import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task
 import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
 import com.intellij.psi.SmartPointerManager
 import com.intellij.psi.search.GlobalSearchScope
@@ -32,7 +31,7 @@ class CucumberKotlinLambdaExtension : AbstractCucumberKotlinExtension() {
 
     override fun getStepDefinitionCreator(): StepDefinitionCreator = KotlinStepDefinitionCreator()
 
-    override fun loadStepsFor(featureFile: PsiFile?, module: Module): MutableList<AbstractStepDefinition> {
+    override fun loadStepsFor(module: Module): MutableList<AbstractStepDefinition> {
         val fileBasedIndex = FileBasedIndex.getInstance()
         val project = module.project
 
