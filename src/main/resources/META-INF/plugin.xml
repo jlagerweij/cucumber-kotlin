@@ -6,6 +6,17 @@
         Jos Lagerweij
     </vendor>
 
+    <description><![CDATA[
+        <p>This plugin enables [Cucumber](https://cucumber.io/) support with step definitions written in Kotlin.</p>
+
+        <p>The following coding assistance features are available:</p>
+
+        <ul>
+            <li>Navigation in the source code.</li>
+            <li>Create step definitions.</li>
+        </ul
+    ]]></description>
+
     <depends>com.intellij.java</depends>
     <depends>org.jetbrains.kotlin</depends>
     <depends>com.intellij.modules.lang</depends>

@@ -30,7 +30,7 @@ abstract class AbstractCucumberKotlinExtension : AbstractCucumberExtension() {
 
     override fun getStepDefinitionContainers(featureFile: GherkinFile): MutableCollection<out PsiFile> {
         val module = ModuleUtilCore.findModuleForPsiElement(featureFile) ?: return hashSetOf()
-        val stepDefinitions = loadStepsFor(featureFile, module)
+        val stepDefinitions = loadStepsFor(module)
 
         val result = hashSetOf<PsiFile>()
         stepDefinitions.forEach { stepDefinition ->
