@@ -13,10 +13,10 @@ import com.intellij.psi.search.PsiSearchHelper
 import com.intellij.psi.search.UsageSearchContext
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.indexing.FileBasedIndex
-import groovy.json.StringEscapeUtils
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinLambdaStepDefinition
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinParameterTypeManager
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinitionCreator
+import org.apache.commons.lang3.StringEscapeUtils
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.references.KtInvokeFunctionReference
 import org.jetbrains.kotlin.psi.KtCallExpression
