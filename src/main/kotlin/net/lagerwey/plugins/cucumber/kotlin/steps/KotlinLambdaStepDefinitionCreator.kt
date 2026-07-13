@@ -12,7 +12,6 @@ import org.jetbrains.kotlin.idea.refactoring.addElement
 import org.jetbrains.kotlin.idea.util.sourceRoots
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.*
-import org.jetbrains.kotlin.resolve.ImportPath
 import org.jetbrains.plugins.cucumber.AbstractStepDefinitionCreator
 import org.jetbrains.plugins.cucumber.psi.GherkinFile
 import org.jetbrains.plugins.cucumber.psi.GherkinStep
@@ -27,8 +26,7 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
         val psiPackage = directory.getPackage()?.qualifiedName
         val apiClassName =
             lastObservedLanguage.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-        val importDirective =
-            ktPsiFactory.createImportDirective(ImportPath.fromString("io.cucumber.java8.$apiClassName"))
+        val importDirective = ktPsiFactory.importDirective("io.cucumber.java8.$apiClassName")
         val newLines = ktPsiFactory.createNewLine(2)
         val ktClass = ktPsiFactory.createClass(
             """
@@ -54,6 +52,9 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
 
     override fun getStepDefinitionFilePath(psiFile: PsiFile): String {
         val stepDefinitionFilePath = super.getStepDefinitionFilePath(psiFile)
+        if (stepDefinitionFilePath.startsWith("/${psiFile.project.basePath}/")) {
+            return stepDefinitionFilePath.removePrefix("/${psiFile.project.basePath}/")
+        }
         if (stepDefinitionFilePath.startsWith("//")) {
             return stepDefinitionFilePath.removePrefix("/")
         }
@@ -125,3 +126,16 @@ class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
 
 val GherkinStep.localeLanguage: String
     get() = (this.containingFile as GherkinFile).localeLanguage
+
+private fun KtPsiFactory.importDirective(
+    fqName: String,
+    isAllUnder: Boolean = false,
+    alias: String? = null,
+): KtImportDirective {
+    val text = buildString {
+        append("import ").append(fqName)
+        if (isAllUnder) append(".*")
+        if (alias != null) append(" as ").append(alias)
+    }
+    return createFile(text).importDirectives.single()
+}
