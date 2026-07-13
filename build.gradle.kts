@@ -10,19 +10,21 @@ plugins {
 
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/version_catalogs.html
 dependencies {
-    implementation("io.cucumber:cucumber-java:cucumber-java:7.34.3")
+    implementation("io.cucumber:cucumber-java:7.34.3")
+    implementation("org.apache.commons:commons-text:1.15.0")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.opentest4j:opentest4j:1.3.0")
 
-    // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
+    // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-dgradle-plugin-dependencies-extension.html
     intellijPlatform {
-        intellijIdea("262.6228.19")
+        intellijIdea("262.8665.176")
         bundledPlugins(listOf("com.intellij.java", "org.jetbrains.kotlin"))
 
+        // IntelliJ IDEA next version: https://www.jetbrains.com/idea/nextversion/
         // Gherkin plugin version: https://plugins.jetbrains.com/plugin/9164-gherkin/versions
         // Cucumber for Java version: https://plugins.jetbrains.com/plugin/7212-cucumber-for-java/versions
 
-        plugins(listOf("gherkin:262.6228.19", "cucumber-java:262.6228.19"))
+        plugins(listOf("gherkin:262.8665.173", "cucumber-java:262.8665.176"))
         testFramework(TestFrameworkType.Platform)
     }
 }

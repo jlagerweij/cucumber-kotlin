@@ -16,7 +16,7 @@ import com.intellij.util.indexing.FileBasedIndex
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinLambdaStepDefinition
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinParameterTypeManager
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinitionCreator
-import org.apache.commons.lang3.StringEscapeUtils
+import org.apache.commons.text.StringEscapeUtils
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.references.KtInvokeFunctionReference
 import org.jetbrains.kotlin.psi.KtCallExpression
