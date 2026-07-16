@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2026.2.0] - 2026-07-16
+
 - Compatible with IntelliJ IDEA 2026.2
 
 ## [2026.1.0] - 2026-03-25
@@ -228,42 +230,43 @@
 
 - Initial release
 
-[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/2026.1.0...HEAD
-[2026.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.2.1...2026.1.0
-[2025.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.2.0...2025.2.1
-[2025.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2025.1.0...2025.2.0
-[2025.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.3.0...2025.1.0
-[2024.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.2...2024.3.0
-[2024.2.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.1...2024.2.2
-[2024.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.2.0...2024.2.1
-[2024.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2024.1.0...2024.2.0
-[2024.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2023.3.0...2024.1.0
-[2023.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2023.2.0...2023.3.0
-[2023.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2023.1.0...2023.2.0
-[2023.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2022.3.0...2023.1.0
-[2022.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2022.2.0...2022.3.0
-[2022.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2022.1.2...2022.2.0
-[2022.1.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/2022.1.1...2022.1.2
-[2022.1.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2022.1.0...2022.1.1
-[2022.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2021.3.0...2022.1.0
-[2021.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2021.2.1...2021.3.0
-[2021.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2021.2.0...2021.2.1
-[2021.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2021.1.2...2021.2.0
-[2021.1.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/2021.1.1...2021.1.2
-[2021.1.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2021.1.0...2021.1.1
-[2021.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2020.3.2...2021.1.0
-[2020.3.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/2020.3.1...2020.3.2
-[2020.3.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2020.3.0...2020.3.1
-[2020.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/2020.2.1...2020.3.0
-[2020.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/2020.2.0...2020.2.1
-[2020.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/1.1.6...2020.2.0
-[1.1.6]: https://github.com/jlagerweij/cucumber-kotlin/compare/1.1.5...1.1.6
-[1.1.5]: https://github.com/jlagerweij/cucumber-kotlin/compare/1.1.4...1.1.5
-[1.1.4]: https://github.com/jlagerweij/cucumber-kotlin/compare/1.1.3...1.1.4
-[1.1.3]: https://github.com/jlagerweij/cucumber-kotlin/compare/1.1.2...1.1.3
-[1.1.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/1.1.1...1.1.2
-[1.1.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/1.1.0...1.1.1
-[1.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/1.0.2...1.1.0
-[1.0.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/1.0.1...1.0.2
-[1.0.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/1.0.0...1.0.1
-[1.0.0]: https://github.com/jlagerweij/cucumber-kotlin/commits/1.0.0
+[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.2.0...HEAD
+[2026.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.1.0...v2026.2.0
+[2026.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2025.2.1...v2026.1.0
+[2025.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2025.2.0...v2025.2.1
+[2025.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2025.1.0...v2025.2.0
+[2025.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2024.3.0...v2025.1.0
+[2024.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2024.2.2...v2024.3.0
+[2024.2.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2024.2.1...v2024.2.2
+[2024.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2024.2.0...v2024.2.1
+[2024.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2024.1.0...v2024.2.0
+[2024.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2023.3.0...v2024.1.0
+[2023.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2023.2.0...v2023.3.0
+[2023.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2023.1.0...v2023.2.0
+[2023.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2022.3.0...v2023.1.0
+[2022.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2022.2.0...v2022.3.0
+[2022.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2022.1.2...v2022.2.0
+[2022.1.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2022.1.1...v2022.1.2
+[2022.1.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2022.1.0...v2022.1.1
+[2022.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2021.3.0...v2022.1.0
+[2021.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2021.2.1...v2021.3.0
+[2021.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2021.2.0...v2021.2.1
+[2021.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2021.1.2...v2021.2.0
+[2021.1.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2021.1.1...v2021.1.2
+[2021.1.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2021.1.0...v2021.1.1
+[2021.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2020.3.2...v2021.1.0
+[2020.3.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2020.3.1...v2020.3.2
+[2020.3.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2020.3.0...v2020.3.1
+[2020.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2020.2.1...v2020.3.0
+[2020.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2020.2.0...v2020.2.1
+[2020.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v1.1.6...v2020.2.0
+[1.1.6]: https://github.com/jlagerweij/cucumber-kotlin/compare/v1.1.5...v1.1.6
+[1.1.5]: https://github.com/jlagerweij/cucumber-kotlin/compare/v1.1.4...v1.1.5
+[1.1.4]: https://github.com/jlagerweij/cucumber-kotlin/compare/v1.1.3...v1.1.4
+[1.1.3]: https://github.com/jlagerweij/cucumber-kotlin/compare/v1.1.2...v1.1.3
+[1.1.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/v1.1.1...v1.1.2
+[1.1.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v1.1.0...v1.1.1
+[1.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v1.0.2...v1.1.0
+[1.0.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/jlagerweij/cucumber-kotlin/commits/v1.0.0
