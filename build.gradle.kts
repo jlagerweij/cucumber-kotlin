@@ -17,7 +17,7 @@ dependencies {
 
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-dgradle-plugin-dependencies-extension.html
     intellijPlatform {
-        intellijIdea("262.8665.176")
+        intellijIdea("2026.2")
         bundledPlugins(listOf("com.intellij.java", "org.jetbrains.kotlin"))
 
         // IntelliJ IDEA next version: https://www.jetbrains.com/idea/nextversion/
