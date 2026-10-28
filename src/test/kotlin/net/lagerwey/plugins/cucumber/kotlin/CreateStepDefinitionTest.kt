@@ -1,10 +1,9 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.openapi.command.WriteCommandAction
-import com.intellij.psi.util.PsiTreeUtil
+import com.intellij.psi.PsiFile
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinitionCreator
 import org.jetbrains.plugins.cucumber.inspections.CucumberStepInspection
-import org.jetbrains.plugins.cucumber.psi.GherkinStep
 
 class CreateStepDefinitionTest : CucumberKotlinTestCase() {
 
@@ -21,7 +20,7 @@ class CreateStepDefinitionTest : CucumberKotlinTestCase() {
         val stepsFile = addSteps("""Given("I have a cucumber") { }""")
         configureFeature("When I eat the <caret>\"big\" tomato")
 
-        val step = PsiTreeUtil.getParentOfType(myFixture.file.findElementAt(myFixture.caretOffset), GherkinStep::class.java)!!
+        val step = stepAtCaret()
         val created = WriteCommandAction.writeCommandAction(project).compute<Boolean, Throwable> {
             KotlinStepDefinitionCreator().createStepDefinition(step, stepsFile, false)
         }
@@ -48,13 +47,13 @@ class CreateStepDefinitionTest : CucumberKotlinTestCase() {
 
     fun testCreateNewStepDefinitionFile() {
         configureFeature("Given I have a <caret>tomato")
-        val step = PsiTreeUtil.getParentOfType(myFixture.file.findElementAt(myFixture.caretOffset), GherkinStep::class.java)!!
+        val step = stepAtCaret()
         val creator = KotlinStepDefinitionCreator()
 
         assertEquals("TestSteps", creator.getDefaultStepFileName(step))
 
         val directory = myFixture.psiManager.findDirectory(myFixture.tempDirFixture.findOrCreateDir("steps"))!!
-        val file = WriteCommandAction.writeCommandAction(project).compute<_, Throwable> {
+        val file = WriteCommandAction.writeCommandAction(project).compute<PsiFile, Throwable> {
             creator.createStepDefinitionContainer(directory, "TestSteps")
         }
 

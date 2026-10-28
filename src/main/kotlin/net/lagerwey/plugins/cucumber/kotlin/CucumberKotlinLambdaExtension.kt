@@ -2,23 +2,16 @@ package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.progress.ProgressManager
-import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
-import com.intellij.psi.SmartPointerManager
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.ProjectScope
-import com.intellij.psi.search.PsiSearchHelper
-import com.intellij.psi.search.UsageSearchContext
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.indexing.FileBasedIndex
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinLambdaStepDefinition
-import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinParameterTypeManager
 import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinitionCreator
-import org.apache.commons.text.StringEscapeUtils
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.references.KtInvokeFunctionReference
 import org.jetbrains.kotlin.psi.KtCallExpression
-import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 import org.jetbrains.plugins.cucumber.BDDFrameworkType
 import org.jetbrains.plugins.cucumber.StepDefinitionCreator
 import org.jetbrains.plugins.cucumber.steps.AbstractStepDefinition
@@ -57,8 +50,6 @@ class CucumberKotlinLambdaExtension : AbstractCucumberKotlinExtension() {
             kotlinFiles
         )
 
-        findParameterTypes(module, kotlinFiles)
-
         return elements.mapNotNull { stepElement ->
             if (CucumberKotlinUtil.isStepDefinition(stepElement)) {
                 stepElement.references.firstOrNull { it is KtInvokeFunctionReference }?.let {
@@ -66,41 +57,5 @@ class CucumberKotlinLambdaExtension : AbstractCucumberKotlinExtension() {
                 }
             } else null
         }.toMutableList()
-    }
-
-    private fun findParameterTypes(module: Module, kotlinFiles: GlobalSearchScope) {
-        val occurrencesProcessor: (PsiElement, Int) -> Boolean = { element, _ ->
-            element.parent?.let { parent ->
-                parent.references.forEach { ref ->
-                    if (ref is KtInvokeFunctionReference) {
-                        handleParameterType(parent)
-                    }
-                }
-            }
-            true
-        }
-
-        // Called from within a read action (e.g. reference resolving), so search directly instead of starting a task
-        PsiSearchHelper.getInstance(module.project).processElementsWithWord(
-            occurrencesProcessor,
-            kotlinFiles,
-            "ParameterType",
-            UsageSearchContext.IN_CODE,
-            true
-        )
-    }
-
-    private fun handleParameterType(element: PsiElement) {
-        runCatching {
-            val pointer = SmartPointerManager.getInstance(element.project).createSmartPsiElementPointer(element)
-
-            val callExpression = element as? KtCallExpression
-            callExpression?.let {
-                val name = (it.valueArguments[0].getArgumentExpression() as KtStringTemplateExpression).entries[0].text
-                val regex = (it.valueArguments[1].getArgumentExpression() as KtStringTemplateExpression).entries.joinToString("") { x -> x.text }
-                val unescapedRegex = StringEscapeUtils.unescapeJava(regex)
-                KotlinParameterTypeManager.addParameterType(name, unescapedRegex, pointer)
-            }
-        }
     }
 }

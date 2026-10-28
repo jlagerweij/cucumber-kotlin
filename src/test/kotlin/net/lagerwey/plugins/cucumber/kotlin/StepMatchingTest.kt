@@ -1,5 +1,7 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
+import org.jetbrains.kotlin.psi.KtCallExpression
+
 class StepMatchingTest : CucumberKotlinTestCase() {
 
     fun testCucumberExpressionWithIntParameter() {
@@ -35,6 +37,26 @@ class StepMatchingTest : CucumberKotlinTestCase() {
         configureFeature("Given a <caret>\"quoted\" step")
 
         assertSingleTarget("Given(\"\"\"^a \"quoted\" step$\"\"\") { }")
+    }
+
+    fun testCustomParameterType() {
+        addSteps(
+            """ParameterType("color", "red|green") { color: String -> color }""",
+            """Given("I pick a {color} tomato") { color: String -> }""",
+        )
+        configureFeature("Given I pick a <caret>red tomato")
+
+        assertSingleTarget("""Given("I pick a {color} tomato") { color: String -> }""")
+    }
+
+    fun testCustomParameterTypeDoesNotMatchOtherValues() {
+        addSteps(
+            """ParameterType("color", "red|green") { color: String -> color }""",
+            """Given("I pick a {color} tomato") { color: String -> }""",
+        )
+        configureFeature("Given I pick a <caret>blue tomato")
+
+        assertEmpty(resolveStepAtCaret())
     }
 
     fun testAndStepMatchesGivenDefinition() {
@@ -95,6 +117,8 @@ class StepMatchingTest : CucumberKotlinTestCase() {
     private fun assertSingleTarget(expectedText: String) {
         val targets = resolveStepAtCaret()
         assertEquals("Expected exactly one step definition, got: ${targets.map { it.text }}", 1, targets.size)
-        assertEquals(expectedText, targets.single().text)
+        val target = targets.single()
+        assertInstanceOf(target, KtCallExpression::class.java)
+        assertEquals(expectedText, target.text)
     }
 }

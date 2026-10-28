@@ -6,11 +6,13 @@ import com.intellij.openapi.roots.ModifiableRootModel
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiPolyVariantReference
+import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.testFramework.LightProjectDescriptor
 import com.intellij.testFramework.PsiTestUtil
 import com.intellij.testFramework.fixtures.DefaultLightProjectDescriptor
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase
 import com.intellij.util.PathUtil
+import org.jetbrains.plugins.cucumber.psi.GherkinStep
 
 /**
  * Base class for tests that need Kotlin step definitions written against the cucumber-java8 API.
@@ -58,6 +60,12 @@ abstract class CucumberKotlinTestCase : LightJavaCodeInsightFixtureTestCase() {
     )
 
     /**
+     * Returns the Gherkin step at the caret.
+     */
+    protected fun stepAtCaret(): GherkinStep =
+        PsiTreeUtil.getParentOfType(myFixture.file.findElementAt(myFixture.caretOffset), GherkinStep::class.java)!!
+
+    /**
      * Resolves the Gherkin step at the caret to its step definitions.
      */
     protected fun resolveStepAtCaret(): List<PsiElement> {
@@ -76,15 +84,26 @@ abstract class CucumberKotlinTestCase : LightJavaCodeInsightFixtureTestCase() {
                 default <T1, T2> void Given(String expression, StepDefinitionBody.A2<T1, T2> body) {}
                 default void When(String expression, StepDefinitionBody.A0 body) {}
                 default <T1> void When(String expression, StepDefinitionBody.A1<T1> body) {}
+                default <T1, T2> void When(String expression, StepDefinitionBody.A2<T1, T2> body) {}
                 default void Then(String expression, StepDefinitionBody.A0 body) {}
                 default <T1> void Then(String expression, StepDefinitionBody.A1<T1> body) {}
+                default <T1, T2> void Then(String expression, StepDefinitionBody.A2<T1, T2> body) {}
                 default void And(String expression, StepDefinitionBody.A0 body) {}
+                default <T1> void And(String expression, StepDefinitionBody.A1<T1> body) {}
+                default <T1, T2> void And(String expression, StepDefinitionBody.A2<T1, T2> body) {}
                 default void But(String expression, StepDefinitionBody.A0 body) {}
+                default <T1> void But(String expression, StepDefinitionBody.A1<T1> body) {}
+                default <T1, T2> void But(String expression, StepDefinitionBody.A2<T1, T2> body) {}
+                default <R> void ParameterType(String name, String regexp, ParameterDefinitionBody.A1<R> body) {}
 
                 interface StepDefinitionBody {
                     interface A0 { void accept() throws Throwable; }
                     interface A1<T1> { void accept(T1 p1) throws Throwable; }
                     interface A2<T1, T2> { void accept(T1 p1, T2 p2) throws Throwable; }
+                }
+
+                interface ParameterDefinitionBody {
+                    interface A1<R> { R accept(String p1) throws Throwable; }
                 }
             }
         """.trimIndent()
