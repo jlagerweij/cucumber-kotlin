@@ -26,6 +26,7 @@ dependencies {
 
         plugins(listOf("gherkin:262.8665.173", "cucumber-java:262.8665.176"))
         testFramework(TestFrameworkType.Platform)
+        testFramework(TestFrameworkType.Plugin.Java)
         testBundledPlugins("com.intellij.modules.ultimate")
     }
 }
