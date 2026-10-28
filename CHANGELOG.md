@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- Upgrade dependencies
+
 ## [2026.2.0] - 2026-07-16
 
 - Compatible with IntelliJ IDEA 2026.2
