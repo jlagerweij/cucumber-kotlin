@@ -10,7 +10,7 @@ plugins {
 
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/version_catalogs.html
 dependencies {
-    implementation("io.cucumber:cucumber-java:7.34.3")
+    implementation("io.cucumber:gherkin:42.0.1")
     implementation("org.apache.commons:commons-text:1.15.0")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.opentest4j:opentest4j:1.3.0")
@@ -26,6 +26,7 @@ dependencies {
 
         plugins(listOf("gherkin:262.8665.173", "cucumber-java:262.8665.176"))
         testFramework(TestFrameworkType.Platform)
+        testFramework(TestFrameworkType.Plugin.Java)
     }
 }
 

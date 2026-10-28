@@ -1,5 +1,6 @@
 package net.lagerwey.plugins.cucumber.kotlin.steps
 
+import com.intellij.openapi.module.ModuleUtilCore
 import com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.plugins.cucumber.CucumberUtil
@@ -22,7 +23,9 @@ class KotlinLambdaStepDefinition(private val method: KtCallExpression) : Abstrac
         if (text.startsWith(REGEX_START) || text.endsWith(REGEX_END)) {
             return text
         }
-        return CucumberUtil.buildRegexpFromCucumberExpression(text, KotlinParameterTypeManager)
+        val module = ModuleUtilCore.findModuleForPsiElement(method)
+        val parameterTypeManager = module?.let { KotlinParameterTypeManager.forModule(it) } ?: KotlinParameterTypeManager.DEFAULT
+        return CucumberUtil.buildRegexpFromCucumberExpression(text, parameterTypeManager)
     }
 
     private fun getStepDefinitionText(): String? {
