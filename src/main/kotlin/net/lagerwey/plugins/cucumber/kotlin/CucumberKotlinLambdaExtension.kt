@@ -1,9 +1,7 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.openapi.module.Module
-import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
-import com.intellij.openapi.progress.Task
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiManager
 import com.intellij.psi.SmartPointerManager
@@ -82,21 +80,14 @@ class CucumberKotlinLambdaExtension : AbstractCucumberKotlinExtension() {
             true
         }
 
-        ProgressManager.getInstance()
-            .run(
-                object : Task.Backgroundable(module.project, "Process elements with word", true) {
-                    override fun run(indicator: ProgressIndicator) {
-                        indicator.isIndeterminate = true
-                        indicator.text = "Process elements with word..."
-                        PsiSearchHelper.getInstance(module.project).processElementsWithWord(
-                            occurrencesProcessor,
-                            kotlinFiles,
-                            "ParameterType",
-                            UsageSearchContext.IN_CODE,
-                            true
-                        )
-                    }
-                })
+        // Called from within a read action (e.g. reference resolving), so search directly instead of starting a task
+        PsiSearchHelper.getInstance(module.project).processElementsWithWord(
+            occurrencesProcessor,
+            kotlinFiles,
+            "ParameterType",
+            UsageSearchContext.IN_CODE,
+            true
+        )
     }
 
     private fun handleParameterType(element: PsiElement) {
