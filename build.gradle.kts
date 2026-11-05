@@ -17,14 +17,14 @@ dependencies {
 
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-dgradle-plugin-dependencies-extension.html
     intellijPlatform {
-        intellijIdea("2026.2")
+        intellijIdea("2026.3")
         bundledPlugins(listOf("com.intellij.java", "org.jetbrains.kotlin"))
 
         // IntelliJ IDEA next version: https://www.jetbrains.com/idea/nextversion/
         // Gherkin plugin version: https://plugins.jetbrains.com/plugin/9164-gherkin/versions
         // Cucumber for Java version: https://plugins.jetbrains.com/plugin/7212-cucumber-for-java/versions
 
-        plugins(listOf("gherkin:262.8665.173", "cucumber-java:262.8665.176"))
+        plugins(listOf("gherkin:263.7307.101", "cucumber-java:263.7307.112"))
         testFramework(TestFrameworkType.Platform)
         testFramework(TestFrameworkType.Plugin.Java)
     }
