@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2026.3.0] - 2026-11-05
+
 - Compatible with IntelliJ IDEA 2026.3
 - Upgrade dependencies
 - Fix deadlock when resolving steps in projects with custom `ParameterType`s
@@ -234,7 +236,8 @@
 
 - Initial release
 
-[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.2.0...HEAD
+[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.3.0...HEAD
+[2026.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.2.0...v2026.3.0
 [2026.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.1.0...v2026.2.0
 [2026.1.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2025.2.1...v2026.1.0
 [2025.2.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2025.2.0...v2025.2.1
