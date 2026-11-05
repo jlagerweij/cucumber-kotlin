@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+- Compatible with IntelliJ IDEA 2026.3
+- Upgrade dependencies
+- Fix deadlock when resolving steps in projects with custom `ParameterType`s
+
 ## [2026.2.0] - 2026-07-16
 
 - Compatible with IntelliJ IDEA 2026.2
