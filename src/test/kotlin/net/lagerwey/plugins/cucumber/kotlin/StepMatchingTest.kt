@@ -1,5 +1,8 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
+import com.intellij.openapi.command.WriteCommandAction
+import com.intellij.psi.PsiDocumentManager
+import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinParameterTypeManager
 import org.jetbrains.kotlin.psi.KtCallExpression
 
 class StepMatchingTest : CucumberKotlinTestCase() {
@@ -279,6 +282,53 @@ class StepMatchingTest : CucumberKotlinTestCase() {
         configureFeature("Given I pick a <caret>green tomato")
 
         assertSingleTarget("""Given("I pick a {color} tomato") { color: String -> }""")
+    }
+
+    fun testCustomParameterTypeWithRawString() {
+        addSteps(
+            "ParameterType(\"color\", \"\"\"red|green\"\"\") { color: String -> color }",
+            """Given("I pick a {color} tomato") { color: String -> }""",
+        )
+        configureFeature("Given I pick a <caret>green tomato")
+
+        assertSingleTarget("""Given("I pick a {color} tomato") { color: String -> }""")
+    }
+
+    fun testCustomParameterTypeAddedAfterResolving() {
+        addSteps("""Given("I pick a {color} tomato") { color: String -> }""")
+        configureFeature("Given I pick a <caret>green tomato")
+        assertEmpty(resolveStepAtCaret())
+
+        addStepsFile("ParameterTypes", "En", """ParameterType("color", "red|green") { color: String -> color }""")
+
+        assertSingleTarget("""Given("I pick a {color} tomato") { color: String -> }""")
+    }
+
+    fun testCustomParameterTypeChangedAfterResolving() {
+        val parameterTypes = addStepsFile("ParameterTypes", "En", """ParameterType("color", "red|green") { color: String -> color }""")
+        addSteps("""Given("I pick a {color} tomato") { color: String -> }""")
+        configureFeature("Given I pick a <caret>blue tomato")
+        assertEmpty(resolveStepAtCaret())
+
+        val document = PsiDocumentManager.getInstance(project).getDocument(parameterTypes)!!
+        WriteCommandAction.runWriteCommandAction(project) {
+            val offset = document.text.indexOf("red|green")
+            document.replaceString(offset, offset + "red|green".length, "red|blue")
+            PsiDocumentManager.getInstance(project).commitDocument(document)
+        }
+
+        assertSingleTarget("""Given("I pick a {color} tomato") { color: String -> }""")
+    }
+
+    fun testCustomParameterTypeNavigatesToDeclaration() {
+        addSteps(
+            """ParameterType("color", "red|green") { color: String -> color }""",
+            """Given("I pick a {color} tomato") { color: String -> }""",
+        )
+        configureFeature("Given I pick a <caret>green tomato")
+
+        val declaration = KotlinParameterTypeManager.forModule(module).getParameterTypeDeclaration("color")
+        assertEquals("""ParameterType("color", "red|green") { color: String -> color }""", declaration?.text)
     }
 
     // Variants from sample-project/src/test/kotlin/io/cucumber/kotlin/GermanStepDefinitions.kt
