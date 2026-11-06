@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- Improve step resolving performance by indexing custom `ParameterType`s and caching them per module
+
 ## [2026.3.0] - 2026-11-05
 
 - Compatible with IntelliJ IDEA 2026.3

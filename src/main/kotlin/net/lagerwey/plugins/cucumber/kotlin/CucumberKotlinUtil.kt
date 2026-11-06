@@ -1,9 +1,11 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiNamedElement
+import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.containers.orNull
 import io.cucumber.gherkin.GherkinDialects
-import org.jetbrains.kotlin.asJava.namedUnwrappedElement
+import org.jetbrains.kotlin.asJava.elements.KtLightElement
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.psi.KtCallExpression
@@ -56,7 +58,8 @@ object CucumberKotlinUtil {
             .firstOrNull()
             ?.mainReference
             ?.resolve()
-            ?.namedUnwrappedElement
+            ?.let { (it as? KtLightElement<*, *>)?.kotlinOrigin ?: it }
+            ?.let { PsiTreeUtil.getNonStrictParentOfType(it, PsiNamedElement::class.java) }
             ?.kotlinFqName
             ?.asString()
             ?.startsWith(CUCUMBER_JAVA8_PACKAGE)

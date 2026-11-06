@@ -5,3 +5,6 @@
 .qodana
 build
 target
+
+### Claude Code ###
+.claude/settings.local.json
