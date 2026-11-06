@@ -115,7 +115,8 @@ class KotlinParameterTypeManager(
         private fun computeIfIndexChanged(module: Module, psiModificationCount: Long): KotlinParameterTypeManager {
             val fileBasedIndex = FileBasedIndex.getInstance()
             val scope = kotlinFilesVisibleFrom(module)
-            fileBasedIndex.ensureUpToDate(PARAMETER_TYPE_INDEX_ID, module.project, scope)
+            // Brings the index up to date for the scope; ensureUpToDate itself is internal API
+            fileBasedIndex.processAllKeys(PARAMETER_TYPE_INDEX_ID, { false }, scope, null)
             val indexModificationStamp = fileBasedIndex.getIndexModificationStamp(PARAMETER_TYPE_INDEX_ID, module.project)
 
             val previous = module.getUserData(CACHE_KEY)
