@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2026.3.2] - 2026-11-07
+
 - Resolve steps using custom `ParameterType`s declared in another module
 
 ## [2026.3.1] - 2026-11-06
@@ -242,7 +244,8 @@
 
 - Initial release
 
-[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.3.1...HEAD
+[Unreleased]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.3.2...HEAD
+[2026.3.2]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.3.1...v2026.3.2
 [2026.3.1]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.3.0...v2026.3.1
 [2026.3.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.2.0...v2026.3.0
 [2026.2.0]: https://github.com/jlagerweij/cucumber-kotlin/compare/v2026.1.0...v2026.2.0
