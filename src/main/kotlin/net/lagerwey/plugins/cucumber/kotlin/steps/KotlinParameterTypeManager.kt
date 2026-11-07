@@ -87,7 +87,12 @@ class KotlinParameterTypeManager(
         val computationCount = AtomicInteger()
 
         /**
-         * Returns the parameter types visible from the given module.
+         * Returns the parameter types for step definitions in the given module.
+         *
+         * Parameter types visible from the module come first. Cucumber combines the glue of all modules on the classpath
+         * of the module running the features, so parameter types declared in other modules of the project are used
+         * as well, for example when a runner module depends on both a module with step definitions and a module
+         * with parameter types.
          *
          * Step definitions are resolved concurrently, so the parameter types are computed by only one thread per module
          * while the others wait for its result. The result is reused until the parameter types in the index change,
@@ -114,16 +119,15 @@ class KotlinParameterTypeManager(
 
         private fun computeIfIndexChanged(module: Module, psiModificationCount: Long): KotlinParameterTypeManager {
             val fileBasedIndex = FileBasedIndex.getInstance()
-            val scope = kotlinFilesVisibleFrom(module)
-            // Brings the index up to date for the scope; ensureUpToDate itself is internal API
-            fileBasedIndex.processAllKeys(PARAMETER_TYPE_INDEX_ID, { false }, scope, null)
+            // Brings the index up to date for the project; ensureUpToDate itself is internal API
+            fileBasedIndex.processAllKeys(PARAMETER_TYPE_INDEX_ID, { false }, kotlinFilesInProject(module), null)
             val indexModificationStamp = fileBasedIndex.getIndexModificationStamp(PARAMETER_TYPE_INDEX_ID, module.project)
 
             val previous = module.getUserData(CACHE_KEY)
             val manager = if (previous != null && previous.indexModificationStamp == indexModificationStamp) {
                 previous.manager
             } else {
-                KotlinParameterTypeManager(module.project, findParameterTypes(module, scope))
+                KotlinParameterTypeManager(module.project, findParameterTypes(module))
             }
             module.putUserData(CACHE_KEY, CachedParameterTypes(psiModificationCount, indexModificationStamp, manager))
             return manager
@@ -135,15 +139,23 @@ class KotlinParameterTypeManager(
             return GlobalSearchScope.getScopeRestrictedByFileTypes(searchScope, KotlinFileType.INSTANCE)
         }
 
-        private fun findParameterTypes(module: Module, scope: GlobalSearchScope): Map<String, KotlinParameterType> {
+        private fun kotlinFilesInProject(module: Module): GlobalSearchScope =
+            GlobalSearchScope.getScopeRestrictedByFileTypes(GlobalSearchScope.allScope(module.project), KotlinFileType.INSTANCE)
+
+        private fun findParameterTypes(module: Module): Map<String, KotlinParameterType> {
             computationCount.incrementAndGet()
             val fileBasedIndex = FileBasedIndex.getInstance()
             val parameterTypes = mutableMapOf<String, KotlinParameterType>()
+            // A declaration visible from the module wins over one with the same name elsewhere in the project
+            val scopes = listOf(kotlinFilesVisibleFrom(module), kotlinFilesInProject(module))
             fileBasedIndex.getAllKeys(PARAMETER_TYPE_INDEX_ID, module.project).forEach { name ->
-                fileBasedIndex.processValues(PARAMETER_TYPE_INDEX_ID, name, null, { file, regex ->
-                    parameterTypes.putIfAbsent(name, KotlinParameterType(regex, file))
-                    false
-                }, scope)
+                for (scope in scopes) {
+                    fileBasedIndex.processValues(PARAMETER_TYPE_INDEX_ID, name, null, { file, regex ->
+                        parameterTypes.putIfAbsent(name, KotlinParameterType(regex, file))
+                        false
+                    }, scope)
+                    if (name in parameterTypes) break
+                }
             }
             return parameterTypes
         }

@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- Resolve steps using custom `ParameterType`s declared in another module
+
 ## [2026.3.1] - 2026-11-06
 
 - Improve step resolving performance by indexing custom `ParameterType`s and caching them per module
