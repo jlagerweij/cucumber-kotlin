@@ -1,11 +1,14 @@
-package net.lagerwey.plugins.cucumber.kotlin.search
+package net.lagerwey.plugins.cucumber.kotlin.steps.search
 
 import com.intellij.psi.PsiElement
 import com.intellij.usages.impl.rules.UsageType
 import com.intellij.usages.impl.rules.UsageTypeProvider
 import org.jetbrains.plugins.cucumber.psi.impl.GherkinStepImpl
 
-class StepUsageTypeProvider : UsageTypeProvider {
+/**
+ * Shows usages of step definitions in Gherkin files as "Gherkin step".
+ */
+class CucumberKotlinUsageTypeProvider : UsageTypeProvider {
     override fun getUsageType(element: PsiElement): UsageType? {
         return if (element is GherkinStepImpl) gherkinStepUsageType else null
     }

@@ -13,7 +13,7 @@ import com.intellij.psi.util.PsiModificationTracker
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.indexing.FileBasedIndex
 import net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinUtil
-import net.lagerwey.plugins.cucumber.kotlin.PARAMETER_TYPE_INDEX_ID
+import net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinParameterTypeIndex
 import org.jetbrains.annotations.VisibleForTesting
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.psi.KtCallExpression
@@ -39,7 +39,7 @@ class KotlinParameterTypeManager(
         val file = parameterTypes[name]?.file ?: return null
         val psiFile = project?.let { PsiManager.getInstance(it).findFile(file) } ?: return null
         return PsiTreeUtil.findChildrenOfType(psiFile, KtCallExpression::class.java).firstOrNull {
-            CucumberKotlinUtil.isParameterType(it) && parameterTypeName(it) == name
+            CucumberKotlinUtil.isLambdaParameterType(it) && parameterTypeName(it) == name
         }
     }
 
@@ -120,8 +120,8 @@ class KotlinParameterTypeManager(
         private fun computeIfIndexChanged(module: Module, psiModificationCount: Long): KotlinParameterTypeManager {
             val fileBasedIndex = FileBasedIndex.getInstance()
             // Brings the index up to date for the project; ensureUpToDate itself is internal API
-            fileBasedIndex.processAllKeys(PARAMETER_TYPE_INDEX_ID, { false }, kotlinFilesInProject(module), null)
-            val indexModificationStamp = fileBasedIndex.getIndexModificationStamp(PARAMETER_TYPE_INDEX_ID, module.project)
+            fileBasedIndex.processAllKeys(CucumberKotlinParameterTypeIndex.INDEX_ID, { false }, kotlinFilesInProject(module), null)
+            val indexModificationStamp = fileBasedIndex.getIndexModificationStamp(CucumberKotlinParameterTypeIndex.INDEX_ID, module.project)
 
             val previous = module.getUserData(CACHE_KEY)
             val manager = if (previous != null && previous.indexModificationStamp == indexModificationStamp) {
@@ -148,9 +148,9 @@ class KotlinParameterTypeManager(
             val parameterTypes = mutableMapOf<String, KotlinParameterType>()
             // A declaration visible from the module wins over one with the same name elsewhere in the project
             val scopes = listOf(kotlinFilesVisibleFrom(module), kotlinFilesInProject(module))
-            fileBasedIndex.getAllKeys(PARAMETER_TYPE_INDEX_ID, module.project).forEach { name ->
+            fileBasedIndex.getAllKeys(CucumberKotlinParameterTypeIndex.INDEX_ID, module.project).forEach { name ->
                 for (scope in scopes) {
-                    fileBasedIndex.processValues(PARAMETER_TYPE_INDEX_ID, name, null, { file, regex ->
+                    fileBasedIndex.processValues(CucumberKotlinParameterTypeIndex.INDEX_ID, name, null, { file, regex ->
                         parameterTypes.putIfAbsent(name, KotlinParameterType(regex, file))
                         false
                     }, scope)

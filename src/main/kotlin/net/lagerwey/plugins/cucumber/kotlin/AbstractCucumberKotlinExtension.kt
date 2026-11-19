@@ -5,15 +5,20 @@ import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.psi.PsiClassOwner
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
+import net.lagerwey.plugins.cucumber.kotlin.steps.AbstractKotlinStepDefinition
 import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.plugins.cucumber.ParameterTypeManager
 import org.jetbrains.plugins.cucumber.psi.GherkinFile
 import org.jetbrains.plugins.cucumber.steps.AbstractCucumberExtension
+import org.jetbrains.plugins.cucumber.steps.AbstractStepDefinition
 
+/**
+ * Counterpart of `AbstractCucumberJavaExtension` in the Cucumber for Java plugin.
+ */
 abstract class AbstractCucumberKotlinExtension : AbstractCucumberExtension() {
     override fun isStepLikeFile(child: PsiElement) = child is KtFile
 
-    override
-    fun isWritableStepLikeFile(child: PsiElement): Boolean {
+    override fun isWritableStepLikeFile(child: PsiElement): Boolean {
         if (child is PsiClassOwner) {
             val file = child.containingFile
             if (file != null) {
@@ -43,5 +48,12 @@ abstract class AbstractCucumberKotlinExtension : AbstractCucumberExtension() {
         }
 
         return result
+    }
+
+    override fun getParameterTypeManager(stepDefinition: AbstractStepDefinition): ParameterTypeManager? {
+        if (stepDefinition is AbstractKotlinStepDefinition) {
+            return CucumberKotlinUtil.getAllParameterTypes(stepDefinition.module)
+        }
+        return null
     }
 }

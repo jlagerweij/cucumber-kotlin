@@ -16,8 +16,6 @@ import org.apache.commons.text.StringEscapeUtils
 import org.jetbrains.kotlin.KtNodeTypes
 import org.jetbrains.kotlin.idea.KotlinFileType
 
-val PARAMETER_TYPE_INDEX_ID = ID.create<String, String>("kotlin.cucumber.parameterType")
-
 private const val PARAMETER_TYPE_METHOD = "ParameterType"
 
 /**
@@ -29,7 +27,7 @@ private const val PARAMETER_TYPE_METHOD = "ParameterType"
  */
 class CucumberKotlinParameterTypeIndex : FileBasedIndexExtension<String, String>() {
 
-    override fun getName(): ID<String, String> = PARAMETER_TYPE_INDEX_ID
+    override fun getName(): ID<String, String> = INDEX_ID
 
     override fun getVersion() = 1
 
@@ -101,8 +99,10 @@ class CucumberKotlinParameterTypeIndex : FileBasedIndexExtension<String, String>
         }
     }
 
-    private companion object {
-        const val QUOTE = "\""
-        const val RAW_QUOTE = "\"\"\""
+    companion object {
+        @JvmField
+        val INDEX_ID = ID.create<String, String>("kotlin.cucumber.parameterType")
+        private const val QUOTE = "\""
+        private const val RAW_QUOTE = "\"\"\""
     }
 }

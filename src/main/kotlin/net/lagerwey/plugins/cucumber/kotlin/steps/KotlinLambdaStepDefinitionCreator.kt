@@ -17,7 +17,11 @@ import org.jetbrains.plugins.cucumber.psi.GherkinFile
 import org.jetbrains.plugins.cucumber.psi.GherkinStep
 import java.util.*
 
-class KotlinStepDefinitionCreator : AbstractStepDefinitionCreator() {
+/**
+ * Counterpart of `Java8StepDefinitionCreator` in the Cucumber for Java plugin: creates step definitions in
+ * cucumber-java8 style inside the `init` block of a class implementing e.g. `io.cucumber.java8.En`.
+ */
+class KotlinLambdaStepDefinitionCreator : AbstractStepDefinitionCreator() {
     private var lastObservedLanguage = "en"
 
     override fun createStepDefinitionContainer(directory: PsiDirectory, name: String): PsiFile {

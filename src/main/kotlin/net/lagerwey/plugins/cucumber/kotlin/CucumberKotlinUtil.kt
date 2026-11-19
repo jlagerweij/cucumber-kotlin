@@ -1,58 +1,56 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
+import com.intellij.openapi.module.Module
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNamedElement
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.containers.orNull
 import io.cucumber.gherkin.GherkinDialects
+import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinParameterTypeManager
 import org.jetbrains.kotlin.asJava.elements.KtLightElement
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.psi.KtCallExpression
+import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.KtReferenceExpression
 import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 
+/**
+ * Counterpart of `CucumberJavaUtil` in the Cucumber for Java plugin.
+ *
+ * Functions named `Lambda` handle the cucumber-java8 style (`Given("...") { }`), like the `Java8` functions there.
+ */
 object CucumberKotlinUtil {
     const val CUCUMBER_JAVA8_PACKAGE = "io.cucumber.java8"
     private val hookKeywords = listOf("Before", "BeforeStep", "After", "AfterStep")
     private val allKeywords = getAllKeywords()
 
-    fun isStepDefinition(candidate: PsiElement): Boolean {
-        return when (candidate) {
-            is KtCallExpression -> isStepDefinition(candidate)
-            else -> false
-        }
-    }
-
-    fun isStepDefinition(candidate: KtCallExpression): Boolean {
+    /**
+     * Returns true if [candidate] is a call to one of the Cucumber methods that define steps in lambda style.
+     */
+    fun isLambdaStepDefinition(candidate: PsiElement): Boolean {
+        if (candidate !is KtCallExpression) return false
         return candidate.children.firstOrNull { it is KtNameReferenceExpression }?.text?.let {
-            isKeywordValid(it) && isCucumberMethod(candidate)
+            isKeywordValid(it) && isCucumberLambdaMethod(candidate)
         } ?: false
     }
 
-    fun isParameterType(candidate: PsiElement): Boolean {
-        return when (candidate) {
-            is KtCallExpression -> isParameterType(candidate)
-            else -> false
-        }
-    }
-
-    private fun isParameterType(candidate: KtCallExpression): Boolean {
+    fun isLambdaParameterType(candidate: PsiElement): Boolean {
+        if (candidate !is KtCallExpression) return false
         return candidate.children.firstOrNull { it is KtNameReferenceExpression }?.text?.let {
-            it == "ParameterType" && isCucumberMethod(candidate)
+            it == "ParameterType" && isCucumberLambdaMethod(candidate)
         } ?: false
     }
 
-    fun isHook(candidate: PsiElement): Boolean {
-        return if (candidate is KtCallExpression) {
-            candidate.children.firstOrNull { it is KtNameReferenceExpression }?.let {
-                it.text in hookKeywords && isCucumberMethod(candidate)
-            } ?: false
-        } else false
+    fun isLambdaHook(candidate: PsiElement): Boolean {
+        if (candidate !is KtCallExpression) return false
+        return candidate.children.firstOrNull { it is KtNameReferenceExpression }?.let {
+            it.text in hookKeywords && isCucumberLambdaMethod(candidate)
+        } ?: false
     }
 
-    private fun isCucumberMethod(method: KtCallExpression): Boolean {
+    private fun isCucumberLambdaMethod(method: KtCallExpression): Boolean {
         return method.children
             .filterIsInstance<KtReferenceExpression>()
             .firstOrNull()
@@ -66,31 +64,31 @@ object CucumberKotlinUtil {
             ?: false
     }
 
-    fun getStepName(stepDefinition: KtCallExpression): String? {
-        val keywordExpression = stepDefinition.children.firstOrNull { it is KtNameReferenceExpression }
-        val keyword = keywordExpression?.text?.trim()
+    /**
+     * Returns the expression holding the step text of a lambda step definition, i.e. its first argument.
+     */
+    fun getLambdaStepNameExpression(stepDefinition: KtCallExpression): KtExpression? =
+        stepDefinition.valueArguments.getOrNull(0)?.getArgumentExpression()
 
-        if (keyword != null && isKeywordValid(keyword)) {
-            return getStepRegex(stepDefinition)
-        }
-        return null
+    /**
+     * Returns the step text (a Cucumber expression or a regex) of a lambda step definition.
+     */
+    fun getLambdaStepName(stepDefinition: KtCallExpression): String? {
+        val keyword = stepDefinition.children.firstOrNull { it is KtNameReferenceExpression }?.text?.trim()
+        if (keyword == null || !isKeywordValid(keyword)) return null
+
+        val stepNameExpression = getLambdaStepNameExpression(stepDefinition) as? KtStringTemplateExpression ?: return null
+        return stepNameExpression.entries.getOrNull(0)?.text
     }
 
-    fun getParameterName(parameterDefinition: KtCallExpression): String? {
-        return parameterDefinition.valueArguments[0].text
+    fun getLambdaParameterTypeName(parameterDefinition: KtCallExpression): String? {
+        return parameterDefinition.valueArguments.getOrNull(0)?.text
     }
 
-    private fun getStepRegex(stepDefinition: KtCallExpression): String? {
-        return runCatching {
-            val argumentExpression = stepDefinition.valueArguments[0].getArgumentExpression()
-            if (argumentExpression is KtStringTemplateExpression) {
-                val text = argumentExpression.entries[0].text
-                text
-            } else {
-                null
-            }
-        }.getOrNull()
-    }
+    /**
+     * Returns the parameter types available to step definitions in [module].
+     */
+    fun getAllParameterTypes(module: Module): KotlinParameterTypeManager = KotlinParameterTypeManager.forModule(module)
 
     private fun isKeywordValid(keyword: String) = allKeywords.contains(keyword)
 

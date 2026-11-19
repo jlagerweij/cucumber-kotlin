@@ -1,39 +1,45 @@
 package net.lagerwey.plugins.cucumber.kotlin.steps
 
-import com.intellij.openapi.module.ModuleUtilCore
+import com.intellij.openapi.module.Module
 import com.intellij.psi.PsiElement
+import net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinUtil
 import org.jetbrains.kotlin.psi.KtCallExpression
-import org.jetbrains.plugins.cucumber.CucumberUtil
-import org.jetbrains.plugins.cucumber.steps.AbstractStepDefinition
+import org.jetbrains.kotlin.psi.KtLambdaExpression
 
-class KotlinLambdaStepDefinition(private val method: KtCallExpression) : AbstractStepDefinition(method) {
-    companion object {
-        const val MULTILINE_STRING = "\"\"\""
-        const val STRING = "\""
-        const val DOUBLE_SLASHES = "\\\\"
-        const val SINGLE_SLASH = "\\"
-        const val REGEX_START = "^"
-        const val REGEX_END = "$"
-    }
+/**
+ * Counterpart of `Java8StepDefinition` in the Cucumber for Java plugin: a step defined in cucumber-java8 style,
+ * e.g. `Given("I have {int} cucumbers") { count: Int -> }`.
+ */
+class KotlinLambdaStepDefinition(element: KtCallExpression, module: Module) : AbstractKotlinStepDefinition(element, module) {
 
-    override fun getVariableNames() = emptyList<String>()
-
+    /**
+     * Returns the step text without quotes. Like in `Java8StepDefinition`, this can be a Cucumber expression as well as
+     * a regex; [getCucumberRegex] turns it into a regex.
+     */
     override fun getCucumberRegexFromElement(element: PsiElement?): String? {
-        val text = getStepDefinitionText() ?: return null
-        if (text.startsWith(REGEX_START) || text.endsWith(REGEX_END)) {
-            return text
-        }
-        val module = ModuleUtilCore.findModuleForPsiElement(method)
-        val parameterTypeManager = module?.let { KotlinParameterTypeManager.forModule(it) } ?: KotlinParameterTypeManager.DEFAULT
-        return CucumberUtil.buildRegexpFromCucumberExpression(text, parameterTypeManager)
-    }
-
-    private fun getStepDefinitionText(): String? {
-        val callExpression = element as? KtCallExpression
-        val argument = callExpression?.valueArguments?.getOrNull(0)?.getArgumentExpression() ?: return null
+        if (element !is KtCallExpression) return null
+        val argument = CucumberKotlinUtil.getLambdaStepNameExpression(element) ?: return null
         return argument.text
             .removePrefix(MULTILINE_STRING).removeSuffix(MULTILINE_STRING)
             .removePrefix(STRING).removeSuffix(STRING)
             .replace(DOUBLE_SLASHES, SINGLE_SLASH)
+    }
+
+    override fun getElement(): KtCallExpression? = super.getElement() as? KtCallExpression
+
+    override fun getVariableNames(): List<String> {
+        val lambda = element?.lambdaArguments?.lastOrNull()?.getLambdaExpression()
+            ?: element?.valueArguments?.getOrNull(1)?.getArgumentExpression() as? KtLambdaExpression
+            ?: return emptyList()
+        return lambda.valueParameters.mapNotNull { it.name }
+    }
+
+    override fun toString() = "KotlinLambdaStepDefinition{backed by element: $element}"
+
+    private companion object {
+        const val MULTILINE_STRING = "\"\"\""
+        const val STRING = "\""
+        const val DOUBLE_SLASHES = "\\\\"
+        const val SINGLE_SLASH = "\\"
     }
 }

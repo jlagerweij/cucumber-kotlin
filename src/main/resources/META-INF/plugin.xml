@@ -34,14 +34,14 @@
         <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinLambdaStepIndex"/>
         <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinParameterTypeIndex"/>
 
-        <pom.declarationSearcher implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepDeclarationSearcher"/>
+        <pom.declarationSearcher implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinPomDeclarationSearcher"/>
 
-        <referencesSearch implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepDefinitionUsageSearcher"/>
-        <findUsagesHandlerFactory implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepFindUsagesHandlerFactory"/>
-        <usageTypeProvider implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepUsageTypeProvider"/>
+        <referencesSearch implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinStepDefinitionSearch"/>
+        <findUsagesHandlerFactory implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinFindUsagesHandlerFactory"/>
+        <usageTypeProvider implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinUsageTypeProvider"/>
 
         <codeInsight.lineMarkerProvider
-            implementationClass="net.lagerwey.plugins.cucumber.kotlin.search.CucumberLineMarkerProvider"
+            implementationClass="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinLineMarkerProvider"
             language="kotlin"/>
     </extensions>
 
