@@ -35,6 +35,10 @@
         <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinParameterTypeIndex"/>
 
         <pom.declarationSearcher implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinPomDeclarationSearcher"/>
+        <elementDescriptionProvider implementation="net.lagerwey.plugins.cucumber.kotlin.steps.reference.CucumberKotlinParameterPomTargetDescriptionProvider"/>
+        <psi.referenceContributor implementation="net.lagerwey.plugins.cucumber.kotlin.steps.reference.CucumberKotlinReferenceContributor"
+                                  language="kotlin"/>
+        <multiHostInjector implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinInjector"/>
 
         <referencesSearch implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinStepDefinitionSearch"/>
         <findUsagesHandlerFactory implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinFindUsagesHandlerFactory"/>

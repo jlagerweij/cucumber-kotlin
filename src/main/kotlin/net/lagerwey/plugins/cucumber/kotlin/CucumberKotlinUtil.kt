@@ -1,6 +1,8 @@
 package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.openapi.module.Module
+import com.intellij.openapi.util.TextRange
+import com.intellij.psi.ElementManipulators
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNamedElement
 import com.intellij.psi.util.PsiTreeUtil
@@ -15,6 +17,8 @@ import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.KtReferenceExpression
 import org.jetbrains.kotlin.psi.KtStringTemplateExpression
+import org.jetbrains.kotlin.psi.KtValueArgument
+import org.jetbrains.kotlin.psi.KtValueArgumentList
 
 /**
  * Counterpart of `CucumberJavaUtil` in the Cucumber for Java plugin.
@@ -83,6 +87,37 @@ object CucumberKotlinUtil {
 
     fun getLambdaParameterTypeName(parameterDefinition: KtCallExpression): String? {
         return parameterDefinition.valueArguments.getOrNull(0)?.text
+    }
+
+    /**
+     * Returns the lambda step definition if [expression] is its step text, i.e. its first argument.
+     */
+    fun getLambdaStepDefinitionOfStepText(expression: KtStringTemplateExpression): KtCallExpression? =
+        getCallOfFirstArgument(expression)?.takeIf { isLambdaStepDefinition(it) }
+
+    /**
+     * Returns the `ParameterType(...)` call if [expression] is the name of the parameter type, i.e. its first argument.
+     */
+    fun getLambdaParameterTypeOfName(expression: KtStringTemplateExpression): KtCallExpression? =
+        getCallOfFirstArgument(expression)?.takeIf { isLambdaParameterType(it) }
+
+    private fun getCallOfFirstArgument(expression: KtStringTemplateExpression): KtCallExpression? {
+        val argument = expression.parent as? KtValueArgument ?: return null
+        val call = (argument.parent as? KtValueArgumentList)?.parent as? KtCallExpression ?: return null
+        return call.takeIf { it.valueArguments.firstOrNull() == argument }
+    }
+
+    /**
+     * Returns the value of a string literal with its escape sequences resolved, together with a function mapping an
+     * offset in that value to the offset in [expression]. Returns `null` for a string with interpolation.
+     */
+    fun getStringValue(expression: KtStringTemplateExpression): Pair<String, (Int) -> Int>? {
+        if (expression.hasInterpolation()) return null
+        val escaper = expression.createLiteralTextEscaper()
+        val valueRange: TextRange = ElementManipulators.getValueTextRange(expression)
+        val value = StringBuilder()
+        if (!escaper.decode(valueRange, value)) return null
+        return value.toString() to { offset -> escaper.getOffsetInHost(offset, valueRange) }
     }
 
     /**

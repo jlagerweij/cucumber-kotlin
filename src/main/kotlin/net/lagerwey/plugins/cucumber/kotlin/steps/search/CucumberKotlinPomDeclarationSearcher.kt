@@ -5,18 +5,19 @@ import com.intellij.openapi.progress.ProgressManager
 import com.intellij.pom.PomDeclarationSearcher
 import com.intellij.pom.PomTarget
 import com.intellij.psi.PsiElement
-import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.util.Consumer
 import net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinUtil
 import net.lagerwey.plugins.cucumber.kotlin.inReadAction
 import net.lagerwey.plugins.cucumber.kotlin.steps.reference.CucumberKotlinLambdaStepPomTarget
-import org.jetbrains.kotlin.psi.KtCallExpression
-import org.jetbrains.kotlin.psi.KtExpression
-import org.jetbrains.kotlin.psi.KtValueArgumentList
+import net.lagerwey.plugins.cucumber.kotlin.steps.reference.CucumberKotlinParameterPomTarget
+import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 
 /**
- * Counterpart of `CucumberJavaPomDeclarationSearcher` in the Cucumber for Java plugin: makes the step text of a step
- * definition a declaration, so "Find Usages" on it finds the Gherkin steps using it.
+ * Counterpart of `CucumberJavaPomDeclarationSearcher` in the Cucumber for Java plugin. Makes these strings declarations,
+ * so "Find Usages" and "Rename" work on them:
+ *
+ * - the step text of a step definition, used by Gherkin steps;
+ * - the name of a custom parameter type in `ParameterType("color", ...)`, used by Cucumber expressions in step texts.
  */
 class CucumberKotlinPomDeclarationSearcher : PomDeclarationSearcher() {
     override fun findDeclarationsAt(element: PsiElement, offsetInElement: Int, consumer: Consumer<in PomTarget>) {
@@ -24,15 +25,26 @@ class CucumberKotlinPomDeclarationSearcher : PomDeclarationSearcher() {
         val injectionHostOrElement = InjectedLanguageManager.getInstance(element.project).getInjectionHost(element) ?: element
 
         ProgressManager.checkCanceled()
-        inReadAction { handleLambdaStepDeclaration(injectionHostOrElement, consumer) }
+        inReadAction {
+            // Either the string itself (e.g. an injection host) or one of its entries
+            val stringTemplate = injectionHostOrElement as? KtStringTemplateExpression
+                ?: injectionHostOrElement.parent as? KtStringTemplateExpression
+                ?: return@inReadAction
+            handleLambdaStepDeclaration(stringTemplate, consumer)
+            handleParameterTypeDeclaration(stringTemplate, consumer)
+        }
     }
 
-    private fun handleLambdaStepDeclaration(element: PsiElement, consumer: Consumer<in PomTarget>) {
-        val candidate = element.parent as? KtExpression ?: return
-        val arguments = PsiTreeUtil.getParentOfType(candidate, KtValueArgumentList::class.java) ?: return
-        val callExpression = arguments.parent as? KtCallExpression ?: return
-        if (CucumberKotlinUtil.isLambdaStepDefinition(callExpression) && CucumberKotlinUtil.getLambdaStepName(callExpression) != null) {
+    private fun handleLambdaStepDeclaration(stringTemplate: KtStringTemplateExpression, consumer: Consumer<in PomTarget>) {
+        val callExpression = CucumberKotlinUtil.getLambdaStepDefinitionOfStepText(stringTemplate) ?: return
+        if (CucumberKotlinUtil.getLambdaStepName(callExpression) != null) {
             consumer.consume(CucumberKotlinLambdaStepPomTarget(callExpression))
         }
+    }
+
+    private fun handleParameterTypeDeclaration(stringTemplate: KtStringTemplateExpression, consumer: Consumer<in PomTarget>) {
+        val (name, _) = CucumberKotlinUtil.getStringValue(stringTemplate) ?: return
+        if (name.isEmpty() || CucumberKotlinUtil.getLambdaParameterTypeOfName(stringTemplate) == null) return
+        consumer.consume(CucumberKotlinParameterPomTarget(stringTemplate, name))
     }
 }
