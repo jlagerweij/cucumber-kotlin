@@ -14,13 +14,15 @@
         <ul>
             <li>Navigation in the source code.</li>
             <li>Create step definitions.</li>
-        </ul
+            <li>Run and debug features and scenarios (provided by the Cucumber for Java plugin).</li>
+        </ul>
     ]]></description>
 
     <depends>com.intellij.java</depends>
     <depends>org.jetbrains.kotlin</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>gherkin</depends>
+    <depends>cucumber-java</depends>
 
     <extensions defaultExtensionNs="org.jetbrains.plugins.cucumber.steps">
         <cucumberJvmExtensionPoint implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinLambdaExtension"/>
