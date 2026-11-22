@@ -81,6 +81,22 @@ internal object CucumberJava8Stubs {
         }
     """.trimIndent()
 
+    /** Main class of cucumber-core, used by the Cucumber for Java run configurations. */
+    private val CLI_MAIN_STUB = """
+        package io.cucumber.core.cli;
+
+        public class Main {
+            public static void main(String[] argv) {}
+        }
+    """.trimIndent()
+
+    /** Marker class the Cucumber for Java plugin uses to detect cucumber-core 7. */
+    private val SOURCE_REFERENCE_STUB = """
+        package io.cucumber.core.backend;
+
+        public interface SourceReference {}
+    """.trimIndent()
+
     /** The stub sources, keyed by their path relative to a source root. */
     val FILES = mapOf(
         "io/cucumber/java8/LambdaGlue.java" to LAMBDA_GLUE_STUB,
@@ -88,5 +104,7 @@ internal object CucumberJava8Stubs {
         "io/cucumber/java8/De.java" to DE_STUB,
         "io/cucumber/java8/Scenario.java" to SCENARIO_STUB,
         "io/cucumber/datatable/DataTable.java" to DATA_TABLE_STUB,
+        "io/cucumber/core/cli/Main.java" to CLI_MAIN_STUB,
+        "io/cucumber/core/backend/SourceReference.java" to SOURCE_REFERENCE_STUB,
     )
 }
