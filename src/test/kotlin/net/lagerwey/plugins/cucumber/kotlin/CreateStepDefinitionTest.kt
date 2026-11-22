@@ -2,7 +2,7 @@ package net.lagerwey.plugins.cucumber.kotlin
 
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.psi.PsiFile
-import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinStepDefinitionCreator
+import net.lagerwey.plugins.cucumber.kotlin.steps.KotlinLambdaStepDefinitionCreator
 import org.jetbrains.plugins.cucumber.inspections.CucumberStepInspection
 
 class CreateStepDefinitionTest : CucumberKotlinTestCase() {
@@ -22,7 +22,7 @@ class CreateStepDefinitionTest : CucumberKotlinTestCase() {
 
         val step = stepAtCaret()
         val created = WriteCommandAction.writeCommandAction(project).compute<Boolean, Throwable> {
-            KotlinStepDefinitionCreator().createStepDefinition(step, stepsFile, false)
+            KotlinLambdaStepDefinitionCreator().createStepDefinition(step, stepsFile, false)
         }
 
         assertTrue("Step definition was not created", created)
@@ -48,7 +48,7 @@ class CreateStepDefinitionTest : CucumberKotlinTestCase() {
     fun testCreateNewStepDefinitionFile() {
         configureFeature("Given I have a <caret>tomato")
         val step = stepAtCaret()
-        val creator = KotlinStepDefinitionCreator()
+        val creator = KotlinLambdaStepDefinitionCreator()
 
         assertEquals("TestSteps", creator.getDefaultStepFileName(step))
 
@@ -74,7 +74,7 @@ class CreateStepDefinitionTest : CucumberKotlinTestCase() {
     }
 
     fun testStepDefinitionFileNameValidation() {
-        val creator = KotlinStepDefinitionCreator()
+        val creator = KotlinLambdaStepDefinitionCreator()
 
         assertTrue(creator.validateNewStepDefinitionFileName(project, "MySteps"))
         assertFalse(creator.validateNewStepDefinitionFileName(project, ""))

@@ -14,13 +14,15 @@
         <ul>
             <li>Navigation in the source code.</li>
             <li>Create step definitions.</li>
-        </ul
+            <li>Run and debug features and scenarios (provided by the Cucumber for Java plugin).</li>
+        </ul>
     ]]></description>
 
     <depends>com.intellij.java</depends>
     <depends>org.jetbrains.kotlin</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>gherkin</depends>
+    <depends>cucumber-java</depends>
 
     <extensions defaultExtensionNs="org.jetbrains.plugins.cucumber.steps">
         <cucumberJvmExtensionPoint implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinLambdaExtension"/>
@@ -34,14 +36,18 @@
         <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinLambdaStepIndex"/>
         <fileBasedIndex implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinParameterTypeIndex"/>
 
-        <pom.declarationSearcher implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepDeclarationSearcher"/>
+        <pom.declarationSearcher implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinPomDeclarationSearcher"/>
+        <elementDescriptionProvider implementation="net.lagerwey.plugins.cucumber.kotlin.steps.reference.CucumberKotlinParameterPomTargetDescriptionProvider"/>
+        <psi.referenceContributor implementation="net.lagerwey.plugins.cucumber.kotlin.steps.reference.CucumberKotlinReferenceContributor"
+                                  language="kotlin"/>
+        <multiHostInjector implementation="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinInjector"/>
 
-        <referencesSearch implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepDefinitionUsageSearcher"/>
-        <findUsagesHandlerFactory implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepFindUsagesHandlerFactory"/>
-        <usageTypeProvider implementation="net.lagerwey.plugins.cucumber.kotlin.search.StepUsageTypeProvider"/>
+        <referencesSearch implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinStepDefinitionSearch"/>
+        <findUsagesHandlerFactory implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinFindUsagesHandlerFactory"/>
+        <usageTypeProvider implementation="net.lagerwey.plugins.cucumber.kotlin.steps.search.CucumberKotlinUsageTypeProvider"/>
 
         <codeInsight.lineMarkerProvider
-            implementationClass="net.lagerwey.plugins.cucumber.kotlin.search.CucumberLineMarkerProvider"
+            implementationClass="net.lagerwey.plugins.cucumber.kotlin.CucumberKotlinLineMarkerProvider"
             language="kotlin"/>
     </extensions>
 

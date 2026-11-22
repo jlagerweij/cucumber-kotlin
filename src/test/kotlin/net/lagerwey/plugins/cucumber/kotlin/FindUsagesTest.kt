@@ -109,6 +109,35 @@ class FindUsagesTest : CucumberKotlinTestCase() {
         assertEquals(listOf("Angenommen ich habe 42 Gurken in meinem Bauch"), findStepUsagesAtCaret())
     }
 
+    fun testFindFeatureStepsUsingRegexStepDefinition() {
+        myFixture.addFileToProject(
+            "regex.feature",
+            """
+            Feature: Regex
+
+              Scenario: Regex step
+                Given I have 3 cucumbers
+                And I have a tomato
+            """.trimIndent()
+        )
+        myFixture.configureByText(
+            "RegexSteps.kt",
+            """
+            package steps
+
+            import io.cucumber.java8.En
+
+            class RegexSteps : En {
+                init {
+                    Given("^I have (\\d+) cu<caret>cumbers$") { count: Int -> }
+                }
+            }
+            """.trimIndent()
+        )
+
+        assertEquals(listOf("Given I have 3 cucumbers"), findStepUsagesAtCaret())
+    }
+
     private fun findStepUsagesAtCaret(): List<String> =
         myFixture.findUsages(myFixture.elementAtCaret)
             .map { it.element }

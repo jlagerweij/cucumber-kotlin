@@ -8,10 +8,16 @@ import org.jetbrains.kotlin.KtNodeTypes
 import org.jetbrains.kotlin.idea.KotlinFileType.INSTANCE
 import org.jetbrains.plugins.cucumber.CucumberStepIndex
 
-val INDEX_ID = ID.create<Boolean, MutableList<Int>>("kotlin.cucumber.step")
-private val PACKAGES_TO_SCAN = arrayOf("io.cucumber.java8.", "cucumber.api.java8.")
-
+/**
+ * Counterpart of `CucumberJava8StepIndex` in the Cucumber for Java plugin: the offsets of step definitions in
+ * cucumber-java8 style.
+ */
 class CucumberKotlinLambdaStepIndex : CucumberStepIndex() {
+    companion object {
+        @JvmField
+        val INDEX_ID = ID.create<Boolean, MutableList<Int>>("kotlin.cucumber.step")
+        private val PACKAGES_TO_SCAN = arrayOf("io.cucumber.java8.", "cucumber.api.java8.")
+    }
 
     override fun getName(): ID<Boolean, MutableList<Int>> = INDEX_ID
 

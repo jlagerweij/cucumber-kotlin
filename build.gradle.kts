@@ -23,6 +23,7 @@ dependencies {
         // IntelliJ IDEA next version: https://www.jetbrains.com/idea/nextversion/
         // Gherkin plugin version: https://plugins.jetbrains.com/plugin/9164-gherkin/versions
         // Cucumber for Java version: https://plugins.jetbrains.com/plugin/7212-cucumber-for-java/versions
+        // Cucumber for Java provides the run/debug configurations (gutter run icons) for feature files.
 
         plugins(listOf("gherkin:263.7307.101", "cucumber-java:263.7307.112"))
         testFramework(TestFrameworkType.Platform)
